@@ -1,0 +1,35 @@
+.navbar{
+    display: flex;
+    justify-content: space-between;
+    background-color: whitesmoke;
+    padding: 0.5em;
+    box-shadow: 0 0 1em #44434663;
+}
+
+.img{
+    background-color: whitesmoke;
+    height: 80px;
+    display: flex;
+    justify-content: start;
+    align-items: center;
+}
+
+.navmenu{
+
+}
+
+.menubar{
+
+}
+
+.navmenu_itens{
+
+}
+
+.navbar_toggle{
+
+}
+
+.menubars{
+
+}
