@@ -1,43 +1,89 @@
-import React, { useState } from "react";
+import { React, useState } from "react";
 import { Link } from "react-router-dom";
-import * as FaIcons from "react-icons/fa";
-import { AiOutlineHome } from "react-icons/ai";
-import * as AiIcons from "react-icons/ai";
-import { IoNewspaperOutline } from "react-icons/io5";
-import { FaRegPenToSquare } from "react-icons/fa6";
-import { IoLogOutOutline } from "react-icons/io5";
-import './Navbar.css';
-// import logo from "../../img/cepea_logo.png";
+import {
+  BsList,
+  BsFileEarmarkText,
+  BsPencilSquare,
+  BsHouse,
+  BsBoxArrowLeft,
+} from "react-icons/bs";
+import "./Navbar.css";
+import logo from "../../img/cepea_logo.png";
+
+const menuItem = document.querySelectorAll(".item_menu");
+
+function selectLink() {
+  menuItem.forEach((item) => {
+    item.classList.remove("active");
+  });
+  this.classList.add("active");
+}
+
+menuItem.forEach((item) => {
+  item.addEventListener("click", selectLink);
+});
 
 function Navbar() {
-  const [sidebar, setSidebar] = useState(false);
-  const showSidebar = () => setSidebar(!sidebar);
+  const [sideBar, setSideBar] = useState(true);
+  const showSidebar = () => setSideBar(!sideBar);
+
+  const [cadBox, setCadBox] = useState(false);
+  const showCadBox = () => setCadBox(!cadBox);
 
   return (
     <>
       <div className="navbar">
-        <Link to="/" className="menubar">
-          <FaIcons.FaBars onclick={showSidebar} />
+        <Link className="btn_expand" to="/">
+          <BsList onClick={showSidebar} />
+        </Link>
+        <Link to="/">
+          <img src={logo} alt="cepea_logo" />
         </Link>
       </div>
-      <nav className={sidebar ? "navmenu active" : "navmenu"}>
-        <ul className="navmenu_itens">
-          <li className="navbar_toggle">
-            <Link to="/" className="menubars">
-              <AiIcons.AiOutlineClose />
+      <nav className={sideBar ? "nav_menu active" : "nav_menu"}>
+        <ul>
+          <li className="item_menu">
+            <Link to="/">
+              <BsHouse />
+              <span>Home</span>
+            </Link>
+          </li>
+          <li className="item_menu">
+            <Link to="/relatorio">
+              <BsFileEarmarkText />
+              <span>Relatórios</span>
+            </Link>
+          </li>
+          <li onClick={showCadBox} className="item_menu">
+            <Link to="/cadastro">
+              <BsPencilSquare />
+              <span>Cadastro</span>
+            </Link>
+          </li>
+
+          <div className={cadBox ? "box_cad active" : "box_cad"}>
+            <li>
+            <Link to="/cadone">
+              <span>Cad1</span>
             </Link>
           </li>
           <li>
-            <Link to="/"><AiOutlineHome /> Home</Link>
+            <Link to="/cadone">
+              <span>Cad2</span>
+            </Link>
           </li>
           <li>
-            <Link to="/relatorio"><IoNewspaperOutline /> Relatórios</Link>
+            <Link to="/cadone">
+              <span>Cad3</span>
+            </Link>
           </li>
-          <li>
-            <Link to="/cadastro"><FaRegPenToSquare /> Cadastro</Link>
-          </li>
-          <li>
-            <Link to="/login"><IoLogOutOutline /> Sair</Link>
+          </div>
+
+          <li className="item_menu">
+            <Link to="/login">
+              <BsBoxArrowLeft />
+              <span>Sair</span>
+            </Link>
           </li>
         </ul>
       </nav>
