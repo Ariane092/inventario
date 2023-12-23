@@ -1,0 +1,16 @@
+.forms{
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 1em;
+}
+
+.forms label{
+    margin-bottom: 0.6em;
+    font-size: .8em;
+    font-weight: bold;
+}
+
+.forms select{
+    padding: .4em;
+    border: 2px solid  #44434663;;
+}

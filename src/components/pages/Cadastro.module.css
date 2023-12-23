@@ -1,0 +1,29 @@
+.form{
+    display: flex;
+    margin: 5em;
+    flex-direction:row;
+    justify-content: center;
+}
+
+.form h4{
+    display: flex;
+    position: absolute;
+    transform: translateY(350%);  
+    color: rgb(104, 102, 102);
+    justify-content: center;  
+}
+
+.form_box{
+    margin-left: 2em;
+}
+
+.obs_box{
+    position: absolute;
+    top: 39em;
+    margin-right: 18em;
+}
+
+.obs_box input{
+    width: 532px;
+    height: 120px;
+}

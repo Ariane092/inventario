@@ -1,12 +1,18 @@
 .navbar{
-    background-color: whitesmoke;
+    background-color: rgb(65, 63, 63);
     padding: 0.2em;
-    border-bottom: 2px solid rgba(6, 94, 6, 0.411);
-    box-shadow: 0 0 1em #44434663;
 }
 
 img{
     width: 145px;
+}
+
+h4{
+    display: flex;
+    position: absolute;
+    top: 20px;
+    transform: translateX(72%);  
+    color: rgb(211, 205, 205);  
 }
 
 .btn_expand{
@@ -14,24 +20,24 @@ img{
     font-size: 25px;
     padding-left: 10px;
     padding-right: 20px;
-    color: rgb(53, 52, 52);
+    color: rgb(211, 205, 205); 
 }
 
 .btn_expand:hover{
-    color: rgba(6, 94, 6, 0.411);
+    color: rgb(253, 253, 253);
 }
 
 .nav_menu{
     width: 50px;
-    height: 100%;
+    height: 130%;
     display: flex;
-    background-color: whitesmoke;
+    background-color: rgba(155, 196, 177);
     padding: 40px 0 40px;
-    position: fixed;
-    border-right: 2px solid rgba(6, 94, 6, 0.411);
+    position: absolute;
+    border-right: 1px solid rgb(65, 63, 63);
+    box-shadow: 0 0 12px rgb(65, 63, 63);;
     overflow: hidden;
     transition: 0.5s;
-    box-shadow: 0 1em #44434663;
 }
 
 .nav_menu.active{
@@ -50,16 +56,17 @@ ul li{
 ul li:hover{
     width: 223px;
     font-weight: bold;
-    background: rgba(6, 94, 6, 0.411);
+    background: rgb(209, 208, 208);
 }
 
 ul li.active{
     width: 223px;
-    background: rgba(6, 94, 6, 0.411);
+    background: rgb(209, 208, 208);
+    font-weight: bold;
 }
 
 ul li a{
-    color: rgb(53, 52, 52);
+    color: rgb(0, 0, 0);
     text-decoration: none;
     padding: 15px;
     margin-left: 1px;
@@ -75,10 +82,6 @@ span{
 }
 
 .box_cad{
-    margin-left: 20px;
+    margin-left: 29px;
     font-size: 16px;
-}
-
-.box_cad.active{
-
 }
