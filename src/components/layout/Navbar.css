@@ -4,7 +4,7 @@
 }
 
 img{
-    width: 145px;
+    width: 140px;
 }
 
 h4{
@@ -29,13 +29,13 @@ h4{
 
 .nav_menu{
     width: 50px;
-    height: 130%;
+    height: 100%;
     display: flex;
     background-color: rgba(155, 196, 177);
     padding: 40px 0 40px;
     position: absolute;
     border-right: 1px solid rgb(65, 63, 63);
-    box-shadow: 0 0 12px rgb(65, 63, 63);;
+    box-shadow: 0 0 12px rgb(65, 63, 63);
     overflow: hidden;
     transition: 0.5s;
 }
@@ -56,12 +56,12 @@ ul li{
 ul li:hover{
     width: 223px;
     font-weight: bold;
-    background: rgb(209, 208, 208);
+    background: rgba(205, 126, 108, 0.692);
 }
 
 ul li.active{
     width: 223px;
-    background: rgb(209, 208, 208);
+    background: rgba(205, 126, 108, 0.692);
     font-weight: bold;
 }
 
@@ -84,4 +84,9 @@ span{
 .box_cad{
     margin-left: 29px;
     font-size: 16px;
+}
+
+#logout{
+    position: absolute;
+    bottom: 50px
 }

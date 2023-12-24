@@ -96,7 +96,7 @@ function Navbar() {
               <span>Gerar Etiqueta</span>
             </Link>
           </li>
-          <li className="item_menu">
+          <li className="item_menu" id="logout">
             <Link to="/login">
               <BsBoxArrowLeft />
               <span>Sair</span>
