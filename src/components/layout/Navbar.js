@@ -16,9 +16,15 @@ import {
 import { PiOfficeChair } from "react-icons/pi";
 
 function Navbar() {
+
   //fechar sidebar
   const [sideBar, setSideBar] = useState(true);
   const closeSidebar = () => setSideBar(!sideBar);
+
+  //mostrar ícone pequeno ao fechar a sidebar
+  const sidebarIcon = sideBar ? "sidebar_icon active" : "sidebar_icon";
+  //mostrar título embaixo no ícone ao fechar a sidebar
+  const sidebarTitle = sideBar ? "sidebar_link-floating active" : "sidebar_link-floating";
 
   return (
     <>
@@ -39,46 +45,51 @@ function Navbar() {
           <div className="sidebar_content">
             <div className="sidebar_list">
               <Link className="sidebar_link" to="/">
-                <BsHouse className="sidebar_icon" />
+                  <BsHouse className={`${sidebarIcon}`}/>
                 <span>Home</span>
+                <span className={`${sidebarTitle}`}>Home</span>
               </Link>
               <Link className="sidebar_link" to="/relatorio">
-                <BsFileEarmarkText className="sidebar_icon" />
+                <BsFileEarmarkText className={`${sidebarIcon}`} />
                 <span>Relatórios</span>
+                <span className={`${sidebarTitle}`}>Relatórios</span>
               </Link>
               <Link className="sidebar_link" to="/cadastro">
-                <BsPencilSquare className="sidebar_icon" />
+                <BsPencilSquare className={`${sidebarIcon}`} />
                 <span>Cadastro</span>
+                <span className={`${sidebarTitle}`}>Cadastro</span>
               </Link>
 
               {/* cadlist */}
               <div className="sidebar_list">
-                <Link className="sidebar_link" to="/computadores">
-                  <BsLaptop className="sidebar_icon" />
+                <Link className="sidebar_link box_cad" to="/computadores">
+                  <BsLaptop />
                   <span>Computadores</span>
                 </Link>
-                <Link className="sidebar_link" to="/impressoras">
-                  <BsPrinter className="sidebar_icon" />
+                <Link className="sidebar_link box_cad" to="/impressoras">
+                  <BsPrinter />
                   <span>Impressoras</span>
                 </Link>
-                <Link className="sidebar_link" to="/monitores">
-                  <BsDisplay className="sidebar_icon" />
+                <Link className="sidebar_link box_cad" to="/monitores">
+                  <BsDisplay />
                   <span>Monitores</span>
                 </Link>
-                <Link className="sidebar_link" to="/escritorio">
-                  <PiOfficeChair className="sidebar_icon" />
+                <Link className="sidebar_link box_cad" to="/escritorio">
+                  <PiOfficeChair />
                   <span>Escritório</span>
                 </Link>
               </div>
               {/* cadlist */}
 
               <Link className="sidebar_link" to="/etiquetas">
-                <BsQrCodeScan className="sidebar_icon" />
+                <BsQrCodeScan className={`${sidebarIcon}`} />
                 <span>Gerar Qr Code</span>
+                <span className={`${sidebarTitle}`}>Qr Code</span>
               </Link>
               <Link className="sidebar_link" to="/login">
-                <BsBoxArrowLeft className="sidebar_icon" />
+                <BsBoxArrowLeft className={`${sidebarIcon}`} />
                 <span>Sair</span>
+                <span className={`${sidebarTitle}`}>Sair</span>
               </Link>
             </div>
           </div>
