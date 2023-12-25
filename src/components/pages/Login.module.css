@@ -6,9 +6,9 @@
     margin-left: 25em;
     display: flex;
     justify-content: center;
-    border: 2px solid #44434663;
+    border: 2px solid #0f740f63;
     box-shadow: 0 0 3px rgb(65, 63, 63);
-    border-radius: 10px;
+    border-radius: 5px;
     padding: 20px;
 }
 

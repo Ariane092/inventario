@@ -27,66 +27,75 @@ h4{
     color: rgb(253, 253, 253);
 }
 
-.nav_menu{
-    width: 50px;
-    height: 100%;
-    display: flex;
-    background-color: rgba(155, 196, 177);
-    padding: 40px 0 40px;
-    position: absolute;
-    border-right: 1px solid rgb(65, 63, 63);
-    box-shadow: 0 0 12px rgb(65, 63, 63);
-    overflow: hidden;
-    transition: 0.5s;
+/*variables*/
+:root {
+--z-fixed: 100;
 }
 
-.nav_menu.active{
+.sidebar{
+    position: fixed;
+    left: 0;
+    width: 66px;
+    height: 100%;
+    padding: 1rem .5rem;
+    background-color: rgba(155, 196, 177);
+    /* z-index: var(--z-fixed); */
+    box-shadow: 0 0 12px rgb(65, 63, 63);
+}
+
+.sidebar.active{
     width: 225px;
 }
 
-ul{
-    height: 100%;
-    list-style-type: none;
-}
-
-ul li{
-    transition: 0.2s;
-}
-
-ul li:hover{
-    width: 223px;
-    font-weight: bold;
-    background: rgba(205, 126, 108, 0.692);
-}
-
-ul li.active{
-    width: 223px;
-    background: rgba(205, 126, 108, 0.692);
-    font-weight: bold;
-}
-
-ul li a{
-    color: rgb(0, 0, 0);
-    text-decoration: none;
-    padding: 15px;
-    margin-left: 1px;
+.sidebar_container{
     display: flex;
+    flex-direction: column;
+    row-gap: 1rem;
+    height: 100%;
 }
 
-.item_menu{
-    font-size: 18px;
+.sidebar_content{
+    position: relative;
+    overflow: hidden;
+    padding-top: 1rem;
+}
+
+.sidebar_list{
+    display: flex;
+    flex-direction: column;
+    row-gap: .25rem;
+}
+
+.sidebar_link{
+    color: black;
+    display: grid;
+    grid-template-columns: repeat(2, max-content);
+    text-decoration: none;
+    align-items: center;
+    column-gap: 1.5rem;
+    padding: .9rem;
+    border-radius: .20rem;
+    transition: background .3s;
+    background: whitesmoke;
+}
+
+.sidebar_link:hover{
+    background-color: rgba(205, 126, 108, 0.692);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    font-weight: bold;
+}
+
+.sidebar_icon{
+    font-size: 1.25rem;
 }
 
 span{
-    margin-left: 15px;
+    transition: font-weight .40s;
 }
 
-.box_cad{
-    margin-left: 29px;
+/* .box_cad{
+    margin-left: 34px;
     font-size: 16px;
-}
+} */
 
-#logout{
-    position: absolute;
-    bottom: 50px
-}

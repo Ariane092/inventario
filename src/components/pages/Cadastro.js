@@ -10,7 +10,7 @@ function Cadastro({ handleSubmit, btnText, projectData }) {
       <h4>Cadastro de Equipamentos</h4>
       <form className={styles.form}>
         <div>
-          <Input type="number" text="Equipamento" name="equipamento" />
+          <Input type="number" text="Núm. Equipamento" name="equipamento" />
           <Input type="text" text="Processo" name="processo" />
           <Input type="date" text="Data Compra" name="data_compra" />
           <Select
@@ -29,7 +29,7 @@ function Cadastro({ handleSubmit, btnText, projectData }) {
             text="Marca/modelo"
             // options={categories}
           />
-          <Input type="text" text="Observação" name="observacao" />
+          <textarea>Observação</textarea>
         </div>
         <div className={styles.form_box}>
           <Input type="number" text="NF" name="nota_fiscal" />

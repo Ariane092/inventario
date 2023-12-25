@@ -9,29 +9,21 @@ import {
   BsHouse,
   BsBoxArrowLeft,
   BsQrCodeScan,
-  BsPlus,
+  BsDisplay,
+  BsLaptop,
+  BsPrinter,
 } from "react-icons/bs";
-
-const menuItem = document.querySelectorAll(".item_menu");
-
-function selectLink() {
-  menuItem.forEach((item) => {
-    item.classList.remove("active");
-  })
-  this.classList.add("active");
-}
-
-menuItem.forEach((item) => {
-  item.addEventListener("click", selectLink);
-});
+import { PiOfficeChair } from "react-icons/pi";
 
 function Navbar() {
+  //fechar sidebar
   const [sideBar, setSideBar] = useState(true);
   const closeSidebar = () => setSideBar(!sideBar);
 
   return (
     <>
-      <div className="navbar">
+      {/* navbar */}
+      <div className="navbar" id="header-toggle">
         <Link className="btn_expand">
           <BsList onClick={closeSidebar} />
         </Link>
@@ -40,70 +32,58 @@ function Navbar() {
         </Link>
         <h4>Sistema de Inventário CEPEA/ESALQ-USP</h4>
       </div>
-      <nav className={sideBar ? "nav_menu active" : "nav_menu"}>
-        <ul>
-          <li className="item_menu">
-            <Link to="/">
-              <BsHouse />
-              <span>Home</span>
-            </Link>
-          </li>
-          <li className="item_menu">
-            <Link to="/relatorio">
-              <BsFileEarmarkText />
-              <span>Relatórios</span>
-            </Link>
-          </li>
-          <li className="item_menu">
-            <Link to="/cadastro">
-              <BsPencilSquare />
-              <span>Cadastro</span>
-            </Link>
-          </li>
 
-          <div className="box_cad">
-            <ul>
-              <li>
-                <Link to="/computadores">
-                  <BsPlus />
+      {/* sidebar */}
+      <div className={sideBar ? "sidebar active" : "sidebar"}>
+        <nav className="sidebar_container">
+          <div className="sidebar_content">
+            <div className="sidebar_list">
+              <Link className="sidebar_link" to="/">
+                <BsHouse className="sidebar_icon" />
+                <span>Home</span>
+              </Link>
+              <Link className="sidebar_link" to="/relatorio">
+                <BsFileEarmarkText className="sidebar_icon" />
+                <span>Relatórios</span>
+              </Link>
+              <Link className="sidebar_link" to="/cadastro">
+                <BsPencilSquare className="sidebar_icon" />
+                <span>Cadastro</span>
+              </Link>
+
+              {/* cadlist */}
+              <div className="sidebar_list">
+                <Link className="sidebar_link" to="/computadores">
+                  <BsLaptop className="sidebar_icon" />
                   <span>Computadores</span>
                 </Link>
-              </li>
-              <li>
-                <Link to="/impressoras">
-                  <BsPlus />
+                <Link className="sidebar_link" to="/impressoras">
+                  <BsPrinter className="sidebar_icon" />
                   <span>Impressoras</span>
                 </Link>
-              </li>
-              <li>
-                <Link to="/monitores">
-                  <BsPlus />
+                <Link className="sidebar_link" to="/monitores">
+                  <BsDisplay className="sidebar_icon" />
                   <span>Monitores</span>
                 </Link>
-              </li>
-              <li>
-                <Link to="/escritorio">
-                  <BsPlus />
+                <Link className="sidebar_link" to="/escritorio">
+                  <PiOfficeChair className="sidebar_icon" />
                   <span>Escritório</span>
                 </Link>
-              </li>
-            </ul>
-          </div>
+              </div>
+              {/* cadlist */}
 
-          <li className="item_menu">
-            <Link to="/etiqueta">
-              <BsQrCodeScan />
-              <span>Gerar Etiqueta</span>
-            </Link>
-          </li>
-          <li className="item_menu" id="logout">
-            <Link to="/login">
-              <BsBoxArrowLeft />
-              <span>Sair</span>
-            </Link>
-          </li>
-        </ul>
-      </nav>
+              <Link className="sidebar_link" to="/etiquetas">
+                <BsQrCodeScan className="sidebar_icon" />
+                <span>Gerar Qr Code</span>
+              </Link>
+              <Link className="sidebar_link" to="/login">
+                <BsBoxArrowLeft className="sidebar_icon" />
+                <span>Sair</span>
+              </Link>
+            </div>
+          </div>
+        </nav>
+      </div>
     </>
   );
 }

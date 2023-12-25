@@ -4,7 +4,7 @@ import SubmitButton from "../forms/SubmitButton";
 import logo from "../../img/cepea_img.png";
 import styles from "./Login.module.css";
 
-function Login({}) {
+function Login() {
   return (
     <div className={styles.container}>
       <h4>Inventário CEPEA/ESALQ-USP</h4>
