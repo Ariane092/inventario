@@ -94,7 +94,7 @@ function Navbar() {
             </div>
 
             <ul class="sub_menu">
-              <Link to="/cadastro" class="link_name">Cadastro</Link>
+              <Link class="link_name">Cadastro</Link>
 
               <Link to="/computadores">Computadores</Link>
 

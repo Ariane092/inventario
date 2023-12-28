@@ -14,3 +14,7 @@
     padding: .4em;
     border: 2px solid  #44434663;
 }
+
+.forms select:focus-visible{
+    outline: 1px solid  #44434663;
+}

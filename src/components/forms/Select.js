@@ -8,7 +8,8 @@ function Select({ text, name, options, handleOnChange, value }) {
             name={name} 
             id={name} 
             onChange={handleOnChange} 
-            value={value || ''}>
+            value={value || ''}
+            options={options}>
             </select>
         </div>
     );

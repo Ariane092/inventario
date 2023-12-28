@@ -10,7 +10,7 @@
     font-weight: bold;
     position: absolute;
     bottom: 18px;
-    transform: translateX(-350%);
+    transform: translateX(-350%); /*modificar*/
 }
 
 .btn:hover{
