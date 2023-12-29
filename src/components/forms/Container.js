@@ -4,12 +4,9 @@ import SubmitButton from "./SubmitButton";
 function Container(props) {
   return (
     <div className={styles.container}>
-
-      <h4>{props.name}</h4>
-
-        {props.children} {/*form props*/}
-
-      <SubmitButton text="Enviar" />
+      <p>{props.title}</p>
+      {props.children} {/*form props*/}
+      <SubmitButton text={props.btnText} />
     </div>
   );
 }

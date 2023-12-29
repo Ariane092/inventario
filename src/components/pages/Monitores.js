@@ -4,7 +4,7 @@ import Cadastro from "./Cadastro";
 
 function Monitores(){
     return(
-        <Container name="Cadastro de Monitores">
+        <Container title="Cadastro de Monitores" btnText="Enviar">
             <Cadastro />
         </Container>
 

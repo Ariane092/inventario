@@ -40,8 +40,10 @@ function Cadastro() {
           <Select name="status" text="Status" options={categories} />
           <Input type="text" text="Service Tag" name="service_tag" />
         </div>
-        <label>Observação:</label>
-        <textarea></textarea>
+        <div className={styles.obs_box}>
+          <label>Observação:</label>
+          <textarea></textarea>
+        </div>
       </Form>
     </>
   );

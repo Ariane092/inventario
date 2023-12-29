@@ -6,9 +6,9 @@ import Form from "../forms/Form";
 import styles from "./Cadastro.module.css";
 import categories from "./dbCadastro";
 
-function Cadastro() {
+function Computadores() {
   return (
-    <Container name="Cadastro de Computadores">
+    <Container title="Cadastro de Computadores" btnText="Enviar">
       <Form>
         <div className={styles.form_box}>
           <Input type="number" text="Núm. Equipamento" name="equipamento" />
@@ -45,11 +45,13 @@ function Cadastro() {
           <Select name="processador" text="Processador" options={categories} />
           <Select name="office" text="Office" options={categories} />
         </div>
-        <label>Observação:</label>
-        <textarea></textarea>
+        <div className={styles.obs_box}> 
+          <label>Observação:</label>
+          <textarea></textarea>
+        </div>
       </Form>
     </Container>
   );
 }
 
-export default Cadastro;
+export default Computadores;
