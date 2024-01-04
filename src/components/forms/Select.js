@@ -2,8 +2,8 @@ import styles from './Select.module.css';
 
 function Select({ text, name, options, handleOnChange, value }) {
     return (
-        <div className={styles.forms}>
-            <label htmlFor={name}>{text}:</label>
+        <div className={styles.selects}>
+            <label htmlFor={name}>{text}</label>
             <select 
             name={name} 
             id={name} 

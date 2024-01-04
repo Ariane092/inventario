@@ -3,12 +3,11 @@ import Input from "../forms/Input";
 import Select from "../forms/Select";
 import styles from "./Cadastro.module.css";
 import categories from "./dbCadastro";
-import Form from "../forms/Form";
 
-function Cadastro() {
+function Cadastro(props) {
   return (
     <>
-      <Form>
+      <form className={styles.form}>
         <div className={styles.form_box}>
           <Input type="number" text="Núm. Equipamento" name="equipamento" />
           <Input type="text" text="Processo" name="processo" />
@@ -26,8 +25,6 @@ function Cadastro() {
             text="Marca/modelo"
             options={categories}
           />
-        </div>
-        <div className={styles.form_box}>
           <Input type="number" text="NF" name="nota_fiscal" />
           <Input type="number" text="Cód. Doação" name="cod_doacao" />
           <Select
@@ -40,11 +37,12 @@ function Cadastro() {
           <Select name="status" text="Status" options={categories} />
           <Input type="text" text="Service Tag" name="service_tag" />
         </div>
+        {props.children} {/*computadores props*/}
         <div className={styles.obs_box}>
-          <label>Observação:</label>
-          <textarea></textarea>
-        </div>
-      </Form>
+        <label>Observação</label>
+        <textarea></textarea>
+      </div>
+    </form>  
     </>
   );
 }

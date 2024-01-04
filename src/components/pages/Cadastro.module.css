@@ -1,19 +1,28 @@
+.form{
+    display: flex;
+    justify-content: center;
+    margin: 8em 0em 0em 35em;
+}
+
 .form_box {
-    padding: 7px;
-    float: left;
+    padding: 25px;
+    flex-wrap: wrap;
+}
+
+.obs_box {
+    display: block;
 }
 
 .obs_box label{
     padding: .5em;
     font-size: .8em;
     font-weight: bold;
-    margin-right: 40em;
 }
 
 textarea {
     width: 32.2rem;
     height: 50px;
-    border: 2px solid #44434663;
+    border: 1px solid #44434663;
     margin-left: .5em;
     border-radius: 4px;
 }
@@ -24,6 +33,7 @@ textarea:focus-visible {
 
 button {
     position: absolute;
-    bottom: 35px;
-    transform: translateX(-360%);
+    top: 80em;
 }
+
+

@@ -1,21 +1,21 @@
-.forms{
+.selects{
     display: flex;
     flex-direction: column;
     margin-bottom: 1em;
 }
 
-.forms label{
+.selects label{
     margin-bottom: 0.6em;
     font-size: .8em;
     font-weight: bold;
 }
 
-.forms select{
+.selects select{
     padding: .4em;
-    border: 2px solid  #44434663;
+    border: 1px solid  #44434663;
     border-radius: 4px;
 }
 
-.forms select:focus-visible{
+.selects select:focus-visible{
     outline: 1px solid  #44434663;
 }

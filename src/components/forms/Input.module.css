@@ -1,26 +1,26 @@
-.forms{
+.inputs{
     display: flex;
     flex-direction: column;
     margin-bottom: 1em;
     width: 250px;
 }
 
-.forms label{
+.inputs label{
     margin-bottom: 0.6em;
     font-size: .8em;
     font-weight: bold;
 }
 
-.forms input{
+.inputs input{
     padding: .4em;
-    border: 2px solid  #44434663;
+    border: 1px solid  #44434663;
     border-radius: 4px;
 }
 
-.forms input::placeholder{
+.inputs input::placeholder{
     color: #7b7b77;
 }
 
-.forms input:focus-visible{
+.inputs input:focus-visible{
     outline: 1px solid  #44434663;
 }

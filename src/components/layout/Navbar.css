@@ -1,22 +1,24 @@
 .navbar{
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 0.20em;
+    width: 100%;
+    position: fixed;
     background-color: rgb(65, 63, 63);
-    padding: 0.15em;
 }
 
 img{
-    width: 135px;
+    width: 125px;
 }
 
-h4{
-    display: flex;
-    position: absolute;
-    top: 20px;
-    transform: translateX(72%);  
+h5{
+    padding-top: 5px;
+    padding-left: 20px;
     color: rgb(211, 205, 205);  
 }
 
 .btn_expand{
-    width: 100%;
     font-size: 25px;
     padding-left: 10px;
     padding-right: 20px;
@@ -32,7 +34,7 @@ h4{
   width: 250px;
   height: 100%;
   position: fixed;
-  top: 10;
+  top: 45px;
   background-color: rgba(155, 196, 177);
   box-shadow: 0 0 12px rgb(65, 63, 63);
   transition: all 0.7s ease;

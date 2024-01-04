@@ -18,14 +18,12 @@ function Navbar() {
       {/* navbar */}
       <div className="navbar">
         <Link className="btn_expand">
-          <i>
             <BsList onClick={closeSidebar} />
-          </i>
         </Link>
         <Link to="/">
           <img src={logo} alt="cepea_logo" />
         </Link>
-        <h4>Sistema de Inventário CEPEA/ESALQ-USP</h4>
+        <h5>Sistema de Inventário CEPEA/ESALQ-USP</h5>
       </div>
 
       {/* sidebar */}
