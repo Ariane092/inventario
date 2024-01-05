@@ -1,8 +1,8 @@
 .inputs{
     display: flex;
     flex-direction: column;
-    margin-bottom: 1em;
-    width: 250px;
+    padding: 15px;
+    width: 260px;
 }
 
 .inputs label{

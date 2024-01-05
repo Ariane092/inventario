@@ -2,7 +2,7 @@ function Inventario() {
   return (
     <div className="container">
       <div className="card_box">
-        <p>Número de Computadores</p>
+        {/* <p>Número de Computadores</p> */}
         <ul>
           <li>X Computadores</li>
           <li>X Desktops</li>

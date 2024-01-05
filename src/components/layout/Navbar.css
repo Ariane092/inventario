@@ -2,7 +2,7 @@
     display: flex;
     justify-content: flex-start;
     align-items: center;
-    padding: 0.20em;
+    padding: 0.3em;
     width: 100%;
     position: fixed;
     background-color: rgb(65, 63, 63);
@@ -13,12 +13,13 @@ img{
 }
 
 h5{
-    padding-top: 5px;
+    padding-top: 6px;
     padding-left: 20px;
     color: rgb(211, 205, 205);  
 }
 
 .btn_expand{
+    display: flex;
     font-size: 25px;
     padding-left: 10px;
     padding-right: 20px;

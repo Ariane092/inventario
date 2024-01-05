@@ -3,12 +3,13 @@ import Input from "../forms/Input";
 import Select from "../forms/Select";
 import styles from "./Cadastro.module.css";
 import categories from "./dbCadastro";
-
+import Button from "../forms/Button"
 function Cadastro(props) {
   return (
     <>
-      <form className={styles.form}>
-        <div className={styles.form_box}>
+      <div className={styles.container}>
+        <form className={styles.form}>
+          <p>{props.title}</p>
           <Input type="number" text="Núm. Equipamento" name="equipamento" />
           <Input type="text" text="Processo" name="processo" />
           <Input type="date" text="Data Compra" name="data_compra" />
@@ -36,13 +37,18 @@ function Cadastro(props) {
           <Select name="projeto" text="Projeto" options={categories} />
           <Select name="status" text="Status" options={categories} />
           <Input type="text" text="Service Tag" name="service_tag" />
+          {props.children} {/*computadores props*/}
+
+          <div className={styles.obs_box}>
+            <label>Observação</label>
+            <textarea></textarea>
+          </div>
+          <div className={styles.form_btn}> 
+          <Button text="Enviar" />
+          <Button text="Tirar Foto" />
         </div>
-        {props.children} {/*computadores props*/}
-        <div className={styles.obs_box}>
-        <label>Observação</label>
-        <textarea></textarea>
+        </form>
       </div>
-    </form>  
     </>
   );
 }

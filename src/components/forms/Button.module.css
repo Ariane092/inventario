@@ -1,7 +1,7 @@
 .btn{
     background-color: rgb(95, 150, 127);
     color: whitesmoke;
-    padding: 0.5em 3em;
+    padding: 1em 3em;
     text-decoration: none;
     transition: 0.5s;
     cursor: pointer;

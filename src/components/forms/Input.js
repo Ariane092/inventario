@@ -2,7 +2,7 @@ import styles from './Input.module.css';
 
 function Input({ type, text, date, name, placeholder, handleOnChange, value }) {
     return (
-        <div style={{bac}} className={styles.inputs}>
+        <div className={styles.inputs}>
             <label htmlFor={name}>{text}</label>
             <input
                 type={type}

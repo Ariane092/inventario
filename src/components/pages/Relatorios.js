@@ -1,6 +1,5 @@
 import Select from "../forms/Select";
 import Input from "../forms/Input";
-import Container from "../forms/Container";
 import styles from "./Relatorios.module.css";
 import categories from "./dbCadastro";
 import { BsFiletypePdf, BsFiletypeCsv } from "react-icons/bs";
@@ -8,7 +7,6 @@ import { BsFiletypePdf, BsFiletypeCsv } from "react-icons/bs";
 
 function Relatorios() {
   return (
-    <Container title="Relatórios" btnText="Gerar">
       <div className={styles.rel_form}>
         <div className={styles.rel_box}>
           <Select name="tipo_produto" text="Tipo Produto" options={categories} />
@@ -28,7 +26,6 @@ function Relatorios() {
           </div>
         </div>
       </div>
-    </Container>
   );
 }
 

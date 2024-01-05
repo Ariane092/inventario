@@ -1,7 +1,8 @@
 .selects{
     display: flex;
     flex-direction: column;
-    margin-bottom: 1em;
+    padding: 15px;
+    width: 260px;
 }
 
 .selects label{
