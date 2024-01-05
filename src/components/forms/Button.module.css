@@ -1,7 +1,9 @@
 .btn{
+    display: flex;
     background-color: rgb(95, 150, 127);
     color: whitesmoke;
-    padding: 1em 3em;
+    margin: .5em;
+    padding: .7em 3em;
     text-decoration: none;
     transition: 0.5s;
     cursor: pointer;
