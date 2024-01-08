@@ -49,6 +49,17 @@ textarea:focus-visible {
     margin-top: 15px;
 }
 
-@media screen {
+@media screen and (max-width: 740px) {
     
+    .form{
+        
+    }
+
+    .input_group {
+        display: flex;
+        flex-direction: column;
+        overflow-y: scroll;
+        height: 1000px
+        
+}
 }

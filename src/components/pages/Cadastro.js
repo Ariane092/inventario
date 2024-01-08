@@ -3,7 +3,6 @@ import Input from "../forms/Input";
 import Select from "../forms/Select";
 import styles from "./Cadastro.module.css";
 import categories from "./dbCadastro";
-// import Button from "../forms/Button";
 import Form from "../forms/Form";
 
 function Cadastro(props) {

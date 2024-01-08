@@ -1,0 +1,23 @@
+/* .tabBar {
+    display: flex;
+    justify-content: space-evenly;
+    width: 100%;
+    height: 55px;
+    position: fixed;  
+    left: 0;
+    bottom: 0;
+    background-color: rgba(155, 196, 177);
+    box-shadow: 0 0 12px rgb(65, 63, 63);
+}
+
+.tabBar ul{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+/* @media screen and (min-width: 800px) {
+    .tabBar {
+        display: none;
+    }
+} */ 

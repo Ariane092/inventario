@@ -56,3 +56,19 @@
 .sidebar.close .dropdown-link:hover{
     background-color: transparent;
 }
+
+@media screen and (max-width: 740px) {
+    
+}
+
+@media screen and (max-width: 1180px) {
+    .sidebar-link:hover{
+        background-color: transparent;
+    }
+    .dropdown-link {
+        padding-left: 10px;
+    }
+    .dropdown-link:hover{
+        background-color: transparent;
+    }
+}
