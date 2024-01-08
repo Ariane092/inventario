@@ -4,7 +4,6 @@
     justify-content: space-between;
     align-items: center;
     position: relative;
-    left: -1px;
     padding: 0 10px;
     text-decoration: none;
     font-size: 18px;
@@ -57,7 +56,13 @@
     background-color: transparent;
 }
 
-@media screen and (max-width: 740px) {
+@media screen and (max-width: 740px) {   
+    .sidebar-link{
+        padding-left: 5px;
+    }
+    .dropdown-link{
+        margin-left: -4px;
+    }
     
 }
 
