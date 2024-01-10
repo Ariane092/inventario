@@ -1,12 +1,14 @@
-// import { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import Input from "../forms/Input";
 import Select from "../forms/Select";
 import styles from "./Cadastro.module.css";
-import categories from "./dbCadastro";
+import categories from "./CadastroData";
 import Form from "../forms/Form";
 
 function Cadastro(props) {
   const showPicBtn = true;
+
+  const [categories, setCategories] = useState([]);
 
   return (
     <>

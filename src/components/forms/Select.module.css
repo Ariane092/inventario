@@ -8,13 +8,16 @@
 .selects label{
     margin-bottom: 0.6em;
     font-size: .8em;
-    font-weight: bold;
 }
 
 .selects select{
     padding: .4em;
     border: 1px solid  #44434663;
     border-radius: 4px;
+}
+
+.selects option{
+    color: #7b7b77;
 }
 
 .selects select:focus-visible{

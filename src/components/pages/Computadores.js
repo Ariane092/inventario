@@ -1,6 +1,6 @@
 // import { useState, useEffect } from "react";
 import Select from "../forms/Select";
-import categories from "./dbCadastro";
+import categories from "./CadastroData";
 import Cadastro from "./Cadastro";
 
 function Computadores() {

@@ -8,10 +8,10 @@
     transition: 0.5s;
     cursor: pointer;
     border: none;
-    border-radius: 4px;
+    border-radius: 2px;
     font-weight: bold;
 }
 
 .btn:hover{
-    color: rgb(0, 0, 0);
+    background-color: rgba(95, 150, 127, 0.863);
 }

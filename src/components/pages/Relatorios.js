@@ -1,7 +1,7 @@
 import Select from "../forms/Select";
 import Input from "../forms/Input";
 import styles from "./Relatorios.module.css";
-import categories from "./dbCadastro";
+import categories from "./CadastroData";
 import { BsFiletypePdf, BsFiletypeCsv } from "react-icons/bs";
 import Form from "../forms/Form";
 
