@@ -14,7 +14,7 @@
 }
 
 .sidebar-link:hover {
-    background-color: rgba(203, 115, 92);
+    background-color: rgba(203, 114, 92, 0.521);
     transition: all 0.4s ease;
 }
 
@@ -45,7 +45,7 @@
 }
 
 .dropdown-link:hover{
-    background-color: rgba(203, 115, 92);
+    background-color: rgba(203, 114, 92, 0.521);
 }
 
 .sidebar.close .dropdown-link {
