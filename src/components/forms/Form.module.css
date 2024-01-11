@@ -49,6 +49,11 @@ textarea:focus-visible {
     margin-top: 15px;
 }
 
+.btn_icon{
+    align-items: center;
+    margin-right: 6px;
+}
+
 @media screen and (max-width: 768px) {
     .container {
         margin-left: 50px;  
@@ -70,7 +75,7 @@ textarea:focus-visible {
         display: flex;
         justify-content: center;
         align-items: center;
-        width: 90px;
+        width: 120px;
         height: 30px;
         padding: 10px;
     }   

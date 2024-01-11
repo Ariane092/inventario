@@ -16,10 +16,6 @@
     border-radius: 4px;
 }
 
-.selects option{
-    color: #7b7b77;
-}
-
 .selects select:focus-visible{
     outline: 1px solid  #44434663;
 }

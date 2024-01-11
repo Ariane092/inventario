@@ -19,7 +19,7 @@ function Cadastro(props) {
         <Select
           name="responsavel"
           text="Responsável"
-          options={categories}
+          options={[categories.responsavel]}
         />
         <Input type="text" text="Local" name="local" />
         <Input
@@ -38,16 +38,16 @@ function Cadastro(props) {
         <Select
           name="tipo_produto"
           text="Tipo de Produto"
-          options={categories}
+          options={categories.tipoProduto}
         />
         <Input type="number" text="Patrimônio" name="patrimonio" />
-        <Select name="projeto" text="Projeto" options={categories} />
+        <Select name="projeto" text="Projeto" options={categories.projeto} />
         <Select name="status" text="Status" options={categories} />
         <Input type="text" text="Service Tag" name="service_tag" />
         {props.children} {/*computadores props*/}
 
         <div className={styles.obs_box}>
-          <label>Observação</label>
+          <label>Observação:</label>
           <textarea></textarea>
         </div>
       </Form>

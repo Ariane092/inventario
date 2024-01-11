@@ -14,7 +14,7 @@
 }
 
 .sidebar-link:hover {
-    background-color: rgba(205, 126, 108, 0.692);
+    background-color: rgba(203, 115, 92);
     transition: all 0.4s ease;
 }
 
@@ -45,7 +45,7 @@
 }
 
 .dropdown-link:hover{
-    background-color: rgba(205, 126, 108, 0.692);
+    background-color: rgba(203, 115, 92);
 }
 
 .sidebar.close .dropdown-link {
@@ -56,6 +56,14 @@
     background-color: transparent;
 }
 
+.sidebar.close .sidebar-label{
+    display: none;
+}
+
+.sidebar.close .openClose-icon{
+    margin-right: 200px;
+}
+
 @media screen and (max-width: 740px) {   
     .sidebar-link{
         padding-left: 5px;
@@ -63,7 +71,12 @@
     .dropdown-link{
         margin-left: -4px;
     }
-    
+    .openClose-icon{
+        margin-right: 200px;
+    }
+    .sidebar-label{
+        display: none;
+    } 
 }
 
 @media screen and (max-width: 1180px) {
@@ -75,5 +88,11 @@
     }
     .dropdown-link:hover{
         background-color: transparent;
+    }
+    .openClose-icon{
+        margin-right: 200px;
+    }
+    .sidebar-label{
+        display: none;
     }
 }

@@ -11,6 +11,7 @@ import {
 import { PiOfficeChair } from "react-icons/pi";
 import { MdOutlineInventory } from "react-icons/md";
 import { IoMdArrowDropdown, IoMdArrowDropup } from "react-icons/io";
+import "./SidebarMenu.css";
 
 export const SidebarData = [
   {
@@ -31,8 +32,8 @@ export const SidebarData = [
   {
     title: "Cadastro",
     icon: <BsPencilSquare />,
-    iconClose: <IoMdArrowDropdown />,
-    iconOpen: <IoMdArrowDropup />,
+    iconClose: <IoMdArrowDropdown className="openClose-icon" />,
+    iconOpen: <IoMdArrowDropup className="openClose-icon"/>,
     subNav: [
       {
         title: "Computadores",

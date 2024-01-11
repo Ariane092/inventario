@@ -1,17 +1,20 @@
 .btn{
     display: flex;
-    background-color: rgb(95, 150, 127);
+    background-color: rgb(108, 148, 118);
+    justify-content: center;
+    align-items: center;
     color: whitesmoke;
     margin: .5em;
-    padding: .7em 3em;
+    width: 140px;
+    height: 35px;
     text-decoration: none;
     transition: 0.5s;
     cursor: pointer;
-    border: none;
-    border-radius: 2px;
+    border-color: rgb(108, 148, 118);
+    border-radius: 5px;
     font-weight: bold;
 }
 
 .btn:hover{
-    background-color: rgba(95, 150, 127, 0.863);
+    background-color: rgba(108, 148, 118, 0.863);
 }

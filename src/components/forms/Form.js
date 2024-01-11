@@ -1,5 +1,6 @@
 import styles from "./Form.module.css";
 import Button from "../forms/Button";
+import { FaCameraRetro } from "react-icons/fa";
 
 function Form(props) {
   const { showPicBtn } = props;
@@ -14,7 +15,7 @@ function Form(props) {
           </div>
           <div className={styles.form_btn}>
             <Button text={props.text} />
-            {showPicBtn && <Button text="Tirar Foto" />}
+            {showPicBtn && <Button icon={<FaCameraRetro className={styles.btn_icon} />} text="Foto" />}
           </div>
         </form>
       </div>
