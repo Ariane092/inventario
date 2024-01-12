@@ -11,10 +11,10 @@
     display: flex;
     align-items: center;
     height: 50px;
-    border-radius: 6px 6px 0 0;
+    border-radius: 6px 0px 0 0;
     border-bottom: none;
-    margin-top: 10px;
-    background-color: rgba(105, 105, 105, 0.089);
+    margin-top: 0px;
+    background-color: rgba(179, 176, 176, 0.089);
     border: 1px solid #CCCCCC;
 }
 
@@ -30,11 +30,68 @@
 .search-itens {
     display: flex;
     justify-content: space-between;
-    align-items: end;
-    padding-top: 20px;
+    align-items: center;
+    margin-top: 40px;
+}
+
+.search-itens input {
+    padding: .3em;
+    border: 1px solid  #44434663;
+    border-radius: 4px;
+    background-color: transparent;
+}
+
+input:focus-visible{
+    outline: 1px solid  #44434663;
+}
+
+select {
+    border: 1px solid  #44434663;
+    border-radius: 4px;
+}
+
+select:focus-visible{
+    outline: 1px solid  #44434663;
+}
+
+.search-itens label {
+    font-size: 15px;
 }
 
 .search-itens select {
-    margin-right: 680px;
+    margin-left: 5px;
 }
 
+.search-icon {
+    margin-right: -20px;
+    color: #444346bd;
+    cursor: pointer;
+}
+
+.bloc-tabs {
+    display: flex;
+    justify-content: end;
+    align-items: center;
+}
+
+.tabs {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(179, 176, 176, 0.089);
+    border: 1px solid #CCCCCC;
+    border-radius: 6px 6px 0 0;
+    border-bottom: none;
+    margin-top: 20px;
+    width: 50px;
+    height: 30px;
+    cursor: pointer;
+}
+
+.content {
+    display: none;
+}
+
+.show-content {
+    display: block;
+}

@@ -56,12 +56,12 @@
     background-color: transparent;
 }
 
-.sidebar.close .sidebar-label{
-    display: none;
+.sidebar.close .openClose-icon {
+    margin-right: 200px;
 }
 
-.sidebar.close .openClose-icon{
-    margin-right: 200px;
+.sidebar.close .sidebar-label {
+    display: none;
 }
 
 @media screen and (max-width: 740px) {   
@@ -71,12 +71,12 @@
     .dropdown-link{
         margin-left: -4px;
     }
-    .openClose-icon{
+    .openClose-icon {
         margin-right: 200px;
     }
-    .sidebar-label{
+    .sidebar-label {
         display: none;
-    } 
+    }
 }
 
 @media screen and (max-width: 1180px) {
@@ -89,10 +89,10 @@
     .dropdown-link:hover{
         background-color: transparent;
     }
-    .openClose-icon{
+    .openClose-icon {
         margin-right: 200px;
     }
-    .sidebar-label{
+    .sidebar-label {
         display: none;
     }
 }

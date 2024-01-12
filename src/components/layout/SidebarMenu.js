@@ -17,7 +17,7 @@ function SidebarMenu({ item }) {
           {item.icon}
           <label className="sidebar-label">{item.title}</label>
         </div>
-        <div>
+        <div className="openClose-icon">
           {item.subNav && subnav
             ? item.iconOpen
             : item.subNav

@@ -32,8 +32,8 @@ export const SidebarData = [
   {
     title: "Cadastro",
     icon: <BsPencilSquare />,
-    iconClose: <IoMdArrowDropdown className="openClose-icon" />,
-    iconOpen: <IoMdArrowDropup className="openClose-icon"/>,
+    iconClose: <IoMdArrowDropdown />,
+    iconOpen: <IoMdArrowDropup />,
     subNav: [
       {
         title: "Computadores",
