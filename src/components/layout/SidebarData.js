@@ -16,7 +16,7 @@ import "./SidebarMenu.css";
 export const SidebarData = [
   {
     title: "Home",
-    path: "/",
+    path: "/home",
     icon: <BsHouse />
   },
   {
