@@ -1,5 +1,7 @@
 import "./Home.css";
 import React, { useState, useEffect } from 'react';
+import { Box } from '@chakra-ui/react';
+import { useReactTable, getCoreRowModel } from '@tanstack/react-table';
 import {
   BsDisplay,
   BsLaptop,
@@ -8,38 +10,80 @@ import {
 } from "react-icons/bs";
 import { PiOfficeChair } from "react-icons/pi";
 
+const colums = [
+  {
+    accessorKey: 'id',
+    header: 'ID',
+    cell: (props) => <p>{props.getValue()}</p>
+  },
+  {
+    accessorKey: 'projeto',
+    header: 'Projeto',
+    cell: (props) => <p>{props.getValue()}</p>
+  },
+  {
+    accessorKey: 'responsavel',
+    header: 'Responsável',
+    cell: (props) => <p>{props.getValue()}</p>
+  },
+  {
+    accessorKey: 'tipo',
+    header: 'Tipo',
+    cell: (props) => <p>{props.getValue()}</p>
+  },
+  {
+    accessorKey: 'servicetag',
+    header: 'S/N',
+    cell: (props) => <p>{props.getValue()}</p>
+  },
+  {
+    accessorKey: 'patrimonio',
+    header: 'Patrimônio',
+    cell: (props) => <p>{props.getValue()}</p>
+  },
+  {
+    accessorKey: 'marca',
+    header: 'Marca',
+    cell: (props) => <p>{props.getValue()}</p>
+  },
+  {
+    accessorKey: 'modelo',
+    header: 'Modelo',
+    cell: (props) => <p>{props.getValue()}</p>
+  },
+  {
+    accessorKey: 'configuracao',
+    header: 'Configuração',
+    cell: (props) => <p>{props.getValue()}</p>
+  },
+  {
+    accessorKey: 'status',
+    header: 'Status',
+    cell: (props) => <p>{props.getValue()}</p>
+  },
+]
 function Home() {
 
   const [dados, setDados] = useState([]);
-  const [linhasExibidas, setLinhasExibidas] = useState(10);
-  const [paginaAtual, setPaginaAtual] = useState(1);
+  const table = useReactTable({
+    dados,
+    colums,
+    getCoreRowModel:getCoreRowModel()
+  });
+  
+  // const [displayLines, setDisplayLines] = useState(10);
+ 
+  // const handleSelectLines = (event) => {
+  //   const lines = parseInt(event.target.value, 10);
+  //   setDisplayLines(lines);
+  // };
 
-  const handleSelecionarLinhas = (event) => {
-    const quantidadeLinhas = parseInt(event.target.value, 10);
-    setLinhasExibidas(quantidadeLinhas);
-    setPaginaAtual(1); 
-  };
 
-  const handlePaginaAnterior = () => {
-    if (paginaAtual > 1) {
-      setPaginaAtual(paginaAtual - 1);
-    }
-  };
-
-  const handleProximaPagina = () => {
-    const totalPages = Math.ceil(dados.length / linhasExibidas);
-    if (paginaAtual < totalPages) {
-      setPaginaAtual(paginaAtual + 1);
-    }
-  };
-
-  const indiceInicial = (paginaAtual - 1) * linhasExibidas;
-  const indiceFinal = indiceInicial + linhasExibidas;
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch('http://localhost:5000/api/home');
+        const response = await fetch('http://localhost:3001/api/home');
         const data = await response.json();
         console.log('Resposta da API:', data);
         setDados(data);
@@ -50,17 +94,58 @@ function Home() {
 
     fetchData();
   }, []);
-
-  
-
+  console.log(table.getHeaderGroups())
   return (
     <div className="table-container">
       <h4>Lista de Equipamentos</h4>
 
-      <div className="search-itens">
-        <select onChange={handleSelecionarLinhas}>
+      <Box className="table">
+        {table.getHeaderGroups().map((headerGroup) => (
+        <Box className="tr" key={headerGroup.id}>
+          {headerGroup.headers.map((header) => (
+          <Box className="th" key={header.id}>
+              {header.column.columnDef.header}
+            </Box>
+          ))}
+        </Box>
+        ))}
+        </Box>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      {/* <div className="search-itens">
+        <select onChange={handleSelectLines}>
             <option value="10">Exibir 10 linhas</option>
-            <option value="30">Exibir 30 linhas</option>
+            <option value="25">Exibir 25 linhas</option>
+            <option value="50">Exibir 50 linhas</option>
             <option value="100">Exibir 100 linhas</option>
           </select>
         <div>
@@ -97,7 +182,7 @@ function Home() {
             </tr>
           </thead>
           <tbody>
-          {dados.slice(0, linhasExibidas).map(item => (
+          {dados.slice(0, displayLines).map(item => (
               <tr key={item.id}>
                 <td>{item.id}</td>
                 <td>{item.projeto}</td>
@@ -113,16 +198,13 @@ function Home() {
             ))}
           </tbody>
         </table>
+       
 
-        <div className="pagination">
-        <button onClick={handlePaginaAnterior} disabled={paginaAtual === 1}>
-          Anterior
-        </button>
-        <span>Página {paginaAtual}</span>
-        <button onClick={handleProximaPagina} disabled={paginaAtual === Math.ceil(dados.length / linhasExibidas)}>
-          Próxima
-        </button>
-      </div>
+        <div>
+          {Array.from(Array(pages), (item, index) => {
+            return <button>{index}</button>
+          })}
+        </div> */}
 
     </div>
   );

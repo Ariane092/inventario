@@ -6,7 +6,7 @@
     position: relative;
     padding: 0 10px;
     text-decoration: none;
-    font-size: 18px;
+    font-size: 19px;
     border-radius: 4px;
     cursor: pointer;
     width: 232px;
@@ -46,6 +46,10 @@
 
 .dropdown-link:hover{
     background-color: rgba(203, 114, 92, 0.521);
+}
+
+.openClose-icon {
+    color: rgb(122, 121, 121);
 }
 
 .sidebar.close .dropdown-link {
