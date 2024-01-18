@@ -1,6 +1,5 @@
 import "./Home.css";
 import React, { useState, useEffect } from 'react';
-import { Box } from '@chakra-ui/react';
 import { useReactTable, getCoreRowModel, flexRender } from '@tanstack/react-table';
 import {
   BsDisplay,
@@ -67,9 +66,15 @@ function Home() {
   const [dados, setDados] = useState([]);
   const table = useReactTable({
     columns,
-    data: dados,  // Alterado para 'data' ao invés de 'dados'
-    getCoreRowModel: getCoreRowModel()
+    data: dados,
+    state: {
+      columnFilters, 
+    }, 
+    getCoreRowModel: getCoreRowModel(),
+    getFilteredRowModel: getFilteredRowModel()
   });
+
+  const [columnFilters, setColumnFilters] = useState([]);
 
   const [displayLines, setDisplayLines] = useState(10);
 
@@ -93,7 +98,7 @@ function Home() {
     fetchData();
   }, []);
 
-  console.log(table.getHeaderGroups()?.length);
+  console.log(table.getHeaderGroups());
 
   return (
     <div className="table-container">
@@ -119,27 +124,26 @@ function Home() {
         <div className="tabs"><PiOfficeChair /></div>
       </div>
 
-      <Box className="table">
-        {table.getHeaderGroups()?.map((headerGroup) => (
-          <Box className="thead" key={headerGroup.id}>
+      <table>
+        {table.getHeaderGroups().map((headerGroup) => (
+          <thead key={headerGroup.id}>
             {headerGroup.headers.map((header) => (
-              <Box className="th" w={header.getSize()} key={header.id}>
+              <th  key={header.id}>
                 {header.column.columnDef.header}
-                <Box className="resizer"/>
-              </Box>
+              </th>
             ))}
-          </Box>
+          </thead>
         ))}
-        {table.getRowModel()?.rows.map((row) => (
-          <Box className="tr" key={row.id}>
-            {row.getCenterVisibleCells()?.map((cell) => (
-              <Box className="td" w={cell.column.getSize()} key={cell.id}>
+        {table.getRowModel().rows.map((row) => (
+          <tr key={row.id}>
+            {row.getCenterVisibleCells().map((cell) => (
+              <td  key={cell.id}>
                 {flexRender(cell.column.columnDef.cell, cell.getContext())}
-              </Box>
+              </td>
             ))}
-          </Box>
+          </tr>
         ))}
-      </Box>
+      </table>
     </div>
   );
 }
