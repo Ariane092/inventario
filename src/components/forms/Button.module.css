@@ -10,8 +10,8 @@
     text-decoration: none;
     transition: 0.5s;
     cursor: pointer;
-    border-color: rgb(108, 148, 118);
-    border-radius: 5px;
+    border: none;
+    border-radius: 7px;
 }
 
 .btn:hover{

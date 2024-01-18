@@ -1,7 +1,7 @@
 import "./Home.css";
 import React, { useState, useEffect } from 'react';
 import { Box } from '@chakra-ui/react';
-import { useReactTable, getCoreRowModel } from '@tanstack/react-table';
+import { useReactTable, getCoreRowModel, flexRender } from '@tanstack/react-table';
 import {
   BsDisplay,
   BsLaptop,
@@ -10,7 +10,7 @@ import {
 } from "react-icons/bs";
 import { PiOfficeChair } from "react-icons/pi";
 
-const colums = [
+const columns = [
   {
     accessorKey: 'id',
     header: 'ID',
@@ -61,24 +61,22 @@ const colums = [
     header: 'Status',
     cell: (props) => <p>{props.getValue()}</p>
   },
-]
-function Home() {
+];
 
+function Home() {
   const [dados, setDados] = useState([]);
   const table = useReactTable({
-    dados,
-    colums,
-    getCoreRowModel:getCoreRowModel()
+    columns,
+    data: dados,  // Alterado para 'data' ao invés de 'dados'
+    getCoreRowModel: getCoreRowModel()
   });
-  
-  // const [displayLines, setDisplayLines] = useState(10);
- 
-  // const handleSelectLines = (event) => {
-  //   const lines = parseInt(event.target.value, 10);
-  //   setDisplayLines(lines);
-  // };
 
+  const [displayLines, setDisplayLines] = useState(10);
 
+  const handleSelectLines = (event) => {
+    const lines = parseInt(event.target.value, 10);
+    setDisplayLines(lines);
+  };
 
   useEffect(() => {
     const fetchData = async () => {
@@ -94,62 +92,21 @@ function Home() {
 
     fetchData();
   }, []);
-  console.log(table.getHeaderGroups())
+
+  console.log(table.getHeaderGroups()?.length);
+
   return (
     <div className="table-container">
       <h4>Lista de Equipamentos</h4>
 
-      <Box className="table">
-        {table.getHeaderGroups().map((headerGroup) => (
-        <Box className="tr" key={headerGroup.id}>
-          {headerGroup.headers.map((header) => (
-          <Box className="th" key={header.id}>
-              {header.column.columnDef.header}
-            </Box>
-          ))}
-        </Box>
-        ))}
-        </Box>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-      {/* <div className="search-itens">
+      <div className="search-itens">
         <select onChange={handleSelectLines}>
-            <option value="10">Exibir 10 linhas</option>
-            <option value="25">Exibir 25 linhas</option>
-            <option value="50">Exibir 50 linhas</option>
-            <option value="100">Exibir 100 linhas</option>
-          </select>
+          <option value="10">Exibir 10 linhas</option>
+          <option value="25">Exibir 25 linhas</option>
+          <option value="50">Exibir 50 linhas</option>
+          <option value="100">Exibir 100 linhas</option>
+        </select>
         <div>
-          
           <BsSearch className="search-icon" />
           <input placeholder="Pesquisar"></input>
         </div>
@@ -157,55 +114,32 @@ function Home() {
 
       <div className="bloc-tabs">
         <div className="tabs"><BsLaptop /></div>
-
         <div className="tabs"><BsPrinter /></div>
-
         <div className="tabs"><BsDisplay /></div>
-
         <div className="tabs"><PiOfficeChair /></div>
       </div>
 
-        <table>
-          <thead>
-            <tr>
-              <th>ID</th>
-              <th>Projeto</th>
-              <th>Responsável</th>
-              <th>Tipo</th>
-              <th>S/N</th>
-              <th>Patrimônio</th>
-              <th>Marca</th>
-              <th>Modelo</th>
-              <th>Configuração</th>
-              <th>Status</th>
-              <th>Visualizar</th>
-            </tr>
-          </thead>
-          <tbody>
-          {dados.slice(0, displayLines).map(item => (
-              <tr key={item.id}>
-                <td>{item.id}</td>
-                <td>{item.projeto}</td>
-                <td>{item.responsavel}</td>
-                <td>{item.tipo}</td>
-                <td>{item.servicetag}</td>
-                <td>{item.patrimonio}</td>
-                <td>{item.marca}</td>
-                <td>{item.modelo}</td>
-                <td>{item.configuracao}</td>
-                <td>{item.status}</td>
-              </tr>
+      <Box className="table">
+        {table.getHeaderGroups()?.map((headerGroup) => (
+          <Box className="thead" key={headerGroup.id}>
+            {headerGroup.headers.map((header) => (
+              <Box className="th" w={header.getSize()} key={header.id}>
+                {header.column.columnDef.header}
+                <Box className="resizer"/>
+              </Box>
             ))}
-          </tbody>
-        </table>
-       
-
-        <div>
-          {Array.from(Array(pages), (item, index) => {
-            return <button>{index}</button>
-          })}
-        </div> */}
-
+          </Box>
+        ))}
+        {table.getRowModel()?.rows.map((row) => (
+          <Box className="tr" key={row.id}>
+            {row.getCenterVisibleCells()?.map((cell) => (
+              <Box className="td" w={cell.column.getSize()} key={cell.id}>
+                {flexRender(cell.column.columnDef.cell, cell.getContext())}
+              </Box>
+            ))}
+          </Box>
+        ))}
+      </Box>
     </div>
   );
 }
