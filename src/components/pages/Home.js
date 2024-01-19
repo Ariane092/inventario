@@ -4,10 +4,10 @@ import { useReactTable, getCoreRowModel, flexRender } from '@tanstack/react-tabl
 import {
   BsDisplay,
   BsLaptop,
-  BsPrinter,
-  BsSearch
+  BsPrinter
 } from "react-icons/bs";
 import { PiOfficeChair } from "react-icons/pi";
+import Filters from "../layout/Filters";
 
 const columns = [
   {
@@ -67,14 +67,18 @@ function Home() {
   const table = useReactTable({
     columns,
     data: dados,
-    // state: {
-    //   columnFilters, 
-    // }, 
+    state: {
+      columnFilters, 
+    }, 
     getCoreRowModel: getCoreRowModel(),
-    // getFilteredRowModel: getFilteredRowModel()
+    getFilteredRowModel: getFilteredRowModel()
   });
 
-  const [columnFilters, setColumnFilters] = useState([]);
+  const [columnFilters, setColumnFilters] = useState([
+    {
+      // 
+    }
+  ]);
 
   const [displayLines, setDisplayLines] = useState(10);
 
@@ -88,7 +92,7 @@ function Home() {
       try {
         const response = await fetch('http://localhost:3001/api/home');
         const data = await response.json();
-        console.log('Resposta da API:', data);
+        // console.log('Resposta da API:', data);
         setDados(data);
       } catch (error) {
         console.error('Erro ao obter dados da API', error);
@@ -111,10 +115,9 @@ function Home() {
           <option value="50">Exibir 50 linhas</option>
           <option value="100">Exibir 100 linhas</option>
         </select>
-        <div>
-          <BsSearch className="search-icon" />
-          <input placeholder="Pesquisar"></input>
-        </div>
+
+        <Filters />
+
       </div>
 
       <div className="bloc-tabs">

@@ -1,3 +1,5 @@
+import { BsSearch } from "react-icons/bs";
+
 function Filters() {
   return (
     <div>
@@ -10,3 +12,5 @@ function Filters() {
     </div>
   );
 }
+
+export default Filters;
