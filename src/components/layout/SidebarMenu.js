@@ -26,11 +26,11 @@ function SidebarMenu({ item }) {
         </div>
       </Link>
       {subnav && item.subNav.map((item, index) => {
-        return(
-            <Link to={item.path} key={index} className="dropdown-link">
-                {item.icon}
-                <label className="sidebar-label">{item.title}</label>
-            </Link>
+        return (
+          <Link to={item.path} end key={index} className="dropdown-link">
+            {item.icon}
+            <label className="sidebar-label">{item.title}</label>
+          </Link>
         )
       })}
     </>

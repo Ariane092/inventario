@@ -4,13 +4,12 @@
     justify-content: space-between;
     align-items: center;
     position: relative;
-    padding: 0 10px;
+    padding: 0 15px;
     text-decoration: none;
     font-size: 19px;
-    border-radius: 4px;
     cursor: pointer;
-    width: 232px;
-    height: 50px; 
+    width: 250px;
+    height: 55px; 
 }
 
 .sidebar-link:hover {
@@ -22,18 +21,13 @@
     background-color: transparent;
 }
 
-.sidebar-list {
-    padding: 10px 5px 2px 10px;
-    list-style: none;
-}
-
 .sidebar-label {
     margin-left: 25px;
 }
 
 .dropdown-link {
     height: 45px;
-    width: 232px;
+    width: 250px;
     padding-left: 3rem;
     display: flex;
     align-items: center;
@@ -41,7 +35,6 @@
     cursor: pointer;
     color: rgb(0, 0, 0);
     font-size: 16px;
-    border-radius: 4px;
 }
 
 .dropdown-link:hover{
@@ -53,7 +46,7 @@
 }
 
 .sidebar.close .dropdown-link {
-    padding-left: 10px;
+    padding-left: 17px;
 }
 
 .sidebar.close .dropdown-link:hover{

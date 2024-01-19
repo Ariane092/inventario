@@ -18,7 +18,7 @@ function Navbar() {
       {/* navbar */}
       <div className="navbar">
         <Link className="btn_expand">
-            <BsList onClick={closeSidebar} />
+          <BsList onClick={closeSidebar} />
         </Link>
         <Link to="/">
           <img src={logo} alt="cepea_logo" />
@@ -31,9 +31,7 @@ function Navbar() {
         <ul>
           {SidebarData.map((item, index) => {
             return (
-              <li className="sidebar-list">
-                <SidebarMenu item={item} key={index}  /> 
-              </li>         
+                <SidebarMenu item={item} key={index} />           
             );
           })}
         </ul>

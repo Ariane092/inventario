@@ -67,11 +67,11 @@ function Home() {
   const table = useReactTable({
     columns,
     data: dados,
-    state: {
-      columnFilters, 
-    }, 
+    // state: {
+    //   columnFilters, 
+    // }, 
     getCoreRowModel: getCoreRowModel(),
-    getFilteredRowModel: getFilteredRowModel()
+    // getFilteredRowModel: getFilteredRowModel()
   });
 
   const [columnFilters, setColumnFilters] = useState([]);
