@@ -7,7 +7,6 @@ import {
   BsPrinter
 } from "react-icons/bs";
 import { PiOfficeChair } from "react-icons/pi";
-import Filters from "../layout/Filters";
 
 const columns = [
   {
@@ -64,35 +63,23 @@ const columns = [
 
 function Home() {
   const [dados, setDados] = useState([]);
+  const [globalFilter, setGlobalFilter] = useState("");
   const table = useReactTable({
     columns,
     data: dados,
     state: {
-      columnFilters, 
+      globalFilter: filtering, 
     }, 
+    onGlobalFilterChanged: setFiltering,
+    getFilteredRowModel: getCoreRowModel(),
     getCoreRowModel: getCoreRowModel(),
-    getFilteredRowModel: getFilteredRowModel()
   });
-
-  const [columnFilters, setColumnFilters] = useState([
-    {
-      // 
-    }
-  ]);
-
-  const [displayLines, setDisplayLines] = useState(10);
-
-  const handleSelectLines = (event) => {
-    const lines = parseInt(event.target.value, 10);
-    setDisplayLines(lines);
-  };
 
   useEffect(() => {
     const fetchData = async () => {
       try {
         const response = await fetch('http://localhost:3001/api/home');
         const data = await response.json();
-        // console.log('Resposta da API:', data);
         setDados(data);
       } catch (error) {
         console.error('Erro ao obter dados da API', error);
@@ -108,24 +95,14 @@ function Home() {
     <div className="table-container">
       <h4>Lista de Equipamentos</h4>
 
-      <div className="search-itens">
-        <select onChange={handleSelectLines}>
-          <option value="10">Exibir 10 linhas</option>
-          <option value="25">Exibir 25 linhas</option>
-          <option value="50">Exibir 50 linhas</option>
-          <option value="100">Exibir 100 linhas</option>
-        </select>
-
-        <Filters />
-
-      </div>
-
       <div className="bloc-tabs">
         <div className="tabs"><BsLaptop /></div>
         <div className="tabs"><BsPrinter /></div>
         <div className="tabs"><BsDisplay /></div>
         <div className="tabs"><PiOfficeChair /></div>
       </div>
+
+      <input type="text" value={filtering} onChange={(e) => setFiltering(e.target.value)}/>
 
       <table>
         {table.getHeaderGroups().map((headerGroup) => (
