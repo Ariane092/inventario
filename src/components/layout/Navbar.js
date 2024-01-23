@@ -20,7 +20,7 @@ function Navbar() {
         <Link className="btn_expand">
           <BsList onClick={closeSidebar} />
         </Link>
-        <Link to="/">
+        <Link to="/home">
           <img src={logo} alt="cepea_logo" />
         </Link>
         <h5>Sistema de Inventário CEPEA/ESALQ-USP</h5>

@@ -1,6 +1,13 @@
 import "./Home.css";
 import React, { useState, useEffect } from 'react';
-import { useReactTable, getCoreRowModel, flexRender } from '@tanstack/react-table';
+import { 
+  useReactTable, 
+  getCoreRowModel, 
+  getFilteredRowModel,
+  getPaginationRowModel,
+  flexRender, 
+  getSortedRowModel
+} from '@tanstack/react-table';
 import {
   BsDisplay,
   BsLaptop,
@@ -63,7 +70,9 @@ const columns = [
 
 function Home() {
   const [dados, setDados] = useState([]);
-  const [globalFilter, setGlobalFilter] = useState("");
+  const [filtering, setFiltering] = useState("");
+  const [] = useState();
+
   const table = useReactTable({
     columns,
     data: dados,
@@ -71,7 +80,9 @@ function Home() {
       globalFilter: filtering, 
     }, 
     onGlobalFilterChanged: setFiltering,
-    getFilteredRowModel: getCoreRowModel(),
+    getFilteredRowModel: getFilteredRowModel(),
+    getPaginationRowModel: getPaginationRowModel(),
+    getSortedRowModel: getSortedRowModel(),
     getCoreRowModel: getCoreRowModel(),
   });
 
@@ -110,6 +121,9 @@ function Home() {
             {headerGroup.headers.map((header) => (
               <th  key={header.id}>
                 {header.column.columnDef.header}
+                {
+                  header.column.getCanSort() && 
+                }
               </th>
             ))}
           </thead>
@@ -124,6 +138,20 @@ function Home() {
           </tr>
         ))}
       </table>
+      <br/>
+      <div>
+        Página {table.getState().pagination.pageIndex + 1} de {table.getPageCount()} 
+      </div>
+      <div>
+        <button
+          onClick={() => table.previousPage()}
+          isDisable={!table.getCanPreviousPage()}
+        >{"<"}</button>
+        <button
+          onClick={() => table.nextPage()}
+          isDisable={!table.getCanNextPage()}
+        >{">"}</button>
+      </div>
     </div>
   );
 }
