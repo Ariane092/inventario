@@ -1,5 +1,5 @@
 import "./Home.css";
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from "react";
 import { 
   useReactTable, 
   getCoreRowModel, 
@@ -7,13 +7,14 @@ import {
   getPaginationRowModel,
   flexRender, 
   getSortedRowModel
-} from '@tanstack/react-table';
+} from "@tanstack/react-table";
 import {
   BsDisplay,
   BsLaptop,
   BsPrinter
 } from "react-icons/bs";
 import { PiOfficeChair } from "react-icons/pi";
+import { BiSortAlt2 } from "react-icons/bi";
 
 const columns = [
   {
@@ -71,6 +72,7 @@ const columns = [
 function Home() {
   const [dados, setDados] = useState([]);
   const [filtering, setFiltering] = useState("");
+  const [input, setInput] = useState("");
   const [] = useState();
 
   const table = useReactTable({
@@ -122,7 +124,7 @@ function Home() {
               <th  key={header.id}>
                 {header.column.columnDef.header}
                 {
-                  header.column.getCanSort() && 
+                  header.column.getCanSort() && <BiSortAlt2 style={{fontSize: '18px', margin: '3px'}} onClick={header.column.getToggleSortingHandler()}/>
                 }
               </th>
             ))}
