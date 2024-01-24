@@ -34,6 +34,10 @@ th {
     border-bottom: 2px solid rgb(143, 138, 138);
     width: 100%;
 }
+.input-column {
+    display: flex;
+    flex-direction: column;
+}
 
 tr {
     display: flex;

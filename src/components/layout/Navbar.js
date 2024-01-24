@@ -26,7 +26,7 @@ function Navbar() {
         <h5>Sistema de Inventário CEPEA/ESALQ-USP</h5>
       </div>
 
-      {/* sidebar
+      
       <nav className={`${sidebarClose}`}>
         <ul>
           {SidebarData.map((item, index) => {
@@ -35,7 +35,7 @@ function Navbar() {
             );
           })}
         </ul>
-      </nav> */}
+      </nav>
     </>
   );
 }
