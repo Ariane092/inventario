@@ -15,7 +15,7 @@
 table {
     display: flex;
     flex-direction: column;
-    width: 1300px;
+    width: 1400px;
 }
 
 thead {
@@ -29,6 +29,7 @@ thead {
 th {
     display: flex;
     justify-content: center;
+    flex-wrap: wrap;
     padding: 10px;
     background-color: rgba(179, 176, 176, 0.089);
     border-bottom: 2px solid rgb(143, 138, 138);
@@ -53,7 +54,7 @@ td{
 }
 
 tr:nth-child(even) {
-    background-color: rgba(108, 148, 118, 0.26);
+    background-color: rgba(108, 148, 118, 0.397);
 }
 
 tr:nth-child(odd) {
@@ -65,40 +66,6 @@ tr:nth-child(odd) {
     justify-content: space-between;
     align-items: center;
     margin-top: 40px;
-}
-
-.search-itens input {
-    padding: .3em;
-    border: 1px solid  #44434663;
-    border-radius: 4px;
-    background-color: transparent;
-}
-
-input:focus-visible{
-    outline: 1px solid  #44434663;
-}
-
-select {
-    border: 1px solid  #44434663;
-    border-radius: 4px;
-}
-
-select:focus-visible{
-    outline: 1px solid  #44434663;
-}
-
-.search-itens label {
-    font-size: 15px;
-}
-
-.search-itens select {
-    margin-left: 5px;
-}
-
-.search-icon {
-    margin-right: -20px;
-    color: #444346bd;
-    cursor: pointer;
 }
 
 .bloc-tabs {

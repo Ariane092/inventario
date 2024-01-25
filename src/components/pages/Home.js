@@ -1,4 +1,3 @@
-import "./Home.css";
 import React, { useState, useEffect } from "react";
 import {
   useReactTable,
@@ -7,8 +6,9 @@ import {
   getPaginationRowModel,
   flexRender,
   getSortedRowModel,
-  useFilters,
 } from "@tanstack/react-table";
+import "./Home.css";
+import { Input } from "antd";
 import { BsDisplay, BsLaptop, BsPrinter } from "react-icons/bs";
 import { PiOfficeChair } from "react-icons/pi";
 import { BiSortAlt2 } from "react-icons/bi";
@@ -69,18 +69,18 @@ const columns = [
 function Home() {
   const [dados, setDados] = useState([]);
   const [filtering, setFiltering] = useState("");
-  const [input, setInput] = useState("");
-  const [columnFilter, setColumnFilter] = useState([]);
+  const [columnFilters, setColumnFilters] = useState([]);
+  const { Search } = Input;
 
   const table = useReactTable({
     columns,
     data: dados,
     state: {
       globalFilter: filtering,
-      columnFilter,
+      columnFilters,
     },
     onGlobalFilterChanged: setFiltering,
-    onColumnFilterChanged: setColumnFilter,
+    onColumnFilterChanged: setColumnFilters,
     getFilteredRowModel: getFilteredRowModel(),
     getPaginationRowModel: getPaginationRowModel(),
     getSortedRowModel: getSortedRowModel(),
@@ -97,7 +97,6 @@ function Home() {
         console.error("Erro ao obter dados da API", error);
       }
     };
-
     fetchData();
   }, []);
 
@@ -106,6 +105,15 @@ function Home() {
   return (
     <div className="table-container">
       <h4>Lista de Equipamentos</h4>
+
+        <Search
+          placeholder="Pesquisar"
+          allowClear
+          value={filtering}
+          onChange={(e) => setFiltering(e.target.value)}
+          className="global-search"
+          style={{ width: 200, marginTop: 40 }}
+        />
 
       <div className="bloc-tabs">
         <div className="tabs">
@@ -122,12 +130,6 @@ function Home() {
         </div>
       </div>
 
-      <input
-        type="text"
-        value={filtering}
-        onChange={(e) => setFiltering(e.target.value)}
-      />
-
       <table>
         {table.getHeaderGroups().map((headerGroup) => (
           <thead key={headerGroup.id}>
@@ -140,9 +142,10 @@ function Home() {
                     onClick={header.column.getToggleSortingHandler()}
                   />
                 )}
-                <div className="input-column">
-                  <input  />
-                </div>
+                    <Search
+                      allowClear    
+                      style={{ width: 100 }}
+                    />
               </th>
             ))}
           </thead>
@@ -182,4 +185,3 @@ function Home() {
 }
 
 export default Home;
-
