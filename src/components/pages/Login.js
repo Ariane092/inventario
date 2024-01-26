@@ -1,6 +1,6 @@
 // import { useState, useEffect } from "react";
 import Input from "../forms/Input";
-import Button from "../forms/Button";
+
 import logo from "../../img/cepea_img.png";
 import styles from "./Login.module.css";
 
@@ -17,7 +17,7 @@ function Login() {
           <Input type="password" text="Senha" name="senha" />
         </div>
       </div>
-      <Button text="Login" />
+      {/* <Button text="Login" /> */}
     </div>
   );
 }

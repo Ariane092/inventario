@@ -1,9 +1,11 @@
+import React, { useState } from 'react';
 import styles from "./Form.module.css";
-import Button from "../forms/Button";
+import { Button, Radio } from "antd";
 import { FaCameraRetro } from "react-icons/fa";
 
 function Form(props) {
   const { showPicBtn } = props;
+  const [size, setSize] = useState('default');
 
   return (
     <>
@@ -14,8 +16,10 @@ function Form(props) {
             {props.children} {/*inputs props*/}
           </div>
           <div className={styles.form_btn}>
-            <Button text={props.text} />
-            {showPicBtn && <Button icon={<FaCameraRetro className={styles.btn_icon} />} text="Foto" />}
+            <Radio.Group value={size} onChange={(e) => setSize(e.target.value)}>
+              <Button type="primary" size={size} style={{ background: 'rgb(108, 148, 118)' }}>{props.text}</Button>
+              {showPicBtn && <Button type="primary" size={size} style={{ margin: 10, background: 'rgb(108, 148, 118)' }} icon={<FaCameraRetro />} >Foto</Button>}
+            </Radio.Group>
           </div>
         </form>
       </div>

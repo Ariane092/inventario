@@ -14,7 +14,7 @@ function App() {
   return (
     <Router>
       <Navbar />
-      {/* <Sidebar /> */}
+      <Sidebar />
       <Routes>
         <Route path="/home" element={<Home />} />
         <Route path="/inventario" element={<Inventario />} />

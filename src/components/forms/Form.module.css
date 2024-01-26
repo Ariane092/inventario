@@ -45,14 +45,11 @@ textarea:focus-visible {
 
 .form_btn {
     display: flex;
+    align-items: center;
     justify-content: center;
     margin-top: 15px;
 }
 
-.btn_icon{
-    align-items: center;
-    margin-right: 6px;
-}
 
 @media screen and (max-width: 768px) {
     .container {
@@ -71,12 +68,5 @@ textarea:focus-visible {
         display: flex;
         justify-content: center;
     }
-    .form_btn button{
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        width: 120px;
-        height: 30px;
-        padding: 10px;
-    }   
+    
 }

@@ -34,16 +34,13 @@ h5 {
 }
 
 /*sidebar*/
-.sidebar {
+.dsds {
     width: 250px;
     height: 100%;
     position: fixed;
-    top: 0px;
+    top: 0;
     left: 0;
     padding-top: 60px;
-    background-color: whitesmoke;
-    border-right: 1px solid  #44434663;
-    transition: all 0.7s ease;
 }
 
 .sidebar.close {

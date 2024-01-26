@@ -15,7 +15,6 @@ function Navbar() {
 
   return (
     <>
-      {/* navbar */}
       <div className="navbar">
         <Link className="btn_expand">
           <BsList onClick={closeSidebar} />
@@ -25,17 +24,6 @@ function Navbar() {
         </Link>
         <h5>Sistema de Inventário CEPEA/ESALQ-USP</h5>
       </div>
-
-      
-      <nav className={`${sidebarClose}`}>
-        <ul>
-          {SidebarData.map((item, index) => {
-            return (
-                <SidebarMenu item={item} key={index} />           
-            );
-          })}
-        </ul>
-      </nav>
     </>
   );
 }
