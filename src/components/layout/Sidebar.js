@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from "react-router-dom";
 import "./Sidebar.css";
+import logo from "../../img/cepea_logo.png";
 import {
   AppstoreOutlined,
   LaptopOutlined,
@@ -15,7 +16,7 @@ import {
   MenuUnfoldOutlined,
 } from '@ant-design/icons';
 import { PiOfficeChair } from "react-icons/pi";
-import { Button, Menu } from 'antd';
+import { Menu } from 'antd';
 
 function getItem(label, key, icon, children, type, path) {
   return {
@@ -44,58 +45,93 @@ const items = [
 
 function Sidebar() {
   const [collapsed, setCollapsed] = useState(false);
+  const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth <= 768);
+    };
+
+    window.addEventListener('resize', handleResize);
+
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
 
   const toggleCollapsed = () => {
     setCollapsed(!collapsed);
   };
 
+  useEffect(() => {
+    if (isMobile) {
+      setCollapsed(true);
+    } else {
+      setCollapsed(false);
+    }
+  }, [isMobile]);
+
   return (
-    <div className="sidebar">
-      <Button
-        type="primary"
-        onClick={toggleCollapsed}
-        style={{
-          marginBottom: 16,
-        }}
-      >
-        {collapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}
-      </Button>
-      <Menu
-        defaultSelectedKeys={['1']}
-        defaultOpenKeys={['sub1']}
-        mode="inline"
-        theme="light"
-        inlineCollapsed={collapsed}
-        className="sidebar-menu"
-      >
-        {items.map((item) => {
-          if (item.type === 'item') {
-            return (
-              <Menu.Item key={item.key} icon={item.icon}>
-                <Link to={item.path}>{item.label}</Link>
-              </Menu.Item>
-            );
-          } else if (item.type === 'submenu') {
-            return (
-              <Menu.SubMenu key={item.key} icon={item.icon} title={item.label}>
-                {item.children.map((submenuItem) => (
-                  <Menu.Item key={submenuItem.key} icon={submenuItem.icon}>
-                    <Link to={submenuItem.path}>{submenuItem.label}</Link>
-                  </Menu.Item>
-                ))}
-              </Menu.SubMenu>
-            );
-          } else if (item.type === 'link') {
-            return (
-              <Menu.Item key={item.key} icon={item.icon}>
-                <Link to={item.path}>{item.label}</Link>
-              </Menu.Item>
-            );
-          }
-          return null;
-        })}
-      </Menu>
-    </div>
+    <>
+      <div className="navbar">
+        <div
+          onClick={toggleCollapsed}
+          style={{
+            cursor:'pointer',
+            marginLeft: 10,
+          }}
+        >
+          {collapsed ? 
+          <MenuUnfoldOutlined 
+          style={{color:'white', fontSize:18}}/> : 
+          <MenuFoldOutlined 
+          style={{color:'white', fontSize:18}}
+          />}
+        </div>
+        <Link to="/home">
+          <img src={logo} alt="cepea_logo" />
+        </Link>
+        <h5>Sistema de Inventário CEPEA/ESALQ-USP</h5>
+      </div>
+      <div className="sidebar">
+
+        <Menu
+          defaultSelectedKeys={['1']}
+          defaultOpenKeys={['sub1']}
+          mode="inline"
+          theme="light"
+          inlineCollapsed={collapsed}
+          className="sidebar-menu"
+        >
+          {items.map((item) => {
+            if (item.type === 'item') {
+              return (
+                <Menu.Item key={item.key} icon={item.icon}>
+                  <Link to={item.path}>{item.label}</Link>
+                </Menu.Item>
+              );
+            } else if (item.type === 'submenu') {
+              return (
+                <Menu.SubMenu key={item.key} icon={item.icon} title={item.label}>
+                  {item.children.map((submenuItem) => (
+                    <Menu.Item key={submenuItem.key} icon={submenuItem.icon}>
+                      <Link to={submenuItem.path}>{submenuItem.label}</Link>
+                    </Menu.Item>
+                  ))}
+                </Menu.SubMenu>
+              );
+            } else if (item.type === 'link') {
+              return (
+                <Menu.Item key={item.key} icon={item.icon}>
+                  <Link to={item.path}>{item.label}</Link>
+                </Menu.Item>
+              );
+            }
+            return null;
+          })}
+        </Menu>
+      </div>
+    </>
   );
 }
 

@@ -3,7 +3,6 @@ import Home from "./components/pages/Home";
 import Inventario from "./components/pages/Inventario";
 import Relatorios from "./components/pages/Relatorios";
 import Login from "./components/pages/Login";
-import Navbar from "./components/layout/Navbar";
 import Sidebar from "./components/layout/Sidebar";
 import Computadores from "./components/pages/Computadores";
 import Impressoras from "./components/pages/Impressoras";
@@ -13,7 +12,6 @@ import Escritorio from "./components/pages/Escritorio";
 function App() {
   return (
     <Router>
-      <Navbar />
       <Sidebar />
       <Routes>
         <Route path="/home" element={<Home />} />

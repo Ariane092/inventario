@@ -1,100 +1,103 @@
-import React, { useState, useEffect } from "react";
+import React, { useMemo, useState, useEffect } from 'react';
 import {
   useReactTable,
   getCoreRowModel,
   getFilteredRowModel,
+  getFacetedRowModel,
+  getFacetedUniqueValues,
+  getFacetedMinMaxValues,
   getPaginationRowModel,
-  flexRender,
   getSortedRowModel,
-} from "@tanstack/react-table";
+  flexRender,
+} from '@tanstack/react-table';
 import "./Home.css";
 import { Input } from "antd";
-import { BsDisplay, BsLaptop, BsPrinter } from "react-icons/bs";
-import { PiOfficeChair } from "react-icons/pi";
 import { BiSortAlt2 } from "react-icons/bi";
 
-const columns = [
-  {
-    accessorKey: "id",
-    header: "ID",
-    cell: (props) => <p>{props.getValue()}</p>,
-  },
-  {
-    accessorKey: "projeto",
-    header: "Projeto",
-    cell: (props) => <p>{props.getValue()}</p>,
-  },
-  {
-    accessorKey: "responsavel",
-    header: "Responsável",
-    cell: (props) => <p>{props.getValue()}</p>,
-  },
-  {
-    accessorKey: "tipo",
-    header: "Tipo",
-    cell: (props) => <p>{props.getValue()}</p>,
-  },
-  {
-    accessorKey: "servicetag",
-    header: "S/N",
-    cell: (props) => <p>{props.getValue()}</p>,
-  },
-  {
-    accessorKey: "patrimonio",
-    header: "Patrimônio",
-    cell: (props) => <p>{props.getValue()}</p>,
-  },
-  {
-    accessorKey: "marca",
-    header: "Marca",
-    cell: (props) => <p>{props.getValue()}</p>,
-  },
-  {
-    accessorKey: "modelo",
-    header: "Modelo",
-    cell: (props) => <p>{props.getValue()}</p>,
-  },
-  {
-    accessorKey: "configuracao",
-    header: "Configuração",
-    cell: (props) => <p>{props.getValue()}</p>,
-  },
-  {
-    accessorKey: "status",
-    header: "Status",
-    cell: (props) => <p>{props.getValue()}</p>,
-  },
-];
-
 function Home() {
-  const [dados, setDados] = useState([]);
-  const [globalFilter, setGlobalFilter] = useState("");
   const [columnFilters, setColumnFilters] = useState([]);
+  const [globalFilter, setGlobalFilter] = useState('');
+
+  const columns = [
+    {
+      accessorKey: "id",
+      header: "ID",
+      cell: info => info.getValue(),
+    },
+    {
+      accessorKey: "projeto",
+      header: "Projeto",
+      cell: info => info.getValue(),
+    },
+    {
+      accessorKey: "responsavel",
+      header: "Responsável",
+      cell: info => info.getValue(),
+    },
+    {
+      accessorKey: "tipo",
+      header: "Tipo",
+      cell: info => info.getValue(),
+    },
+    {
+      accessorKey: "servicetag",
+      header: "S/N",
+      cell: info => info.getValue(),
+    },
+    {
+      accessorKey: "patrimonio",
+      header: "Patrimônio",
+      cell: info => info.getValue(),
+    },
+    {
+      accessorKey: "marca",
+      header: "Marca",
+      cell: info => info.getValue(),
+    },
+    {
+      accessorKey: "modelo",
+      header: "Modelo",
+      cell: info => info.getValue(),
+    },
+    {
+      accessorKey: "configuracao",
+      header: "Configuração",
+      cell: info => info.getValue(),
+    },
+    {
+      accessorKey: "status",
+      header: "Status",
+      cell: info => info.getValue(),
+    }
+  ]
+
+  const [data, setData] = useState([]);
   const { Search } = Input;
 
   const table = useReactTable({
+    data,
     columns,
-    data: dados,
     state: {
-      globalFilter: globalFilter,
-      columnFilters: columnFilters,
+      columnFilters,
+      globalFilter,
     },
-    onGlobalFilterChanged: setGlobalFilter,
-    onColumnFilterChanged: setColumnFilters,
-    getFilteredRowModel: getFilteredRowModel(),
-    getPaginationRowModel: getPaginationRowModel(),
-    getSortedRowModel: getSortedRowModel(),
+    onColumnFiltersChange: setColumnFilters,
+    onGlobalFilterChange: setGlobalFilter,
     getCoreRowModel: getCoreRowModel(),
+    getFilteredRowModel: getFilteredRowModel(),
+    getSortedRowModel: getSortedRowModel(),
+    getPaginationRowModel: getPaginationRowModel(),
+    getFacetedRowModel: getFacetedRowModel(),
+    getFacetedUniqueValues: getFacetedUniqueValues(),
+    getFacetedMinMaxValues: getFacetedMinMaxValues(),
   });
-
-  
 
   useEffect(() => {
     const fetchData = async () => {
       try {
         const response = await fetch("http://localhost:3001/api/home");
         const data = await response.json();
-        setDados(data);
+        setData(data);
       } catch (error) {
         console.error("Erro ao obter dados da API", error);
       }
@@ -102,9 +105,8 @@ function Home() {
     fetchData();
   }, []);
 
-  console.log(table.getHeaderGroups());
-
   return (
+
     <div className="table-container">
       <h4>Lista de Equipamentos</h4>
 
@@ -114,75 +116,177 @@ function Home() {
         value={globalFilter}
         onChange={(e) => setGlobalFilter(e.target.value)}
         className="global-search"
-        style={{ width: 200, marginTop: 40 }}
+        style={{ width: 230, marginTop: 40 }}
       />
 
-      <div className="bloc-tabs">
-        <div className="tabs">
-          <BsLaptop />
-        </div>
-        <div className="tabs">
-          <BsPrinter />
-        </div>
-        <div className="tabs">
-          <BsDisplay />
-        </div>
-        <div className="tabs">
-          <PiOfficeChair />
-        </div>
-      </div>
-
+      {/*Tabela*/}
       <table>
-        {table.getHeaderGroups().map((headerGroup) => (
-          <thead key={headerGroup.id}>
-            {headerGroup.headers.map((header) => (
-              <th key={header.id}>
-                {header.column.columnDef.header}
-                {header.column.getCanSort() && (
-                  <BiSortAlt2
-                    style={{ fontSize: "18px", margin: "3px" }}
-                    onClick={header.column.getToggleSortingHandler()}
-                  />
-                )}
-                {header.column.getCanFilter() ? (
-                  
-                ) : null}
-              </th>
-            ))}
-          </thead>
-        ))}
-        {table.getRowModel().rows.map((row) => (
-          <tr key={row.id}>
-            {row.getCenterVisibleCells().map((cell) => (
-              <td key={cell.id}>
-                {flexRender(cell.column.columnDef.cell, cell.getContext())}
-              </td>
-            ))}
-          </tr>
-        ))}
+        <thead>
+          {table.getHeaderGroups().map((headerGroup) => (
+            <tr key={headerGroup.id}>
+              {headerGroup.headers.map((header) => {
+                return (
+                  <th key={header.id} colSpan={header.colSpan}>
+                    {header.isPlaceholder ? null : (
+                      <>
+                        <div>
+                          {flexRender(
+                            header.column.columnDef.header,
+                            header.getContext()
+                          )}
+                          {header.column.getCanSort() && (
+                            <BiSortAlt2
+                              className="sort-button"
+                              onClick={header.column.getToggleSortingHandler()}
+                            />
+                          )}
+                        </div>
+                        {header.column.getCanFilter() ? (
+                          <div>
+                            <Filter column={header.column} table={table} />
+                          </div>
+                        ) : null}
+                      </>
+                    )}
+                  </th>
+                );
+              })}
+            </tr>
+          ))}
+        </thead>
+        <tbody>
+          {table.getRowModel().rows.map((row) => {
+            return (
+              <tr key={row.id}>
+                {row.getVisibleCells().map((cell) => {
+                  return (
+                    <td key={cell.id}>
+                      {flexRender(
+                        cell.column.columnDef.cell,
+                        cell.getContext()
+                      )}
+                    </td>
+                  );
+                })}
+              </tr>
+            );
+          })}
+        </tbody>
       </table>
-
       <br />
-      <div>
-        Página {table.getState().pagination.pageIndex + 1} de{" "}
-        {table.getPageCount()}
-      </div>
-      <div>
+
+      {/*Paginação botoões*/}
+      <div className="pagination">
+        <button
+          onClick={() => table.setPageIndex(0)}
+          disabled={!table.getCanPreviousPage()}
+        >
+          {'<<'}
+        </button>
         <button
           onClick={() => table.previousPage()}
-          isDisable={!table.getCanPreviousPage()}
+          disabled={!table.getCanPreviousPage()}
         >
-          {"<"}
+          {'<'}
         </button>
         <button
           onClick={() => table.nextPage()}
-          isDisable={!table.getCanNextPage()}
+          disabled={!table.getCanNextPage()}
         >
-          {">"}
+          {'>'}
         </button>
+        <button
+          onClick={() => table.setPageIndex(table.getPageCount() - 1)}
+          disabled={!table.getCanNextPage()}
+        >
+          {'>>'}
+        </button>
+
+        {/*Paginação*/}
+
+        <span>
+          <br />
+          <br />
+          <strong>
+            <span> Página </span>
+            {table.getState().pagination.pageIndex + 1} de {' '}
+            {table.getPageCount()}
+          </strong>
+        </span>
+
+        <span>
+          | Página:
+          <input
+            type="number"
+            defaultValue={table.getState().pagination.pageIndex + 1}
+            onChange={(e) => {
+              const page = e.target.value ? (e.target.value) - 1 : 0;
+              table.setPageIndex(page);
+            }}
+          />
+        </span>
+
+        <select
+          value={table.getState().pagination.pageSize}
+          onChange={(e) => {
+            table.setPageSize(e.target.value);
+          }}
+        >
+          {[10, 20, 40, 60, 100].map((pageSize) => (
+            <option key={pageSize} value={pageSize}>
+              Mostrar {pageSize}
+            </option>
+          ))}
+        </select>
+
       </div>
+      <div>{table.getPrePaginationRowModel().rows.length} Itens totais </div>
     </div>
   );
+}
+
+function Filter({ column, table }) {
+  const firstValue = table
+    .getPreFilteredRowModel()
+    .flatRows[0]?.getValue(column.id);
+
+  const columnFilterValue = column.getFilterValue();
+
+  const sortedUniqueValues = useMemo(
+    () =>
+      typeof firstValue === 'number'
+        ? []
+        : Array.from(column.getFacetedUniqueValues().keys()).sort(),
+    [column.getFacetedUniqueValues()]
+  );
+
+  return typeof firstValue === 'number' ? (
+    <div>
+      <DebouncedInput
+        type="number"
+        value={columnFilterValue?.[0] ?? ''}
+        onChange={value =>
+          column.setFilterValue((old) => [value, old?.[1]])
+        }
+        placeholder={'Filtrar'}
+      />
+    </div>
+  ) : (
+    <>
+      <datalist id={column.id + 'list'}>
+        {sortedUniqueValues.slice(0, 5000).map((value) => (
+          <option value={value} key={value} />
+        ))}
+      </datalist>
+      <DebouncedInput
+        type="text"
+        value={columnFilterValue ?? ''}
+        onChange={value => column.setFilterValue(value)}
+        placeholder={'Filtrar'}
+        list={column.id + 'list'}
+      />
+    </>
+  )
 }
 
 function DebouncedInput({
@@ -191,13 +295,13 @@ function DebouncedInput({
   debounce = 500,
   ...props
 }) {
-  const [value, setValue] = React.useState(initialValue);
+  const [value, setValue] = useState(initialValue);
 
-  React.useEffect(() => {
+  useEffect(() => {
     setValue(initialValue);
   }, [initialValue]);
 
-  React.useEffect(() => {
+  useEffect(() => {
     const timeout = setTimeout(() => {
       onChange(value);
     }, debounce);
@@ -205,87 +309,12 @@ function DebouncedInput({
     return () => clearTimeout(timeout);
   }, [value]);
 
-  return(
-    <Search
-    allowClear
-    style={{ width: 115 }}
-    {...props}
-    value={value}
-    onChange={(e) => setValue(e.target.value)}
-    />
-  );
-}
-
-function Filter({ column, table }) {
- 
-  const firstValue = table
-    .getPreFilteredRowModel()
-    .flatRows[0]?.getValue(column.id);
-
-  const columnFilterValue = column.getFilterValue();
-
-  const sortedUniqueValues = React.useMemo(
-    () =>
-      typeof firstValue === 'number'
-        ? []
-        : Array.from(column.getFacetedUniqueValues().keys()).sort(),
-    [column.getFacetedUniqueValues()]
-  )
-
-  return typeof firstValue === 'number' ? (
-    <div>
-      <div className="flex space-x-2">
-        <DebouncedInput
-          type="number"
-          min={Number(column.getFacetedMinMaxValues()?.[0] ?? '')}
-          max={Number(column.getFacetedMinMaxValues()?.[1] ?? '')}
-          value={(columnFilterValue as [number, number])?.[0] ?? ''}
-          onChange={value =>
-            column.setFilterValue((old: [number, number]) => [value, old?.[1]])
-          }
-          placeholder={`Min ${
-            column.getFacetedMinMaxValues()?.[0]
-              ? `(${column.getFacetedMinMaxValues()?.[0]})`
-              : ''
-          }`}
-          className="w-24 border shadow rounded"
-        />
-        <DebouncedInput
-          type="number"
-          min={Number(column.getFacetedMinMaxValues()?.[0] ?? '')}
-          max={Number(column.getFacetedMinMaxValues()?.[1] ?? '')}
-          value={(columnFilterValue as [number, number])?.[1] ?? ''}
-          onChange={value =>
-            column.setFilterValue((old: [number, number]) => [old?.[0], value])
-          }
-          placeholder={`Max ${
-            column.getFacetedMinMaxValues()?.[1]
-              ? `(${column.getFacetedMinMaxValues()?.[1]})`
-              : ''
-          }`}
-          className="w-24 border shadow rounded"
-        />
-      </div>
-      <div className="h-1" />
+  return (
+    <div className="column-input">
+      <input {...props} value={value} onChange={(e) => setValue(e.target.value)} />
     </div>
-  ) : (
-    <>
-      <datalist id={column.id + 'list'}>
-        {sortedUniqueValues.slice(0, 5000).map((value: any) => (
-          <option value={value} key={value} />
-        ))}
-      </datalist>
-      <DebouncedInput
-        type="text"
-        value={(columnFilterValue ?? '')}
-        onChange={value => column.setFilterValue(value)}
-        placeholder={`Search... (${column.getFacetedUniqueValues().size})`}
-        className="w-36 border shadow rounded"
-        list={column.id + 'list'}
-      />
-      <div className="h-1" />
-    </>
-  )
+
+  );
 }
 
 export default Home;

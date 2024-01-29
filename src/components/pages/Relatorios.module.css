@@ -13,3 +13,9 @@
 .icons {
     font-size: 160px;
 }
+
+@media screen and (max-width: 768px) {
+    .input_rel {
+        margin-left: 40px;
+    }  
+}
