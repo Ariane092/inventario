@@ -2,14 +2,15 @@
     display: flex;
     justify-content: center;
     flex-direction: column;
-    margin-top: 65px;
-    width: 1000px;
+    margin-top: 10px;
     height: 100%;
+    width: 900px;
 }
 
-h4 {
+.title h4 {
     text-align: center;
     font-size: 22px;
+    margin-top: 70px;
 }
 
 table {
@@ -17,23 +18,18 @@ table {
     flex-direction: column;
     margin-top: 25px;
     border: 1px solid #CCCCCC;
-    border-radius: 6px;
-    width: 1300px;
-}
-
-thead {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 1300px;
+    border-radius: 8px;
+    width: 1750px;
 }
 
 th {
     display: flex;
     justify-content: center;
+    text-align: center;
     flex-wrap: wrap;
     padding: 10px;
-    background-color: rgba(179, 176, 176, 0.089);
+    height: 80px;
+    background-color: rgba(179, 176, 176, 0.233);
     border-bottom: 2px solid rgb(143, 138, 138);
 }
 
@@ -44,25 +40,23 @@ th {
 
 tr {
     display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 1300px;
 }
 
-td{
+.tr {
+    display: flex;
+}
+
+td {
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 1300px;
     height: 50px;
+    border-top: 1px solid #CCCCCC;
+    width: 100%;
 }
 
-tr:nth-child(even) {
-    background-color: rgba(171, 173, 171, 0.356); 
-}
-
-tr:nth-child(odd) {
-    background-color: rgba(179, 176, 176, 0.089);
+.tr:hover {
+    background-color: #cccccc65;
 }
 
 .pagination button {
@@ -77,33 +71,33 @@ tr:nth-child(odd) {
     margin: 5px;
     width: 50px;
     padding: .2em;
-    border: 1px solid  #44434663;
+    border: 1px solid #44434663;
     border-radius: 4px;
 }
 
-.pagination input:focus-visible{
-    outline: 1px solid  #44434663;
+.pagination input:focus-visible {
+    outline: 1px solid #44434663;
 }
 
 .pagination select {
     width: 100px;
     padding: .2em;
-    border: 1px solid  #44434663;
+    border: 1px solid #44434663;
     border-radius: 4px;
 }
 
-.pagination select:focus-visible{
-    outline: 1px solid  #44434663;
+.pagination select:focus-visible {
+    outline: 1px solid #44434663;
 }
 
 .column-input input {
     margin-top: 5px;
-    width: 105px;
+    width: 140px;
     padding: .2em;
-    border: 1px solid  #44434663;
+    border: 1px solid #44434663;
     border-radius: 4px;
 }
 
-.column-input input:focus-visible{
-    outline: 1px solid  #44434663;
+.column-input input:focus-visible {
+    outline: 1px solid #44434663;
 }
