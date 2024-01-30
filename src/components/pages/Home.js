@@ -111,7 +111,7 @@ function Home() {
         <h4>Lista de Equipamentos</h4>
       </div>
 
-      <div className="table-container">
+      <div className="container">
         <Search
           placeholder="Pesquisar"
           allowClear
@@ -122,6 +122,7 @@ function Home() {
         />
 
         {/*Tabela*/}
+        <div className="table-container">
         <table>
           <thead>
             {table.getHeaderGroups().map((headerGroup) => (
@@ -177,6 +178,7 @@ function Home() {
             })}
           </tbody>
         </table>
+        </div>
         <br />
 
         {/*Paginação botoões*/}

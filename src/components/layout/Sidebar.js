@@ -45,11 +45,11 @@ const items = [
 
 function Sidebar() {
   const [collapsed, setCollapsed] = useState(false);
-  const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
+  const [isMobile, setIsMobile] = useState(window.innerWidth <=  1920);
 
   useEffect(() => {
     const handleResize = () => {
-      setIsMobile(window.innerWidth <= 768);
+      setIsMobile(window.innerWidth <=  1920);
     };
 
     window.addEventListener('resize', handleResize);
