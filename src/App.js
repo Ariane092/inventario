@@ -12,7 +12,7 @@ import Escritorio from "./components/pages/Escritorio";
 function App() {
   return (
     <Router>
-      <Sidebar />
+      <Sidebar>
       <Routes>
         <Route path="/home" element={<Home />} />
         <Route path="/inventario" element={<Inventario />} />
@@ -22,6 +22,7 @@ function App() {
         <Route path="/monitores" element={<Monitores />} />
         <Route path="/escritorio" element={<Escritorio />} />
       </Routes>
+      </Sidebar>
     </Router>
   );
 }

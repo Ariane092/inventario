@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import "./Sidebar.css";
 import logo from "../../img/cepea_logo.png";
@@ -14,9 +14,9 @@ import {
   LogoutOutlined,
   MenuFoldOutlined,
   MenuUnfoldOutlined,
-} from '@ant-design/icons';
+} from "@ant-design/icons";
 import { PiOfficeChair } from "react-icons/pi";
-import { Menu } from 'antd';
+import { Menu } from "antd";
 
 function getItem(label, key, icon, children, type, path) {
   return {
@@ -30,32 +30,67 @@ function getItem(label, key, icon, children, type, path) {
 }
 
 const items = [
-  getItem('Home', '1', <HomeOutlined />, null, 'item', '/home'),
-  getItem('Inventário', '2', <AppstoreOutlined />, null, 'item', '/inventario'),
-  getItem('Relatórios', '3', <FileTextOutlined />, null, 'item', '/relatorios'),
-  getItem('Cadastro', 'sub1', <FormOutlined />, [
-    getItem('Computadores', '4', <LaptopOutlined />, null, 'item', '/computadores'),
-    getItem('Impressoras', '5', <PrinterOutlined />, null, 'item', '/impressoras'),
-    getItem('Monitores', '6', <DesktopOutlined />, null, 'item', '/monitores'),
-    getItem('Escritório', '7', <PiOfficeChair />, null, 'item', '/escritorio'),
-  ], 'submenu', null),
-  getItem('Gerar Qr Code', '8', <QrcodeOutlined />, null, 'item', '/etiquetas'),
-  getItem('Sair', '9', <LogoutOutlined />, null, 'item', '/login'),
+  getItem("Home", "1", <HomeOutlined />, null, "item", "/home"),
+  getItem("Inventário", "2", <AppstoreOutlined />, null, "item", "/inventario"),
+  getItem("Relatórios", "3", <FileTextOutlined />, null, "item", "/relatorios"),
+  getItem(
+    "Cadastro",
+    "sub1",
+    <FormOutlined />,
+    [
+      getItem(
+        "Computadores",
+        "4",
+        <LaptopOutlined />,
+        null,
+        "item",
+        "/computadores"
+      ),
+      getItem(
+        "Impressoras",
+        "5",
+        <PrinterOutlined />,
+        null,
+        "item",
+        "/impressoras"
+      ),
+      getItem(
+        "Monitores",
+        "6",
+        <DesktopOutlined />,
+        null,
+        "item",
+        "/monitores"
+      ),
+      getItem(
+        "Escritório",
+        "7",
+        <PiOfficeChair />,
+        null,
+        "item",
+        "/escritorio"
+      ),
+    ],
+    "submenu",
+    null
+  ),
+  getItem("Gerar Qr Code", "8", <QrcodeOutlined />, null, "item", "/etiquetas"),
+  getItem("Sair", "9", <LogoutOutlined />, null, "item", "/login"),
 ];
 
-function Sidebar() {
+function Sidebar(props) {
   const [collapsed, setCollapsed] = useState(false);
-  const [isMobile, setIsMobile] = useState(window.innerWidth <=  1920);
+  const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
 
   useEffect(() => {
     const handleResize = () => {
-      setIsMobile(window.innerWidth <=  1920);
+      setIsMobile(window.innerWidth <= 768);
     };
 
-    window.addEventListener('resize', handleResize);
+    window.addEventListener("resize", handleResize);
 
     return () => {
-      window.removeEventListener('resize', handleResize);
+      window.removeEventListener("resize", handleResize);
     };
   }, []);
 
@@ -77,16 +112,15 @@ function Sidebar() {
         <div
           onClick={toggleCollapsed}
           style={{
-            cursor:'pointer',
+            cursor: "pointer",
             marginLeft: 10,
           }}
         >
-          {collapsed ? 
-          <MenuUnfoldOutlined 
-          style={{color:'white', fontSize:18}}/> : 
-          <MenuFoldOutlined 
-          style={{color:'white', fontSize:18}}
-          />}
+          {collapsed ? (
+            <MenuUnfoldOutlined style={{ color: "white", fontSize: 18 }} />
+          ) : (
+            <MenuFoldOutlined style={{ color: "white", fontSize: 18 }} />
+          )}
         </div>
         <Link to="/home">
           <img src={logo} alt="cepea_logo" />
@@ -94,25 +128,28 @@ function Sidebar() {
         <h5>Sistema de Inventário CEPEA/ESALQ-USP</h5>
       </div>
       <div className="sidebar">
-
         <Menu
-          defaultSelectedKeys={['1']}
-          defaultOpenKeys={['sub1']}
+          defaultSelectedKeys={["1"]}
+          defaultOpenKeys={["sub1"]}
           mode="inline"
           theme="light"
           inlineCollapsed={collapsed}
           className="sidebar-menu"
         >
           {items.map((item) => {
-            if (item.type === 'item') {
+            if (item.type === "item") {
               return (
                 <Menu.Item key={item.key} icon={item.icon}>
                   <Link to={item.path}>{item.label}</Link>
                 </Menu.Item>
               );
-            } else if (item.type === 'submenu') {
+            } else if (item.type === "submenu") {
               return (
-                <Menu.SubMenu key={item.key} icon={item.icon} title={item.label}>
+                <Menu.SubMenu
+                  key={item.key}
+                  icon={item.icon}
+                  title={item.label}
+                >
                   {item.children.map((submenuItem) => (
                     <Menu.Item key={submenuItem.key} icon={submenuItem.icon}>
                       <Link to={submenuItem.path}>{submenuItem.label}</Link>
@@ -120,7 +157,7 @@ function Sidebar() {
                   ))}
                 </Menu.SubMenu>
               );
-            } else if (item.type === 'link') {
+            } else if (item.type === "link") {
               return (
                 <Menu.Item key={item.key} icon={item.icon}>
                   <Link to={item.path}>{item.label}</Link>
@@ -130,6 +167,9 @@ function Sidebar() {
             return null;
           })}
         </Menu>
+      </div>
+      <div>
+        {props.children} {/*pages props*/}
       </div>
     </>
   );
