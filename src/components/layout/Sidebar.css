@@ -4,6 +4,7 @@
     align-items: center;
     padding: 10px;
     width: 100%;
+    height: 45px;
     position: fixed;
     top: 0;
     left: 0;
@@ -12,14 +13,14 @@
 }
 
 img {
-    width: 50px;
+    width: 35px;
     margin-left: 30px;
 }
 
 h5 {
-    padding-left: 20px;
+    margin-left: 22px;
     color: rgb(211, 205, 205);
-    font-size: 16px;
+    font-size: 15px;
 }
 
 .content {
@@ -29,18 +30,23 @@ h5 {
 }
 
 .trigger {
-    font-size: 23px;
+    font-size: 19px;
     cursor: pointer;
-    transition: color 0.3s;
+    margin-left: 10px;
     color: whitesmoke;
-  }
-  
-.trigger:hover {
-    color: rgb(108, 148, 118);
 }
-
+  
 .sidebar-menu {
     font-size: 16px;
     margin-top: 100px;
-    width: 240px;
+    width: 230px;
+}
+
+@media screen and (max-width: 768px) {
+    .trigger {
+        display: none;
+    }
+    img {
+        margin-left: 2px;
+    }
 }

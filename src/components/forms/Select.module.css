@@ -1,8 +1,8 @@
 .selects{
     display: flex;
     flex-direction: column;
-    padding: 10px;
-    width: 260px;
+    padding: 7px 15px 0px 0px;
+    width: 230px;
 }
 
 .selects label{
@@ -11,7 +11,7 @@
 }
 
 .selects select{
-    padding: .3em;
+    padding: .2em;
     border: 1px solid  #44434663;
     border-radius: 4px;
 }

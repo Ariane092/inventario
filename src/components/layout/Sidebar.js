@@ -110,7 +110,7 @@ function Sidebar(props) {
     
   return (
     <Layout>
-      <Sider trigger={null} collapsible collapsed={collapsed} theme="light">
+      <Sider trigger={null} collapsible collapsed={collapsed} theme="light" className="sider">
 
         <Menu
           theme="light"
