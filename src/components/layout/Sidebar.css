@@ -2,7 +2,7 @@
     display: flex;
     justify-content: flex-start;
     align-items: center;
-    padding: 0.3em;
+    padding: 10px;
     width: 100%;
     position: fixed;
     top: 0;
@@ -12,34 +12,35 @@
 }
 
 img {
-    width: 125px;
-    margin-left: 15px;
+    width: 50px;
+    margin-left: 30px;
 }
 
 h5 {
-    padding-top: 6px;
     padding-left: 20px;
     color: rgb(211, 205, 205);
+    font-size: 16px;
 }
 
-.sidebar {
-    width: 250px;
-    position: fixed;
-    top: 0;
-    left: 0;
-    padding-top: 80px;
+.content {
+    padding: 24px;
+    background: white;
+
+}
+
+.trigger {
+    font-size: 23px;
+    cursor: pointer;
+    transition: color 0.3s;
+    color: whitesmoke;
+  }
+  
+.trigger:hover {
+    color: rgb(108, 148, 118);
 }
 
 .sidebar-menu {
     font-size: 16px;
+    margin-top: 100px;
+    width: 240px;
 }
-
-.sidebar.collapsed {
-    width: 100px;
-}
-
-@media screen and (max-width: 2000px) {
-    .sidebar {
-        width: 220px;
-    }  
-} 

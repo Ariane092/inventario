@@ -1,7 +1,6 @@
-/* @import url('../layout/Sidebar'); */
-
-.table-container {   
-    margin-top: 10px;
+.container {
+    
+    margin-left: 40px;
 }
 
 .title h4 {
@@ -16,6 +15,7 @@ table {
     border: 1px solid #CCCCCC;
     border-radius: 8px;
     width: 1600px;
+    margin-top: 20px;
 }
 
 th {
@@ -95,7 +95,7 @@ td {
 }
 
 
-@media screen and (max-width: 2000px) {
+/* @media screen and (max-width: 2000px) {
     .container { 
         margin-left: 250px;
     }
@@ -104,4 +104,4 @@ td {
         width: 170vh;
     }
        
-} 
+}  */

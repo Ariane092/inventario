@@ -1,7 +1,7 @@
 // import { useState, useEffect } from "react";
 import Input from "../forms/Input";
 
-import logo from "../../img/cepea_img.png";
+import logo from "../../img/cepea.png";
 import styles from "./Login.module.css";
 
 function Login() {
