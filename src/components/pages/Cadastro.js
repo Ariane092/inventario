@@ -2,7 +2,6 @@ import { useState, useEffect } from "react";
 import Input from "../forms/Input";
 import Select from "../forms/Select";
 import styles from "./Cadastro.module.css";
-import categories from "./CadastroData";
 import Form from "../forms/Form";
 
 function Cadastro(props) {
@@ -42,7 +41,7 @@ function Cadastro(props) {
         />
         <Input type="number" text="Patrimônio" name="patrimonio" />
         <Select name="projeto" text="Projeto" options={categories.projeto} />
-        <Select name="status" text="Status" options={categories} />
+        <Select name="status" text="Status" options={categories.status} />
         <Input type="text" text="Service Tag" name="service_tag" />
         {props.children} {/*computadores props*/}
 

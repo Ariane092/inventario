@@ -25,11 +25,13 @@ app.get('/api/home', async (req, res) => {
   }
 });
 
-app.post('/api/home', async (req, res) => {
+app.post('/api/computadores', async (req, res) => {
   try {
-    const { nome, quantidade } = req.body;
+    const { projeto, responsavel, tipo, servicetag, patrimonio, marca, modelo, processo, 
+      data_compra, local, usuario, nota_fiscal, cod_doacao, memoria, hard_disk, processador, office, observacao, status } = req.body;
 
-    const result = await pool.query('INSERT INTO inventario_teste (nome, quantidade) VALUES ($1, $2) RETURNING *', [nome, quantidade]);
+    const result = await pool.query('INSERT INTO inventario_teste (projeto, responsavel, tipo, servicetag, patrimonio, marca, modelo, processo, data_compra, local, usuario, nota_fiscal, cod_doacao, memoria, hard_disk, processador, office, observacao, status) VALUES ($1, $2) RETURNING *', 
+    [projeto, responsavel, tipo, servicetag, patrimonio, marca, modelo, processo, data_compra, local, usuario, nota_fiscal, cod_doacao, memoria, hard_disk, processador, office, observacao, status]);
     res.json(result.rows[0]);
   } catch (error) {
     console.error('Erro ao inserir dados no banco de dados', error);
