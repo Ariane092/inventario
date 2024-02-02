@@ -3,35 +3,45 @@ import Select from "../forms/Select";
 import Cadastro from "./Cadastro";
 
 function Computadores() {
-  const [options, setOptions] = useState(
-    {
-      memoria: [],
-      hard_disk: [],
-      processador: [],
-      office: [],
-    }
-  );
+  const [options, setOptions] = useState({
+    memoria: [{
 
-useEffect(() => {
-  const fetchData = async () => {
-    try {
-      const response = await fetch("http://localhost:3001/api/computadores");
-      const data = await response.json();
-      const dataOptions = {
-        memoria: data.map((item) => ({ id: item.memoria_id, name: item.memoria })),
-        hard_disk: data.map((item) => ({ id: item.hard_disk_id, name: item.hard_disk })),
-        processador: data.map((item) => ({ id: item.processador_id, name: item.processador })),
-        office: data.map((item) => ({ id: item.office_id, name: item.office })),
-      };
+    }],
+    hard_disk: [{
 
-      setOptions(dataOptions);
-    } catch (error) {
-      console.error("Erro ao obter dados da API", error);
-    }
+    }],
+    processador: [{
+
+    }],
+    office: [{
+      
+    }],
+  });
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await fetch("http://localhost:3001/api/computadores");
+        const data = await response.json();
+  
+        const dataOptions = {
+          memoria: extractOptions(data, 'memoria'),
+          hard_disk: extractOptions(data, 'hard_disk'),
+          processador: extractOptions(data, 'processador'),
+          office: extractOptions(data, 'office'),
+        };
+  
+        setOptions(dataOptions);
+      } catch (error) {
+        console.error("Erro ao obter dados da API", error);
+      }
+    };
+    fetchData();
+  }, []);
+  
+  const extractOptions = (data, columnName) => {
+    return data.map((item) => ({ id: item[columnName], name: item[columnName] }));
   };
-  fetchData();
-}, []);
-
   return (
       <Cadastro title="Cadastro de Computadores">
         <Select name="memoria" text="Memória" options={options.memoria} />
