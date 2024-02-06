@@ -1,6 +1,7 @@
+import { useState, useEffect } from "react";
 import styles from "./Select.module.css";
 
-function Select({ text, name, options, handleOnChange, value }) {
+function Select({ text, name, handleOnChange, value }) {
   return (
     <div className={styles.selects}>
       <label htmlFor={name}>{text}:</label>

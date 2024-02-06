@@ -8,36 +8,7 @@ import Form from "../forms/Form";
 
 function Cadastro(props) {
   const showPicBtn = true;
-  const [options, setOptions] = useState(
-    {
-      memoria: [],
-      hard_disk: [],
-      processador: [],
-      office: [],
-    }
-  );
-
-useEffect(() => {
-  const fetchData = async () => {
-    try {
-      const response = await fetch("http://localhost:3001/api/computadores");
-      const data = await response.json();
-      const dataOptions = {
-        memoria: data.map((item) => ({ id: item.memoria_id, name: item.memoria_name })),
-        hard_disk: data.map((item) => ({ id: item.hard_disk_id, name: item.hard_disk_name })),
-        processador: data.map((item) => ({ id: item.processador_id, name: item.processador_name })),
-        office: data.map((item) => ({ id: item.office_id, name: item.office_name })),
-      };
-
-      setOptions(dataOptions);
-    } catch (error) {
-      console.error("Erro ao obter dados da API", error);
-    }
-  };
-  fetchData();
-}, []);
   
-
   return (
     <>
       <Form title={props.title} text="Enviar" showPicBtn={showPicBtn}>

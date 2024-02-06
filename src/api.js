@@ -15,15 +15,17 @@ const pool = new Pool({
   port: 5432,
 });
 
-app.get('/api/computadores', async (req, res) => {
-  try {
-    const result = await pool.query('SELECT memoria, hard_disk, processador, office FROM inventario_teste');
-    res.json(result.rows);
-  } catch (error) {
-    console.error('Erro ao obter dados do banco de dados', error);
-    res.status(500).send('Erro interno do servidor');
-  }
-});
+// app.get('/api/computadores', async (req, res) => {
+//   try {
+//     const result = await pool.query('SELECT memoria, hard_disk, processador, office FROM inventario_teste');
+//     res.json(result.rows);
+//   } catch (error) {
+//     console.error('Erro ao obter dados do banco de dados', error);
+//     res.status(500).send('Erro interno do servidor');
+//   }
+// });
+
+
 
 // app.post('/api/computadores', async (req, res) => {
 //   try {
