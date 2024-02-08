@@ -15,16 +15,39 @@ const pool = new Pool({
   port: 5432,
 });
 
-app.get('/api/cadastro', async (req, res) => {
+// app.get('/api/cadastro', async (req, res) => {
+//   try {
+//     const result = await pool.query('SELECT * FROM inventario_teste');
+//     res.json(result.rows);
+//   } catch (error) {
+//     console.error('Erro ao obter dados do banco de dados', error);
+//     res.status(500).send('Erro interno do servidor');
+//   }
+// });
+
+app.get('/api/:resource', async (req, res) => {
+  const { resource } = req.params;
+
   try {
-    const result = await pool.query('SELECT * FROM inventario_teste');
+    let result;
+
+    switch (resource) {
+      case 'projeto':
+        result = await pool.query('SELECT * FROM projeto');
+        break;
+      case 'responsavel':
+        result = await pool.query('SELECT * FROM responsavel');
+        break;
+      default:
+        return res.status(404).send('Recurso não encontrado');
+    }
+
     res.json(result.rows);
   } catch (error) {
     console.error('Erro ao obter dados do banco de dados', error);
     res.status(500).send('Erro interno do servidor');
   }
 });
-
 
 
 // app.post('/api/computadores', async (req, res) => {
