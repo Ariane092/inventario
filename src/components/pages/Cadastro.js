@@ -21,8 +21,7 @@ function Cadastro(props) {
           placeholder="Caso não possua, digite ROTATIVO"
         />
         <Input type="number" text="NF" name="nota_fiscal" />
-        <Input type="number" text="Cód. Doação" name="cod_doacao" />
-        <Select name="tipo_produto" text="Tipo de Produto" apiUrl="http://localhost:3001/api/tipo" /> 
+        <Input type="number" text="Cód. Doação" name="cod_doacao" /> 
         <Input type="number" text="Patrimônio" name="patrimonio" />
         <Select name="projeto" text="Projeto" apiUrl="http://localhost:3001/api/projeto" /> 
         <Select name="status" text="Status" apiUrl="http://localhost:3001/api/status" /> 

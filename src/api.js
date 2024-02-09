@@ -25,23 +25,9 @@ const pool = new Pool({
 //   }
 // });
 
-app.get('/api/:resource', async (req, res) => {
-  const { resource } = req.params;
-
+app.get('/api/responsavel', async (req, res) => {
   try {
-    let result;
-
-    switch (resource) {
-      case 'projeto':
-        result = await pool.query('SELECT * FROM projeto');
-        break;
-      case 'responsavel':
-        result = await pool.query('SELECT * FROM responsavel');
-        break;
-      default:
-        return res.status(404).send('Recurso não encontrado');
-    }
-
+    const result = await pool.query('SELECT * FROM responsavel');
     res.json(result.rows);
   } catch (error) {
     console.error('Erro ao obter dados do banco de dados', error);
@@ -49,6 +35,75 @@ app.get('/api/:resource', async (req, res) => {
   }
 });
 
+app.get('/api/tipo', async (req, res) => {
+  try {
+    const result = await pool.query('SELECT * FROM tipo_produto');
+    res.json(result.rows);
+  } catch (error) {
+    console.error('Erro ao obter dados do banco de dados', error);
+    res.status(500).send('Erro interno do servidor');
+  }
+});
+
+app.get('/api/projeto', async (req, res) => {
+  try {
+    const result = await pool.query('SELECT * FROM projeto');
+    res.json(result.rows);
+  } catch (error) {
+    console.error('Erro ao obter dados do banco de dados', error);
+    res.status(500).send('Erro interno do servidor');
+  }
+});
+
+app.get('/api/status', async (req, res) => {
+  try {
+    const result = await pool.query('SELECT * FROM status');
+    res.json(result.rows);
+  } catch (error) {
+    console.error('Erro ao obter dados do banco de dados', error);
+    res.status(500).send('Erro interno do servidor');
+  }
+});
+
+app.get('/api/memoria', async (req, res) => {
+  try {
+    const result = await pool.query('SELECT * FROM memoria');
+    res.json(result.rows);
+  } catch (error) {
+    console.error('Erro ao obter dados do banco de dados', error);
+    res.status(500).send('Erro interno do servidor');
+  }
+});
+
+app.get('/api/hd', async (req, res) => {
+  try {
+    const result = await pool.query('SELECT * FROM hard_disk');
+    res.json(result.rows);
+  } catch (error) {
+    console.error('Erro ao obter dados do banco de dados', error);
+    res.status(500).send('Erro interno do servidor');
+  }
+});
+
+app.get('/api/processador', async (req, res) => {
+  try {
+    const result = await pool.query('SELECT * FROM processador');
+    res.json(result.rows);
+  } catch (error) {
+    console.error('Erro ao obter dados do banco de dados', error);
+    res.status(500).send('Erro interno do servidor');
+  }
+});
+
+app.get('/api/office', async (req, res) => {
+  try {
+    const result = await pool.query('SELECT * FROM office');
+    res.json(result.rows);
+  } catch (error) {
+    console.error('Erro ao obter dados do banco de dados', error);
+    res.status(500).send('Erro interno do servidor');
+  }
+});
 
 // app.post('/api/computadores', async (req, res) => {
 //   try {
