@@ -21,6 +21,7 @@ function Select({ text, name, handleOnChange, value, apiUrl }) {
     <div className={styles.selects}>
       <label htmlFor={name}>{text}:</label>
       <select>
+        <option></option>
         {options.map((option) => (
           <option value={option.id} key={option.id}>
             {option.nome}

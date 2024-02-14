@@ -17,8 +17,8 @@ function Form(props) {
           </div>
           <div className={styles.form_btn}>
             <Radio.Group value={size} onChange={(e) => setSize(e.target.value)}>
-              <Button type="primary" size={size} style={{ background: 'rgb(108, 148, 118)' }}>{props.text}</Button>
-              {showPicBtn && <Button type="primary" size={size} style={{ margin: 10, background: 'rgb(108, 148, 118)' }} icon={<FaCameraRetro />} >Foto</Button>}
+              <Button type="primary" size={size} style={{ background: 'rgb(55, 119, 87)' }}>{props.text}</Button>
+              {showPicBtn && <Button type="primary" size={size} style={{ margin: 10, background: 'rgb(55, 119, 87)' }} icon={<FaCameraRetro />} >Foto</Button>}
             </Radio.Group>
           </div>
         </form>

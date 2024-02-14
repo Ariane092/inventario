@@ -35,16 +35,6 @@ app.get('/api/responsavel', async (req, res) => {
   }
 });
 
-app.get('/api/tipo', async (req, res) => {
-  try {
-    const result = await pool.query('SELECT * FROM tipo_produto');
-    res.json(result.rows);
-  } catch (error) {
-    console.error('Erro ao obter dados do banco de dados', error);
-    res.status(500).send('Erro interno do servidor');
-  }
-});
-
 app.get('/api/projeto', async (req, res) => {
   try {
     const result = await pool.query('SELECT * FROM projeto');
@@ -98,6 +88,46 @@ app.get('/api/processador', async (req, res) => {
 app.get('/api/office', async (req, res) => {
   try {
     const result = await pool.query('SELECT * FROM office');
+    res.json(result.rows);
+  } catch (error) {
+    console.error('Erro ao obter dados do banco de dados', error);
+    res.status(500).send('Erro interno do servidor');
+  }
+});
+
+app.get('/api/escritorio', async (req, res) => {
+  try {
+    const result = await pool.query('SELECT * FROM tipo_escritorio');
+    res.json(result.rows);
+  } catch (error) {
+    console.error('Erro ao obter dados do banco de dados', error);
+    res.status(500).send('Erro interno do servidor');
+  }
+});
+
+app.get('/api/computadores', async (req, res) => {
+  try {
+    const result = await pool.query('SELECT * FROM tipo_computadores');
+    res.json(result.rows);
+  } catch (error) {
+    console.error('Erro ao obter dados do banco de dados', error);
+    res.status(500).send('Erro interno do servidor');
+  }
+});
+
+app.get('/api/impressoras', async (req, res) => {
+  try {
+    const result = await pool.query('SELECT * FROM tipo_impressoras');
+    res.json(result.rows);
+  } catch (error) {
+    console.error('Erro ao obter dados do banco de dados', error);
+    res.status(500).send('Erro interno do servidor');
+  }
+});
+
+app.get('/api/monitores', async (req, res) => {
+  try {
+    const result = await pool.query('SELECT * FROM tipo_monitores');
     res.json(result.rows);
   } catch (error) {
     console.error('Erro ao obter dados do banco de dados', error);
