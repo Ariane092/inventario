@@ -2,11 +2,11 @@ import Select from "../forms/Select";
 import Input from "../forms/Input";
 import styles from "./Relatorios.module.css";
 import { BsFiletypePdf, BsFiletypeCsv } from "react-icons/bs";
-import Form from "../forms/Form";
+
 
 
 function Relatorios() {
-  const showPicBtn = false;
+
 
   return (
     // <Form title="Relatórios" text="Gerar Relatório" showPicBtn={showPicBtn}>

@@ -20,7 +20,7 @@ function Select({ text, name, handleOnChange, value, apiUrl }) {
   return (
     <div className={styles.selects}>
       <label htmlFor={name}>{text}:</label>
-      <select>
+      <select name={name} onChange={handleOnChange} value={value}>
         <option></option>
         {options.map((option) => (
           <option value={option.id} key={option.id}>

@@ -8,10 +8,11 @@
 .selects label{
     margin-bottom: 0.6em;
     font-size: .8em;
+    font-weight: bold;
 }
 
 .selects select{
-    padding: .2em;
+    padding: .3em;
     border: 1px solid  #44434663;
     border-radius: 4px;
 }

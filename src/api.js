@@ -15,15 +15,15 @@ const pool = new Pool({
   port: 5432,
 });
 
-// app.get('/api/cadastro', async (req, res) => {
-//   try {
-//     const result = await pool.query('SELECT * FROM inventario_teste');
-//     res.json(result.rows);
-//   } catch (error) {
-//     console.error('Erro ao obter dados do banco de dados', error);
-//     res.status(500).send('Erro interno do servidor');
-//   }
-// });
+app.get('/api/cadastro', async (req, res) => {
+  try {
+    const result = await pool.query('SELECT * FROM cadastro');
+    res.json(result.rows);
+  } catch (error) {
+    console.error('Erro ao obter dados do banco de dados', error);
+    res.status(500).send('Erro interno do servidor');
+  }
+});
 
 app.get('/api/responsavel', async (req, res) => {
   try {
@@ -135,19 +135,19 @@ app.get('/api/monitores', async (req, res) => {
   }
 });
 
-// app.post('/api/computadores', async (req, res) => {
-//   try {
-//     const { projeto, responsavel, tipo, servicetag, patrimonio, marca, modelo, processo, 
-//       data_compra, local, usuario, nota_fiscal, cod_doacao, memoria, hard_disk, processador, office, observacao, status } = req.body;
+app.post('/api/cadastro', async (req, res) => {
+  try {
+    const { projeto, responsavel, tipo_equipamento, servicetag, patrimonio, marca, modelo, processo, 
+      data_compra, local, usuario, nota_fiscal, cod_doacao, observacao, status } = req.body;
 
-//     const result = await pool.query('INSERT INTO inventario_teste (projeto, responsavel, tipo, servicetag, patrimonio, marca, modelo, processo, data_compra, local, usuario, nota_fiscal, cod_doacao, memoria, hard_disk, processador, office, observacao, status) VALUES ($1, $2) RETURNING *', 
-//     [projeto, responsavel, tipo, servicetag, patrimonio, marca, modelo, processo, data_compra, local, usuario, nota_fiscal, cod_doacao, memoria, hard_disk, processador, office, observacao, status]);
-//     res.json(result.rows[0]);
-//   } catch (error) {
-//     console.error('Erro ao inserir dados no banco de dados', error);
-//     res.status(500).send('Erro interno do servidor');
-//   }
-// });
+    const result = await pool.query('INSERT INTO cadastro (projeto, responsavel, tipo_equipamento, servicetag, patrimonio, marca, modelo, processo, data_compra, local, usuario, nota_fiscal, cod_doacao, observacao, status) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15) RETURNING *', 
+    [projeto, responsavel, tipo_equipamento, servicetag, patrimonio, marca, modelo, processo, data_compra, local, usuario, nota_fiscal, cod_doacao, observacao, status]);
+    res.json(result.rows[0]);
+  } catch (error) {
+    console.error('Erro ao inserir dados no banco de dados', error);
+    res.status(500).send('Erro interno do servidor');
+  }
+});
 
 app.listen(port, () => {
   console.log(`Servidor rodando na porta ${port}`);
