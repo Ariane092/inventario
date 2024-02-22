@@ -7,7 +7,7 @@ function Escritorio() {
       <Select
         name="tipo_escritorio"
         text="Tipo de Produto"
-        apiUrl="http://localhost:3001/api/escritorio"
+        apiUrl="http://localhost:3001/escritorio"
       />
     </Cadastro>
   );

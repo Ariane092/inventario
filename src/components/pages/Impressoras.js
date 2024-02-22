@@ -7,7 +7,7 @@ function Impressoras() {
       <Select
         name="tipo_impressoras"
         text="Tipo de Produto"
-        apiUrl="http://localhost:3001/api/impressoras"
+        apiUrl="http://localhost:3001/impressoras"
       />
     </Cadastro>
   );

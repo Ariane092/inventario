@@ -27,7 +27,6 @@
 .obs_box label {
     display: flex;
     font-size: .8em;
-    font-weight: bold;
 }
 
 .obs_box textarea {

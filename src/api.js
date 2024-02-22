@@ -1,13 +1,11 @@
-const express = require('express');
-const { Pool } = require('pg');
-const cors = require('cors');
+import express from 'express';
+import pg from 'pg';
+import cors from 'cors';
 
 const app = express();
 const port = 3001;
 
-app.use(cors());
-
-const pool = new Pool({
+const pool = new pg.Pool({
   user: 'postgres',
   host: 'localhost',
   database: 'postgres',
@@ -15,7 +13,10 @@ const pool = new Pool({
   port: 5432,
 });
 
-app.get('/api/cadastro', async (req, res) => {
+app.use(cors());
+app.use(express.json());
+
+app.get('/cadastro', async (req, res) => {
   try {
     const result = await pool.query('SELECT * FROM cadastro');
     res.json(result.rows);
@@ -25,7 +26,7 @@ app.get('/api/cadastro', async (req, res) => {
   }
 });
 
-app.get('/api/responsavel', async (req, res) => {
+app.get('/responsavel', async (req, res) => {
   try {
     const result = await pool.query('SELECT * FROM responsavel');
     res.json(result.rows);
@@ -35,7 +36,7 @@ app.get('/api/responsavel', async (req, res) => {
   }
 });
 
-app.get('/api/projeto', async (req, res) => {
+app.get('/projeto', async (req, res) => {
   try {
     const result = await pool.query('SELECT * FROM projeto');
     res.json(result.rows);
@@ -45,7 +46,7 @@ app.get('/api/projeto', async (req, res) => {
   }
 });
 
-app.get('/api/status', async (req, res) => {
+app.get('/status', async (req, res) => {
   try {
     const result = await pool.query('SELECT * FROM status');
     res.json(result.rows);
@@ -55,7 +56,7 @@ app.get('/api/status', async (req, res) => {
   }
 });
 
-app.get('/api/memoria', async (req, res) => {
+app.get('/memoria', async (req, res) => {
   try {
     const result = await pool.query('SELECT * FROM memoria');
     res.json(result.rows);
@@ -65,7 +66,7 @@ app.get('/api/memoria', async (req, res) => {
   }
 });
 
-app.get('/api/hd', async (req, res) => {
+app.get('/hd', async (req, res) => {
   try {
     const result = await pool.query('SELECT * FROM hard_disk');
     res.json(result.rows);
@@ -75,7 +76,7 @@ app.get('/api/hd', async (req, res) => {
   }
 });
 
-app.get('/api/processador', async (req, res) => {
+app.get('/processador', async (req, res) => {
   try {
     const result = await pool.query('SELECT * FROM processador');
     res.json(result.rows);
@@ -85,7 +86,7 @@ app.get('/api/processador', async (req, res) => {
   }
 });
 
-app.get('/api/office', async (req, res) => {
+app.get('/office', async (req, res) => {
   try {
     const result = await pool.query('SELECT * FROM office');
     res.json(result.rows);
@@ -95,7 +96,7 @@ app.get('/api/office', async (req, res) => {
   }
 });
 
-app.get('/api/escritorio', async (req, res) => {
+app.get('/escritorio', async (req, res) => {
   try {
     const result = await pool.query('SELECT * FROM tipo_escritorio');
     res.json(result.rows);
@@ -105,7 +106,7 @@ app.get('/api/escritorio', async (req, res) => {
   }
 });
 
-app.get('/api/computadores', async (req, res) => {
+app.get('/computadores', async (req, res) => {
   try {
     const result = await pool.query('SELECT * FROM tipo_computadores');
     res.json(result.rows);
@@ -115,7 +116,7 @@ app.get('/api/computadores', async (req, res) => {
   }
 });
 
-app.get('/api/impressoras', async (req, res) => {
+app.get('/impressoras', async (req, res) => {
   try {
     const result = await pool.query('SELECT * FROM tipo_impressoras');
     res.json(result.rows);
@@ -125,7 +126,7 @@ app.get('/api/impressoras', async (req, res) => {
   }
 });
 
-app.get('/api/monitores', async (req, res) => {
+app.get('/monitores', async (req, res) => {
   try {
     const result = await pool.query('SELECT * FROM tipo_monitores');
     res.json(result.rows);
@@ -135,7 +136,7 @@ app.get('/api/monitores', async (req, res) => {
   }
 });
 
-app.post('/api/cadastro', async (req, res) => {
+app.post('/cadastro', async (req, res) => {
   try {
     const { projeto, responsavel, tipo_equipamento, servicetag, patrimonio, marca, modelo, processo, 
       data_compra, local, usuario, nota_fiscal, cod_doacao, observacao, status } = req.body;

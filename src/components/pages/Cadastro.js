@@ -4,6 +4,7 @@ import Select from "../forms/Select";
 import styles from "./Cadastro.module.css";
 import { Button, Radio } from "antd";
 import { FaCameraRetro } from "react-icons/fa";
+import axios from "axios";
 
 function Cadastro(props) {
   const [size, setSize] = useState("default");
@@ -18,43 +19,55 @@ function Cadastro(props) {
     patrimonio: "",
     projeto: "",
     status: "",
-    service_tag: "",
+    servicetag: "",
+    tipo_equipamento: "",
+    marca: "",
+    modelo: "",
     observacao: "",
   });
 
-  const handleSubmit = async (event) => {
-    event.preventDefault();
-    try {
-      const response = await fetch("http://localhost:3001/api/cadastro", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(formData),
-      });
-      if (!response.ok) {
-        throw new Error("Erro ao cadastrar");
-      }
-
-      console.log("Cadastro realizado com sucesso!");
-      // Lógica adicional após o cadastro, como redirecionar o usuário
-    } catch (error) {
-      console.error("Erro ao cadastrar:", error.message);
-    }
+  const handleOnChange = (e) => {
+    const { name, value } = e.target;
+    setFormData((prevData) => ({
+      ...prevData,
+      [name]: value,
+    }));
   };
 
-  const handleOnChange = (event) => {
-    const { name, value } = event.target;
-    setFormData({
-      ...formData,
-      [name]: value,
-    });
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      await axios.post("http://localhost:3001/cadastro", formData);
+      alert("Usuário cadastrado com sucesso!");
+      setFormData({
+        processo: "",
+        data_compra: "",
+        responsavel: "",
+        local: "",
+        usuario: "",
+        nota_fiscal: "",
+        cod_doacao: "",
+        patrimonio: "",
+        projeto: "",
+        status: "",
+        servicetag: "",
+        tipo_equipamento: "",
+        marca: "",
+        modelo: "",
+        observacao: "",
+      }); 
+    } catch (error) {
+      console.error("Error:", error);
+      alert(
+        "Erro ao cadastrar usuário."
+      );
+    }
   };
 
   return (
     <>
       <div className={styles.container}>
-        <form className={styles.form}>
+        <form className={styles.form} onSubmit={handleSubmit}>
           <h4>{props.title}</h4>
           <div className={styles.input_group}>
             <Input
@@ -62,28 +75,28 @@ function Cadastro(props) {
               text="Processo"
               name="processo"
               value={formData.processo}
-              handleOnChange={handleOnChange}
+              onChange={handleOnChange}
             />
             <Input
               type="date"
               text="Data Compra"
               name="data_compra"
               value={formData.data_compra}
-              handleOnChange={handleOnChange}
+              onChange={handleOnChange}
             />
             <Select
               name="responsavel"
               text="Responsável"
-              apiUrl="http://localhost:3001/api/responsavel"
+              apiUrl="http://localhost:3001/responsavel"
               value={formData.responsavel}
-              handleOnChange={handleOnChange}
+              onChange={handleOnChange}
             />
             <Input
               type="text"
               text="Local"
               name="local"
               value={formData.local}
-              handleOnChange={handleOnChange}
+              onChange={handleOnChange}
             />
             <Input
               type="text"
@@ -91,49 +104,63 @@ function Cadastro(props) {
               name="usuario"
               placeholder="Caso não possua, digite ROTATIVO"
               value={formData.usuario}
-              handleOnChange={handleOnChange}
+              onChange={handleOnChange}
             />
             <Input
               type="number"
               text="NF"
               name="nota_fiscal"
               value={formData.nota_fiscal}
-              handleOnChange={handleOnChange}
+              onChange={handleOnChange}
             />
             <Input
               type="number"
               text="Cód. Doação"
               name="cod_doacao"
               value={formData.cod_doacao}
-              handleOnChange={handleOnChange}
+              onChange={handleOnChange}
             />
             <Input
               type="number"
               text="Patrimônio"
               name="patrimonio"
               value={formData.patrimonio}
-              handleOnChange={handleOnChange}
+              onChange={handleOnChange}
             />
             <Select
               name="projeto"
               text="Projeto"
-              apiUrl="http://localhost:3001/api/projeto"
+              apiUrl="http://localhost:3001/projeto"
               value={formData.projeto}
-              handleOnChange={handleOnChange}
+              onChange={handleOnChange}
             />
             <Select
               name="status"
               text="Status"
-              apiUrl="http://localhost:3001/api/status"
+              apiUrl="http://localhost:3001/status"
               value={formData.status}
-              handleOnChange={handleOnChange}
+              onChange={handleOnChange}
             />
             <Input
               type="text"
               text="Service Tag"
-              name="service_tag"
-              value={formData.service_tag}
-              handleOnChange={handleOnChange}
+              name="servicetag"
+              value={formData.servicetag}
+              onChange={handleOnChange}
+            />
+            <Input
+              type="text"
+              text="Marca"
+              name="marca"
+              value={formData.marca}
+              onChange={handleOnChange}
+            />
+            <Input
+              type="text"
+              text="Modelo"
+              name="modelo"
+              value={formData.modelo}
+              onChange={handleOnChange}
             />
             {props.children} {/*computadores props*/}
             <div className={styles.obs_box}>
@@ -151,7 +178,7 @@ function Cadastro(props) {
                 type="primary"
                 size={size}
                 style={{ background: "rgb(55, 119, 87)" }}
-                onClick={handleSubmit}
+                htmlType="submit"
               >
                 Enviar
               </Button>

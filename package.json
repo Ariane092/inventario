@@ -2,6 +2,7 @@
   "name": "inventario",
   "version": "0.1.0",
   "private": true,
+  "type": "module",
   "dependencies": {
     "@chakra-ui/react": "^2.8.2",
     "@mui/icons-material": "^5.15.6",

@@ -7,7 +7,7 @@ function Monitores() {
       <Select
         name="tipo_monitores"
         text="Tipo de Produto"
-        apiUrl="http://localhost:3001/api/monitores"
+        apiUrl="http://localhost:3001/monitores"
       />
     </Cadastro>
   );
