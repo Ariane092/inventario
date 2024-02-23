@@ -136,13 +136,33 @@ app.get('/monitores', async (req, res) => {
   }
 });
 
+app.get('/marca', async (req, res) => {
+  try {
+    const result = await pool.query('SELECT * FROM marca');
+    res.json(result.rows);
+  } catch (error) {
+    console.error('Erro ao obter dados do banco de dados', error);
+    res.status(500).send('Erro interno do servidor');
+  }
+});
+
+app.get('/modelo', async (req, res) => {
+  try {
+    const result = await pool.query('SELECT * FROM modelo');
+    res.json(result.rows);
+  } catch (error) {
+    console.error('Erro ao obter dados do banco de dados', error);
+    res.status(500).send('Erro interno do servidor');
+  }
+});
+
 app.post('/cadastro', async (req, res) => {
   try {
     const { projeto, responsavel, tipo_equipamento, servicetag, patrimonio, marca, modelo, processo, 
-      data_compra, local, usuario, nota_fiscal, cod_doacao, observacao, status } = req.body;
+      data_compra, local, usuario, nota_fiscal, cod_doacao, configuracao, observacao, status } = req.body;
 
-    const result = await pool.query('INSERT INTO cadastro (projeto, responsavel, tipo_equipamento, servicetag, patrimonio, marca, modelo, processo, data_compra, local, usuario, nota_fiscal, cod_doacao, observacao, status) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15) RETURNING *', 
-    [projeto, responsavel, tipo_equipamento, servicetag, patrimonio, marca, modelo, processo, data_compra, local, usuario, nota_fiscal, cod_doacao, observacao, status]);
+    const result = await pool.query('INSERT INTO cadastro (projeto, responsavel, tipo_equipamento, servicetag, patrimonio, marca, modelo, processo, data_compra, local, usuario, nota_fiscal, cod_doacao, configuracao, observacao, status) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15) RETURNING *', 
+    [projeto, responsavel, tipo_equipamento, servicetag, patrimonio, marca, modelo, processo, data_compra, local, usuario, nota_fiscal, cod_doacao, configuracao, observacao, status]);
     res.json(result.rows[0]);
   } catch (error) {
     console.error('Erro ao inserir dados no banco de dados', error);

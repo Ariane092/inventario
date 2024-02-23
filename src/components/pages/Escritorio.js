@@ -1,5 +1,5 @@
-import Cadastro from "./Cadastro";
-import Select from "../forms/Select";
+import Cadastro from "./Cadastro.js";
+import Select from "../forms/Select.js";
 
 function Escritorio() {
   return (

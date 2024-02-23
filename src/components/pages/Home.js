@@ -95,7 +95,7 @@ function Home() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch("http://localhost:3001/api/cadastro");
+        const response = await fetch("http://localhost:3001/cadastro");
         const data = await response.json();
         setData(data);
       } catch (error) {

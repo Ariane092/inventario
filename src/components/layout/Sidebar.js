@@ -18,7 +18,7 @@ import {
 import { Layout, Menu } from 'antd';
 import { PiOfficeChair } from "react-icons/pi";
 
-const { Header, Sider, Content } = Layout;
+const { Sider, Content } = Layout;
 
 function getItem(label, key, icon, children, type, path) {
   return {

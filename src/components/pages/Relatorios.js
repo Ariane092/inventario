@@ -1,5 +1,5 @@
-import Select from "../forms/Select";
-import Input from "../forms/Input";
+import Select from "../forms/Select.js";
+import Input from "../forms/Input.js";
 import styles from "./Relatorios.module.css";
 import { BsFiletypePdf, BsFiletypeCsv } from "react-icons/bs";
 

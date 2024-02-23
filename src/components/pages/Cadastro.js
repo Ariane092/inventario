@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import Input from "../forms/Input";
-import Select from "../forms/Select";
+import Input from "../forms/Input.js";
+import Select from "../forms/Select.js";
 import styles from "./Cadastro.module.css";
 import { Button, Radio } from "antd";
 import { FaCameraRetro } from "react-icons/fa";
@@ -23,6 +23,11 @@ function Cadastro(props) {
     tipo_equipamento: "",
     marca: "",
     modelo: "",
+    memoria: "",
+    hard_disk: "",
+    processador: "",
+    office: "",
+    configuracao: "",
     observacao: "",
   });
 
@@ -54,13 +59,16 @@ function Cadastro(props) {
         tipo_equipamento: "",
         marca: "",
         modelo: "",
+        memoria: "",
+        hard_disk: "",
+        processador: "",
+        office: "",
+        configuracao: "",
         observacao: "",
-      }); 
+      });
     } catch (error) {
       console.error("Error:", error);
-      alert(
-        "Erro ao cadastrar usuário."
-      );
+      alert("Erro ao cadastrar usuário.");
     }
   };
 
@@ -148,17 +156,17 @@ function Cadastro(props) {
               value={formData.servicetag}
               onChange={handleOnChange}
             />
-            <Input
-              type="text"
-              text="Marca"
+            <Select
               name="marca"
+              text="Marca"
+              apiUrl="http://localhost:3001/marca"
               value={formData.marca}
               onChange={handleOnChange}
             />
-            <Input
-              type="text"
-              text="Modelo"
+            <Select
               name="modelo"
+              text="Modelo"
+              apiUrl="http://localhost:3001/modelo"
               value={formData.modelo}
               onChange={handleOnChange}
             />

@@ -1,5 +1,6 @@
-import Select from "../forms/Select";
-import Cadastro from "./Cadastro";
+import Select from "../forms/Select.js";
+import Cadastro from "./Cadastro.js";
+import Input from "../forms/Input.js";
 
 function Computadores() {
   return (
@@ -38,6 +39,13 @@ function Computadores() {
         apiUrl="http://localhost:3001/computadores"
         // value={formData.tipo_computadores}
         // onChange={handleChange}
+      />
+      <Input
+        type="text"
+        text="Configuração"
+        name="configuracao"
+        // value={formData.configuracao}
+        // onChange={handleOnChange}
       />
     </Cadastro>
   );

@@ -1,13 +1,13 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import Home from "./components/pages/Home";
-import Inventario from "./components/pages/Inventario";
-import Relatorios from "./components/pages/Relatorios";
-import Login from "./components/pages/Login";
-import Sidebar from "./components/layout/Sidebar";
-import Computadores from "./components/pages/Computadores";
-import Impressoras from "./components/pages/Impressoras";
-import Monitores from "./components/pages/Monitores";
-import Escritorio from "./components/pages/Escritorio";
+import Home from "./components/pages/Home.js";
+import Inventario from "./components/pages/Inventario.js";
+import Relatorios from "./components/pages/Relatorios.js";
+import Login from "./components/pages/Login.js";
+import Sidebar from "./components/layout/Sidebar.js";
+import Computadores from "./components/pages/Computadores.js";
+import Impressoras from "./components/pages/Impressoras.js";
+import Monitores from "./components/pages/Monitores.js";
+import Escritorio from "./components/pages/Escritorio.js";
 
 function App() {
   return (
