@@ -19,3 +19,20 @@
 .selects select:focus-visible{
     outline: 1px solid  #44434663;
 }
+
+.add_button {
+ font-size: 16px;
+ cursor: pointer;
+ justify-content: space-between;
+ color: #44434663;
+}
+
+.add_button:hover {
+    color: #0051ff;
+}
+
+.add_option {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}

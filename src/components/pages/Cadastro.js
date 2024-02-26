@@ -3,7 +3,7 @@ import Input from "../forms/Input.js";
 import Select from "../forms/Select.js";
 import styles from "./Cadastro.module.css";
 import { Button, Radio } from "antd";
-import { FaCameraRetro } from "react-icons/fa";
+import { MdLinkedCamera } from "react-icons/md";
 import axios from "axios";
 
 function Cadastro(props) {
@@ -27,6 +27,7 @@ function Cadastro(props) {
     hard_disk: "",
     processador: "",
     office: "",
+    tipo_computadores: "",
     configuracao: "",
     observacao: "",
   });
@@ -63,6 +64,7 @@ function Cadastro(props) {
         hard_disk: "",
         processador: "",
         office: "",
+        tipo_computadores: "",
         configuracao: "",
         observacao: "",
       });
@@ -184,6 +186,7 @@ function Cadastro(props) {
             <Radio.Group value={size} onChange={(e) => setSize(e.target.value)}>
               <Button
                 type="primary"
+                shape="round"
                 size={size}
                 style={{ background: "rgb(55, 119, 87)" }}
                 htmlType="submit"
@@ -193,10 +196,10 @@ function Cadastro(props) {
               <Button
                 type="primary"
                 size={size}
-                style={{ margin: 10, background: "rgb(55, 119, 87)" }}
-                icon={<FaCameraRetro />}
+                shape="circle"
+                style={{ margin: 10, background: "rgb(55, 119, 87)"}}
+                icon={<MdLinkedCamera />}
               >
-                Foto
               </Button>
             </Radio.Group>
           </div>
