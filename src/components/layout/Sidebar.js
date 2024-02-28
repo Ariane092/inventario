@@ -164,7 +164,7 @@ function Sidebar(props) {
           </Link>
         </div>
 
-          <h5>Sistema de Inventário CEPEA/ESALQ-USP</h5>
+          <h5>Inventário CEPEA/ESALQ-USP</h5>
         </nav>
 
         <Content className="content">

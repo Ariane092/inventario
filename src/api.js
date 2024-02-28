@@ -16,6 +16,7 @@ const pool = new pg.Pool({
 app.use(cors());
 app.use(express.json());
 
+/*home table*/
 app.get('/cadastro', async (req, res) => {
   try {
     const result = await pool.query('SELECT * FROM cadastro');
@@ -26,6 +27,7 @@ app.get('/cadastro', async (req, res) => {
   }
 });
 
+/*get selects*/
 app.get('/responsavel', async (req, res) => {
   try {
     const result = await pool.query('SELECT * FROM responsavel');
@@ -155,6 +157,151 @@ app.get('/modelo', async (req, res) => {
     res.status(500).send('Erro interno do servidor');
   }
 });
+
+/*post selects*/
+app.post('/responsavel', async (req, res) => {
+  try {
+    const { nome } = req.body; 
+    const result = await pool.query('INSERT INTO responsavel (nome) VALUES ($1) RETURNING *', [nome]);
+    res.json(result.rows[0]);
+  } catch (error) {
+    console.error('Erro ao inserir dados na tabela responsavel', error);
+    res.status(500).send('Erro interno do servidor');
+  }
+});
+
+app.post('/projeto', async (req, res) => {
+  try {
+    const { nome } = req.body; 
+    const result = await pool.query('INSERT INTO projeto (nome) VALUES ($1) RETURNING *', [nome]);
+    res.json(result.rows[0]);
+  } catch (error) {
+    console.error('Erro ao inserir dados na tabela projeto', error);
+    res.status(500).send('Erro interno do servidor');
+  }
+});
+
+app.post('/status', async (req, res) => {
+  try {
+    const { nome } = req.body; 
+    const result = await pool.query('INSERT INTO status (nome) VALUES ($1) RETURNING *', [nome]);
+    res.json(result.rows[0]);
+  } catch (error) {
+    console.error('Erro ao inserir dados na tabela status', error);
+    res.status(500).send('Erro interno do servidor');
+  }
+});
+
+app.post('/memoria', async (req, res) => {
+  try {
+    const { nome } = req.body; 
+    const result = await pool.query('INSERT INTO memoria (nome) VALUES ($1) RETURNING *', [nome]);
+    res.json(result.rows[0]);
+  } catch (error) {
+    console.error('Erro ao inserir dados na tabela memoria', error);
+    res.status(500).send('Erro interno do servidor');
+  }
+});
+
+app.post('/hd', async (req, res) => {
+  try {
+    const { nome } = req.body; 
+    const result = await pool.query('INSERT INTO hard_disk (nome) VALUES ($1) RETURNING *', [nome]);
+    res.json(result.rows[0]);
+  } catch (error) {
+    console.error('Erro ao inserir dados na tabela hard_disk', error);
+    res.status(500).send('Erro interno do servidor');
+  }
+});
+
+app.post('/processador', async (req, res) => {
+  try {
+    const { nome } = req.body; 
+    const result = await pool.query('INSERT INTO processador (nome) VALUES ($1) RETURNING *', [nome]);
+    res.json(result.rows[0]);
+  } catch (error) {
+    console.error('Erro ao inserir dados na tabela processador', error);
+    res.status(500).send('Erro interno do servidor');
+  }
+});
+
+app.post('/office', async (req, res) => {
+  try {
+    const { nome } = req.body; 
+    const result = await pool.query('INSERT INTO office (nome) VALUES ($1) RETURNING *', [nome]);
+    res.json(result.rows[0]);
+  } catch (error) {
+    console.error('Erro ao inserir dados na tabela office', error);
+    res.status(500).send('Erro interno do servidor');
+  }
+});
+
+app.post('/escritorio', async (req, res) => {
+  try {
+    const { nome } = req.body; 
+    const result = await pool.query('INSERT INTO tipo_escritorio (nome) VALUES ($1) RETURNING *', [nome]);
+    res.json(result.rows[0]);
+  } catch (error) {
+    console.error('Erro ao inserir dados na tabela tipo_escritorio', error);
+    res.status(500).send('Erro interno do servidor');
+  }
+});
+
+app.post('/computadores', async (req, res) => {
+  try {
+    const { nome } = req.body; 
+    const result = await pool.query('INSERT INTO tipo_computadores (nome) VALUES ($1) RETURNING *', [nome]);
+    res.json(result.rows[0]);
+  } catch (error) {
+    console.error('Erro ao inserir dados na tabela tipo_computadores', error);
+    res.status(500).send('Erro interno do servidor');
+  }
+});
+
+app.post('/impressoras', async (req, res) => {
+  try {
+    const { nome } = req.body; 
+    const result = await pool.query('INSERT INTO tipo_impressoras (nome) VALUES ($1) RETURNING *', [nome]);
+    res.json(result.rows[0]);
+  } catch (error) {
+    console.error('Erro ao inserir dados na tabela tipo_impressoras', error);
+    res.status(500).send('Erro interno do servidor');
+  }
+});
+
+app.post('/monitores', async (req, res) => {
+  try {
+    const { nome } = req.body; 
+    const result = await pool.query('INSERT INTO tipo_monitores (nome) VALUES ($1) RETURNING *', [nome]);
+    res.json(result.rows[0]);
+  } catch (error) {
+    console.error('Erro ao inserir dados na tabela tipo_monitores', error);
+    res.status(500).send('Erro interno do servidor');
+  }
+});
+
+app.post('/marca', async (req, res) => {
+  try {
+    const { nome } = req.body; 
+    const result = await pool.query('INSERT INTO marca (nome) VALUES ($1) RETURNING *', [nome]);
+    res.json(result.rows[0]);
+  } catch (error) {
+    console.error('Erro ao inserir dados na tabela marca', error);
+    res.status(500).send('Erro interno do servidor');
+  }
+});
+
+app.post('/modelo', async (req, res) => {
+  try {
+    const { nome } = req.body; 
+    const result = await pool.query('INSERT INTO modelo (nome) VALUES ($1) RETURNING *', [nome]);
+    res.json(result.rows[0]);
+  } catch (error) {
+    console.error('Erro ao inserir dados na tabela modelo', error);
+    res.status(500).send('Erro interno do servidor');
+  }
+});
+
 
 app.post('/cadastro', async (req, res) => {
   try {
