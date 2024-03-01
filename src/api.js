@@ -30,7 +30,7 @@ app.get('/cadastro', async (req, res) => {
 /*get selects*/
 app.get('/responsavel', async (req, res) => {
   try {
-    const result = await pool.query('SELECT * FROM responsavel');
+    const result = await pool.query('SELECT nome FROM responsavel');
     res.json(result.rows);
   } catch (error) {
     console.error('Erro ao obter dados do banco de dados', error);
@@ -40,7 +40,7 @@ app.get('/responsavel', async (req, res) => {
 
 app.get('/projeto', async (req, res) => {
   try {
-    const result = await pool.query('SELECT * FROM projeto');
+    const result = await pool.query('SELECT nome FROM projeto');
     res.json(result.rows);
   } catch (error) {
     console.error('Erro ao obter dados do banco de dados', error);
@@ -50,7 +50,7 @@ app.get('/projeto', async (req, res) => {
 
 app.get('/status', async (req, res) => {
   try {
-    const result = await pool.query('SELECT * FROM status');
+    const result = await pool.query('SELECT nome FROM status');
     res.json(result.rows);
   } catch (error) {
     console.error('Erro ao obter dados do banco de dados', error);
@@ -60,7 +60,7 @@ app.get('/status', async (req, res) => {
 
 app.get('/memoria', async (req, res) => {
   try {
-    const result = await pool.query('SELECT * FROM memoria');
+    const result = await pool.query('SELECT nome FROM memoria');
     res.json(result.rows);
   } catch (error) {
     console.error('Erro ao obter dados do banco de dados', error);
@@ -70,7 +70,7 @@ app.get('/memoria', async (req, res) => {
 
 app.get('/hd', async (req, res) => {
   try {
-    const result = await pool.query('SELECT * FROM hard_disk');
+    const result = await pool.query('SELECT nome FROM hard_disk');
     res.json(result.rows);
   } catch (error) {
     console.error('Erro ao obter dados do banco de dados', error);
@@ -80,7 +80,7 @@ app.get('/hd', async (req, res) => {
 
 app.get('/processador', async (req, res) => {
   try {
-    const result = await pool.query('SELECT * FROM processador');
+    const result = await pool.query('SELECT nome FROM processador');
     res.json(result.rows);
   } catch (error) {
     console.error('Erro ao obter dados do banco de dados', error);
@@ -90,7 +90,7 @@ app.get('/processador', async (req, res) => {
 
 app.get('/office', async (req, res) => {
   try {
-    const result = await pool.query('SELECT * FROM office');
+    const result = await pool.query('SELECT nome FROM office');
     res.json(result.rows);
   } catch (error) {
     console.error('Erro ao obter dados do banco de dados', error);
@@ -100,7 +100,7 @@ app.get('/office', async (req, res) => {
 
 app.get('/escritorio', async (req, res) => {
   try {
-    const result = await pool.query('SELECT * FROM tipo_escritorio');
+    const result = await pool.query('SELECT nome FROM tipo_escritorio');
     res.json(result.rows);
   } catch (error) {
     console.error('Erro ao obter dados do banco de dados', error);
@@ -110,7 +110,7 @@ app.get('/escritorio', async (req, res) => {
 
 app.get('/computadores', async (req, res) => {
   try {
-    const result = await pool.query('SELECT * FROM tipo_computadores');
+    const result = await pool.query('SELECT nome FROM tipo_computadores');
     res.json(result.rows);
   } catch (error) {
     console.error('Erro ao obter dados do banco de dados', error);
@@ -120,7 +120,7 @@ app.get('/computadores', async (req, res) => {
 
 app.get('/impressoras', async (req, res) => {
   try {
-    const result = await pool.query('SELECT * FROM tipo_impressoras');
+    const result = await pool.query('SELECT nome FROM tipo_impressoras');
     res.json(result.rows);
   } catch (error) {
     console.error('Erro ao obter dados do banco de dados', error);
@@ -130,7 +130,7 @@ app.get('/impressoras', async (req, res) => {
 
 app.get('/monitores', async (req, res) => {
   try {
-    const result = await pool.query('SELECT * FROM tipo_monitores');
+    const result = await pool.query('SELECT nome FROM tipo_monitores');
     res.json(result.rows);
   } catch (error) {
     console.error('Erro ao obter dados do banco de dados', error);
@@ -140,7 +140,7 @@ app.get('/monitores', async (req, res) => {
 
 app.get('/marca', async (req, res) => {
   try {
-    const result = await pool.query('SELECT * FROM marca');
+    const result = await pool.query('SELECT nome FROM marca');
     res.json(result.rows);
   } catch (error) {
     console.error('Erro ao obter dados do banco de dados', error);
@@ -150,7 +150,7 @@ app.get('/marca', async (req, res) => {
 
 app.get('/modelo', async (req, res) => {
   try {
-    const result = await pool.query('SELECT * FROM modelo');
+    const result = await pool.query('SELECT nome FROM modelo');
     res.json(result.rows);
   } catch (error) {
     console.error('Erro ao obter dados do banco de dados', error);
@@ -302,14 +302,13 @@ app.post('/modelo', async (req, res) => {
   }
 });
 
-
 app.post('/cadastro', async (req, res) => {
   try {
     const { projeto, responsavel, tipo_equipamento, servicetag, patrimonio, marca, modelo, processo, 
-      data_compra, local, usuario, nota_fiscal, cod_doacao, configuracao, observacao, status } = req.body;
+      data_compra, local, usuario, nota_fiscal, cod_doacao, memoria, hard_disk, processador, office, configuracao, observacao, status } = req.body;
 
-    const result = await pool.query('INSERT INTO cadastro (projeto, responsavel, tipo_equipamento, servicetag, patrimonio, marca, modelo, processo, data_compra, local, usuario, nota_fiscal, cod_doacao, configuracao, observacao, status) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15) RETURNING *', 
-    [projeto, responsavel, tipo_equipamento, servicetag, patrimonio, marca, modelo, processo, data_compra, local, usuario, nota_fiscal, cod_doacao, configuracao, observacao, status]);
+    const result = await pool.query('INSERT INTO cadastro (projeto, responsavel, tipo_equipamento, servicetag, patrimonio, marca, modelo, processo, data_compra, local, usuario, nota_fiscal, cod_doacao, memoria, hard_disk, processador, office, configuracao, observacao, status) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16, $17, $18, $19, $20) RETURNING *', 
+    [projeto, responsavel, tipo_equipamento, servicetag, patrimonio, marca, modelo, processo, data_compra, local, usuario, nota_fiscal, cod_doacao, memoria, hard_disk, processador, office, configuracao, observacao, status]);
     res.json(result.rows[0]);
   } catch (error) {
     console.error('Erro ao inserir dados no banco de dados', error);

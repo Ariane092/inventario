@@ -14,11 +14,12 @@ import {
   LogoutOutlined,
   MenuFoldOutlined,
   MenuUnfoldOutlined,
+  UserOutlined
 } from "@ant-design/icons";
-import { Layout, Menu } from 'antd';
+import { Layout, Menu, Button, theme, Avatar } from "antd";
 import { PiOfficeChair } from "react-icons/pi";
 
-const { Sider, Content } = Layout;
+const { Header, Sider, Content } = Layout;
 
 function getItem(label, key, icon, children, type, path) {
   return {
@@ -82,44 +83,35 @@ const items = [
 
 function Sidebar(props) {
   const [collapsed, setCollapsed] = useState(false);
-  // const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
-
-  //   useEffect(() => {
-  //     const handleResize = () => {
-  //       setIsMobile(window.innerWidth <= 768);
-  //     };
+  const {
+    token: { colorBgContainer, borderRadiusLG },
+  } = theme.useToken();
   
-  //     window.addEventListener("resize", handleResize);
-  
-  //     return () => {
-  //       window.removeEventListener("resize", handleResize);
-  //     };
-  //   }, []);
-  
-  //   const toggleCollapsed = () => {
-  //     setCollapsed(!collapsed);
-  //   };
-  
-  //   useEffect(() => {
-  //     if (isMobile) {
-  //       setCollapsed(true);
-  //     } else {
-  //       setCollapsed(false);
-  //     }
-  //   }, [isMobile]);
-    
   return (
     <Layout>
-      <Sider trigger={null} collapsible collapsed={collapsed} theme="light" className="sider">
-
+      <Sider trigger={null} collapsible collapsed={collapsed} style={{backgroundColor: 'rgb(55, 119, 87)'}}>
+        <Avatar
+          size={{
+            xs: 24,
+            sm: 32,
+            md: 40,
+            lg: 64,
+            xl: 70,
+            xxl: 90,
+          }}
+          icon={<UserOutlined />}
+          className="avatar"
+        >
+          <h3>User</h3>
+          </Avatar>
         <Menu
           theme="light"
           mode="inline"
-          defaultSelectedKeys={['1']}
+          defaultSelectedKeys={["1"]}
           defaultOpenKeys={["sub1"]}
           className="sidebar-menu"
         >
-        {items.map((item) => {
+          {items.map((item) => {
             if (item.type === "item") {
               return (
                 <Menu.Item key={item.key} icon={item.icon}>
@@ -152,7 +144,7 @@ function Sidebar(props) {
         </Menu>
       </Sider>
 
-        <nav className="navbar">
+      {/* <nav className="navbar">
           {React.createElement(collapsed ? MenuUnfoldOutlined : MenuFoldOutlined, {
             className: 'trigger',
             onClick: () => setCollapsed(!collapsed),
@@ -165,59 +157,53 @@ function Sidebar(props) {
         </div>
 
           <h5>Inventário CEPEA/ESALQ-USP</h5>
-        </nav>
+        </nav> */}
 
-        <Content className="content">
+      <Layout>
+        <Header
+          style={{
+            padding: 0,
+            background: 'whitesmoke',
+            boxShadow: '0 0 7px rgba(0,0,0,0.3)',
+            display: 'flex',
+            padding: '10px 5px 10px 5px',
+            justifyContent: 'flex-start',
+            alignItems: 'center',
+            height: '55px',
+          }}
+        >
+          <Button
+            type="text"
+            icon={collapsed ? <MenuUnfoldOutlined style={{fontSize: "20px",}} /> : <MenuFoldOutlined style={{fontSize: "20px",}}/>}
+            onClick={() => setCollapsed(!collapsed)}
+          />
+          <div>
+            <Link to="/home">
+              <img src={logo} alt="cepea.png" />
+            </Link>
+          </div>
+          <h5>Inventário CEPEA/ESALQ-USP</h5>
+        </Header>
+        <Content
+          style={{
+            margin: "24px 25px",
+            padding: 24,
+            minHeight: 280,
+            background: colorBgContainer,
+            borderRadius: borderRadiusLG,
+            boxShadow: '0 0 2px rgba(0,0,0,0.3)',
+          }}
+          className="content"
+        >
           <div>
             {props.children} {/*pages props*/}
           </div>
         </Content>
-
-    
-    </Layout >
+      </Layout>
+    </Layout>
   );
-};
+}
 export default Sidebar;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 // import React, { useState, useEffect } from "react";
 // import { Link } from "react-router-dom";
