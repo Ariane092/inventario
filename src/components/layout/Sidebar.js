@@ -90,20 +90,6 @@ function Sidebar(props) {
   return (
     <Layout>
       <Sider trigger={null} collapsible collapsed={collapsed} style={{backgroundColor: 'rgb(55, 119, 87)'}}>
-        <Avatar
-          size={{
-            xs: 24,
-            sm: 32,
-            md: 40,
-            lg: 64,
-            xl: 70,
-            xxl: 90,
-          }}
-          icon={<UserOutlined />}
-          className="avatar"
-        >
-          <h3>User</h3>
-          </Avatar>
         <Menu
           theme="light"
           mode="inline"
@@ -144,21 +130,6 @@ function Sidebar(props) {
         </Menu>
       </Sider>
 
-      {/* <nav className="navbar">
-          {React.createElement(collapsed ? MenuUnfoldOutlined : MenuFoldOutlined, {
-            className: 'trigger',
-            onClick: () => setCollapsed(!collapsed),
-          })}
-
-          <div className="logo">
-          <Link to="/home">
-            <img src={logo} alt="cepea.png" />
-          </Link>
-        </div>
-
-          <h5>Inventário CEPEA/ESALQ-USP</h5>
-        </nav> */}
-
       <Layout>
         <Header
           style={{
@@ -174,6 +145,7 @@ function Sidebar(props) {
         >
           <Button
             type="text"
+            shape="circle"
             icon={collapsed ? <MenuUnfoldOutlined style={{fontSize: "20px",}} /> : <MenuFoldOutlined style={{fontSize: "20px",}}/>}
             onClick={() => setCollapsed(!collapsed)}
           />

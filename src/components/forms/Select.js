@@ -1,25 +1,17 @@
 import { useState, useEffect, useRef } from "react";
 import { MdAddCircleOutline } from "react-icons/md";
-import { Button, Radio, App, Space } from "antd";
+import { Button, Radio } from "antd";
 import Input from "../forms/Input.js";
 import styles from "./Select.module.css";
-import axios from "axios"; 
+import axios from "axios";
 
 function Select({ text, name, onChange, value, apiUrl }) {
   const [size, setSize] = useState("default");
   const [options, setOptions] = useState([]);
   const [showPopup, setShowPopup] = useState(false);
   const [inputValue, setInputValue] = useState("");
-  const { message, notification } = App.useApp();
   const selectRef = useRef(null);
-
-  const showNotification = () => {
-    notification.info({
-      message: `Sucesso`,
-      description: 'Nova opção criada com sucesso!',
-    });
-  };
-
+  
   const fetchData = async () => {
     try {
       const response = await fetch(apiUrl);
@@ -38,58 +30,78 @@ function Select({ text, name, onChange, value, apiUrl }) {
     e.preventDefault();
     try {
       switch (tableName) {
-        case 'responsavel':
-          await axios.post('http://localhost:3001/responsavel', { nome: inputValue });
+        case "responsavel":
+          await axios.post("http://localhost:3001/responsavel", {
+            nome: inputValue,
+          });
           break;
-        case 'projeto':
-          await axios.post('http://localhost:3001/projeto', { nome: inputValue });
+        case "projeto":
+          await axios.post("http://localhost:3001/projeto", {
+            nome: inputValue,
+          });
           break;
-          case 'marca':
-          await axios.post('http://localhost:3001/marca', { nome: inputValue });
+        case "marca":
+          await axios.post("http://localhost:3001/marca", { nome: inputValue });
           break;
-          case 'modelo':
-          await axios.post('http://localhost:3001/modelo', { nome: inputValue });
+        case "modelo":
+          await axios.post("http://localhost:3001/modelo", {
+            nome: inputValue,
+          });
           break;
-        case 'status':
-          await axios.post('http://localhost:3001/status', { nome: inputValue });
+        case "status":
+          await axios.post("http://localhost:3001/status", {
+            nome: inputValue,
+          });
           break;
-        case 'memoria':
-          await axios.post('http://localhost:3001/memoria', { nome: inputValue });
+        case "memoria":
+          await axios.post("http://localhost:3001/memoria", {
+            nome: inputValue,
+          });
           break;
-        case 'hard_disk':
-          await axios.post('http://localhost:3001/hd', { nome: inputValue });
+        case "hard_disk":
+          await axios.post("http://localhost:3001/hd", { nome: inputValue });
           break;
-        case 'processador':
-          await axios.post('http://localhost:3001/processador', { nome: inputValue });
+        case "processador":
+          await axios.post("http://localhost:3001/processador", {
+            nome: inputValue,
+          });
           break;
-        case 'office':
-          await axios.post('http://localhost:3001/office', { nome: inputValue });
+        case "office":
+          await axios.post("http://localhost:3001/office", {
+            nome: inputValue,
+          });
           break;
-        case 'tipo_computadores':
-          await axios.post('http://localhost:3001/computadores', { nome: inputValue });
+        case "tipo_computadores":
+          await axios.post("http://localhost:3001/computadores", {
+            nome: inputValue,
+          });
           break;
-        case 'tipo_escritorio':
-          await axios.post('http://localhost:3001/escritorio', { nome: inputValue });
+        case "tipo_escritorio":
+          await axios.post("http://localhost:3001/escritorio", {
+            nome: inputValue,
+          });
           break;
-        case 'tipo_impressoras':
-          await axios.post('http://localhost:3001/impressoras', { nome: inputValue });
+        case "tipo_impressoras":
+          await axios.post("http://localhost:3001/impressoras", {
+            nome: inputValue,
+          });
           break;
-        case 'tipo_monitores':
-          await axios.post('http://localhost:3001/monitores', { nome: inputValue });
-          break;   
+        case "tipo_monitores":
+          await axios.post("http://localhost:3001/monitores", {
+            nome: inputValue,
+          });
+          break;
         default:
           break;
       }
       fetchData();
-      alert("Opção criada com sucesso!");
-      setInputValue(""); 
-      setShowPopup(false); 
+      setInputValue("");
+      setShowPopup(false);
     } catch (error) {
       console.error("Erro:", error);
-      alert("Erro ao criar nova opção.");
     }
   };
-  
+
   const handleClose = () => {
     setShowPopup(false);
   };
@@ -138,17 +150,32 @@ function Select({ text, name, onChange, value, apiUrl }) {
             value={inputValue}
             onChange={(e) => setInputValue(e.target.value)}
           />
-          <Radio.Group value={size} onChange={(e) => setSize(e.target.value)} style={{marginTop: "10px", display: "flex", justifyContent: "flex-end"}}>
-            <Button type="link" size={"small"} shape="round" onClick={handleClose}>Fechar</Button>
+          <Radio.Group
+            value={size}
+            onChange={(e) => setSize(e.target.value)}
+            style={{
+              marginTop: "10px",
+              display: "flex",
+              justifyContent: "flex-end",
+            }}
+          >
             <Button
-              type="primary"
-              shape="round"
+              type="link"
               size={"small"}
-              style={{ background: "rgb(55, 119, 87)" }}
-              onClick={(e) => handleCreate(e, name)}
+              shape="round"
+              onClick={handleClose}
             >
-              Criar
+              Fechar
             </Button>
+              <Button
+                type="primary"
+                shape="round"
+                size={"small"}
+                style={{ background: "rgb(55, 119, 87)" }}
+                onClick={(e) => handleCreate(e, name)}
+              >
+                Criar
+              </Button>
           </Radio.Group>
         </div>
       )}
