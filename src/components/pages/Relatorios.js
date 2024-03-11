@@ -39,6 +39,10 @@ function Relatorios() {
     }));
   };
 
+  const showComptSelect = (option) => {
+    return option === "Desktop" || option === "Notebook";
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
@@ -81,9 +85,10 @@ function Relatorios() {
             <Select
               name="tipo_equipamento"
               text="Tipo de Equipamento"
-              apiUrl="http://localhost:3001/computadores"
-              value={formData.tipo_computadores}
+              apiUrl="http://localhost:3001/equipamento"
+              value={formData.tipo_equipamento}
               onChange={handleOnChange}
+              isVisibleAdd={false}
             />
             <Select
               name="responsavel"
@@ -91,6 +96,7 @@ function Relatorios() {
               apiUrl="http://localhost:3001/responsavel"
               value={formData.responsavel}
               onChange={handleOnChange}
+              isVisibleAdd={false}
             />
             <Select
               name="projeto"
@@ -98,6 +104,7 @@ function Relatorios() {
               apiUrl="http://localhost:3001/projeto"
               value={formData.projeto}
               onChange={handleOnChange}
+              isVisibleAdd={false}
             />
             <Select
               name="status"
@@ -105,6 +112,7 @@ function Relatorios() {
               apiUrl="http://localhost:3001/status"
               value={formData.status}
               onChange={handleOnChange}
+              isVisibleAdd={false}
             />
             <Select
               name="marca"
@@ -112,6 +120,7 @@ function Relatorios() {
               apiUrl="http://localhost:3001/marca"
               value={formData.marca}
               onChange={handleOnChange}
+              isVisibleAdd={false}
             />
             <Select
               name="modelo"
@@ -119,13 +128,17 @@ function Relatorios() {
               apiUrl="http://localhost:3001/modelo"
               value={formData.modelo}
               onChange={handleOnChange}
+              isVisibleAdd={false}
             />
+            {showComptSelect(formData.tipo_equipamento) && (
+            <div className={styles.select_compt}>
             <Select
               name="memoria"
               text="Memória"
               apiUrl="http://localhost:3001/memoria"
               value={formData.memoria}
               onChange={handleOnChange}
+              isVisibleAdd={false}
             />
             <Select
               name="hard_disk"
@@ -133,6 +146,7 @@ function Relatorios() {
               apiUrl="http://localhost:3001/hd"
               value={formData.hard_disk}
               onChange={handleOnChange}
+              isVisibleAdd={false}
             />
             <Select
               name="processador"
@@ -140,7 +154,10 @@ function Relatorios() {
               apiUrl="http://localhost:3001/processador"
               value={formData.processador}
               onChange={handleOnChange}
+              isVisibleAdd={false}
             />
+            </div>
+)}
             <div className={styles.input_rel}>
             <BsFiletypePdf className={styles.icons} />{" "}
             <Input type="radio" text="PDF" />
@@ -148,7 +165,6 @@ function Relatorios() {
             <Input type="radio" text="Excel" />
           </div>
           </div>
-          
 
           <div className={styles.form_btn}>
             <Radio.Group value={size} onChange={(e) => setSize(e.target.value)}>

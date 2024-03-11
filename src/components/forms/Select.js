@@ -5,13 +5,13 @@ import Input from "../forms/Input.js";
 import styles from "./Select.module.css";
 import axios from "axios";
 
-function Select({ text, name, onChange, value, apiUrl }) {
+function Select({ text, name, onChange, value, apiUrl, isVisibleAdd = true }) {
   const [size, setSize] = useState("default");
   const [options, setOptions] = useState([]);
   const [showPopup, setShowPopup] = useState(false);
   const [inputValue, setInputValue] = useState("");
   const selectRef = useRef(null);
-  
+
   const fetchData = async () => {
     try {
       const response = await fetch(apiUrl);
@@ -113,10 +113,12 @@ function Select({ text, name, onChange, value, apiUrl }) {
     <div className={styles.selects}>
       <label htmlFor={name}>
         {text}:{" "}
-        <MdAddCircleOutline
-          onClick={() => setShowPopup(true)}
-          className={styles.add_button}
-        />
+        {isVisibleAdd && 
+          <MdAddCircleOutline
+            onClick={() => setShowPopup(true)}
+            className={styles.add_button}
+          />
+        }
       </label>
       <select ref={selectRef} name={name} onChange={onChange} value={value}>
         <option></option>
@@ -167,15 +169,15 @@ function Select({ text, name, onChange, value, apiUrl }) {
             >
               Fechar
             </Button>
-              <Button
-                type="primary"
-                shape="round"
-                size={"small"}
-                style={{ background: "rgb(55, 119, 87)" }}
-                onClick={(e) => handleCreate(e, name)}
-              >
-                Criar
-              </Button>
+            <Button
+              type="primary"
+              shape="round"
+              size={"small"}
+              style={{ background: "rgb(55, 119, 87)" }}
+              onClick={(e) => handleCreate(e, name)}
+            >
+              Criar
+            </Button>
           </Radio.Group>
         </div>
       )}

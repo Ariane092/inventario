@@ -138,6 +138,16 @@ app.get('/monitores', async (req, res) => {
   }
 });
 
+app.get('/equipamento', async (req, res) => {
+  try {
+    const result = await pool.query('SELECT nome FROM tipo_equipamento');
+    res.json(result.rows);
+  } catch (error) {
+    console.error('Erro ao obter dados do banco de dados', error);
+    res.status(500).send('Erro interno do servidor');
+  }
+});
+
 app.get('/marca', async (req, res) => {
   try {
     const result = await pool.query('SELECT nome FROM marca');

@@ -46,9 +46,6 @@ h3 {
 }
 
 @media screen and (max-width: 768px) {
-    .trigger {
-        display: none;
-    }
     img {
         margin-left: 2px;
     }
