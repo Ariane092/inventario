@@ -22,6 +22,7 @@
     flex-direction: row;
     flex-wrap: wrap;
     margin-top: 40px;
+    margin-bottom: 40px;
 }
 
 .select_compt {
@@ -79,18 +80,6 @@ textarea:focus-visible {
     margin-top: 15px;
 }
 
-.input_rel {
-    display: flex;
-    align-items: center;
-    padding: 5px;
-    width: 200px;
-    height: 70px;
-}
-
-.icons {
-    font-size: 80px;
-}
-
 @media screen and (max-width: 768px) {
     .container {
         margin-left: -60px;  
@@ -107,9 +96,6 @@ textarea:focus-visible {
     .form_btn{
         display: flex;
         justify-content: center;
-    }
-    .input_rel {
-        margin-left: 40px;
     }  
     .obs_box textarea{
         width: 250px;

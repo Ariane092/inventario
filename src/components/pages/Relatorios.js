@@ -1,34 +1,21 @@
 import React, { useState } from "react";
 import Select from "../forms/Select.js";
-import Input from "../forms/Input.js";
 import { Button, Radio } from "antd";
 import styles from "./Relatorios.module.css";
-import { BsFiletypePdf, BsFiletypeCsv } from "react-icons/bs";
 import axios from "axios";
 
 function Relatorios() {
   const [size, setSize] = useState("default");
   const [formData, setFormData] = useState({
-    processo: "",
-    data_compra: "",
     responsavel: "",
-    local: "",
-    usuario: "",
-    nota_fiscal: "",
-    cod_doacao: "",
-    patrimonio: "",
     projeto: "",
     status: "",
-    servicetag: "",
     tipo_equipamento: "",
     marca: "",
     modelo: "",
     memoria: "",
     hard_disk: "",
     processador: "",
-    office: "",
-    configuracao: "",
-    observacao: "",
   });
 
   const handleOnChange = (e) => {
@@ -43,43 +30,14 @@ function Relatorios() {
     return option === "Desktop" || option === "Notebook";
   };
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    try {
-      await axios.post("http://localhost:3001/cadastro", formData);
-      alert("Usuário cadastrado com sucesso!");
-      setFormData({
-        processo: "",
-        data_compra: "",
-        responsavel: "",
-        local: "",
-        usuario: "",
-        nota_fiscal: "",
-        cod_doacao: "",
-        patrimonio: "",
-        projeto: "",
-        status: "",
-        servicetag: "",
-        tipo_equipamento: "",
-        marca: "",
-        modelo: "",
-        memoria: "",
-        hard_disk: "",
-        processador: "",
-        office: "",
-        configuracao: "",
-        observacao: "",
-      });
-    } catch (error) {
-      console.error("Error:", error);
-      alert("Erro ao cadastrar usuário.");
-    }
-  };
+  const handleCreate = () => {
+
+}
 
   return (
     <>
       <div className={styles.container}>
-        <form className={styles.form} onSubmit={handleSubmit}>
+        <form className={styles.form} onSubmit={handleCreate}>
           <h4>Relatórios</h4>
           <div className={styles.input_group}>
             <Select
@@ -158,12 +116,6 @@ function Relatorios() {
             />
             </div>
 )}
-            <div className={styles.input_rel}>
-            <BsFiletypePdf className={styles.icons} />{" "}
-            <Input type="radio" text="PDF" />
-            <BsFiletypeCsv className={styles.icons} />{" "}
-            <Input type="radio" text="Excel" />
-          </div>
           </div>
 
           <div className={styles.form_btn}>
@@ -175,7 +127,7 @@ function Relatorios() {
                 style={{ background: "rgb(55, 119, 87)" }}
                 htmlType="submit"
               >
-                Gerar Relatório
+                Gerar
               </Button>
             </Radio.Group>
           </div>

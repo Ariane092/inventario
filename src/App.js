@@ -21,22 +21,13 @@ function App() {
         <Route path="/impressoras" element={<Impressoras />} />
         <Route path="/monitores" element={<Monitores />} />
         <Route path="/escritorio" element={<Escritorio />} />
+        <Route path="/login" element={<Login />} />
       </Routes>
       </Sidebar>
     </Router>
   );
 }
 
-function LoginPage() {
-  return (
-    <Router>
-      <Routes>
-        <Route path="/login" element={<Login />} />
-      </Routes>
-    </Router>
-  );
-}
-
-export { App, LoginPage };
+export default App;
 
 

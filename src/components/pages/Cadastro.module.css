@@ -85,12 +85,6 @@ textarea:focus-visible {
     outline: 1px solid #44434663;
 }
 
-.form_btn {
-    display: flex;
-    justify-content: center;
-    margin-top: 15px;
-}
-
 @media screen and (max-width: 768px) {
     .obs_box textarea{
         width: 250px;

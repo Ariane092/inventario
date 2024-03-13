@@ -89,9 +89,9 @@ function Sidebar(props) {
   
   return (
       <Layout style={{height: '100vh'}}>
-      <Sider trigger={null} collapsible collapsed={collapsed} style={{backgroundColor: 'rgb(55, 119, 87)'}}>
+      <Sider trigger={null} collapsible collapsed={collapsed} theme="dark" style={{boxShadow: '0 0 7px rgba(0,0,0,0.3)'}}>
         <Menu
-          theme="light"
+          theme="dark"
           mode="inline"
           defaultSelectedKeys={["1"]}
           defaultOpenKeys={["sub1"]}

@@ -44,28 +44,6 @@ function Computadores() {
     try {
       await axios.post("http://localhost:3001/cadastro", formData);
       alert("Usuário cadastrado com sucesso!");
-      setFormData({
-        processo: "",
-        data_compra: "",
-        responsavel: "",
-        local: "",
-        usuario: "",
-        nota_fiscal: "",
-        cod_doacao: "",
-        patrimonio: "",
-        projeto: "",
-        status: "",
-        servicetag: "",
-        tipo_equipamento: "",
-        marca: "",
-        modelo: "",
-        memoria: "",
-        hard_disk: "",
-        processador: "",
-        office: "",
-        configuracao: "",
-        observacao: "",
-      });
     } catch (error) {
       console.error("Error:", error);
       alert("Erro ao cadastrar usuário.");
