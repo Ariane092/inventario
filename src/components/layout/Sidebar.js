@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import "./Sidebar.css";
 import logo from "../../img/cepea.png";
@@ -89,9 +89,9 @@ function Sidebar(props) {
   
   return (
       <Layout style={{height: '100vh'}}>
-      <Sider trigger={null} collapsible collapsed={collapsed} theme="dark" style={{boxShadow: '0 0 7px rgba(0,0,0,0.3)'}}>
+      <Sider trigger={null} collapsible collapsed={collapsed} theme="light" style={{background: 'rgb(55, 119, 87)'}}>
         <Menu
-          theme="dark"
+          theme="light"
           mode="inline"
           defaultSelectedKeys={["1"]}
           defaultOpenKeys={["sub1"]}
@@ -130,12 +130,11 @@ function Sidebar(props) {
         </Menu>
       </Sider>
 
-      <Layout style={{height: '100vh'}}>
+      <Layout style={{height: '100vh'}} className="layout-ant">
         <Header
           style={{
             padding: 0,
             background: 'whitesmoke',
-            boxShadow: '0 0 7px rgba(0,0,0,0.3)',
             display: 'flex',
             padding: '10px 5px 10px 5px',
             justifyContent: 'flex-start',
@@ -162,7 +161,6 @@ function Sidebar(props) {
             padding: 24,
             background: colorBgContainer,
             borderRadius: borderRadiusLG,
-            boxShadow: '0 0 2px rgba(0,0,0,0.3)',
           }}
         >
           <div>

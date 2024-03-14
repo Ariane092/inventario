@@ -1,0 +1,30 @@
+.card-container {
+    width: 300px;
+    height: 200px;
+    border: 2px solid #CCCCCC;
+    border-radius: 8px;
+    margin: 15px;
+    padding: 5px;
+    box-shadow: 0 0 4px rgba(0,0,0,0.3);
+}
+
+.card-title {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 16px;
+    border-bottom: 2px solid #CCCCCC;
+    padding: 5px;
+}
+
+.card-title span {
+    margin-left: 8px;
+}
+
+.card-content {
+    padding: 10px;
+}
+
+.card-content p{
+    padding: 5px;
+}
