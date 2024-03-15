@@ -1,105 +1,32 @@
-.container {  
-    margin-left: 30px;
-}
+/* .container {
+    display: flex;
+    flex-direction: column;
+} */
 
-.title h4 {
-    text-align: center;
-    font-size: 22px;
-}
-
-table {
+/* table {
     display: flex;
     flex-direction: column;
     border: 1px solid #CCCCCC;
     border-radius: 8px;
-    width: 1600px;
     margin-top: 20px;
-}
+} */
 
-th {
+/* th {
+    display: flex;
+    flex-direction: column;
     padding: 10px;
     height: 80px;
     background-color: rgba(179, 176, 176, 0.233);
     border-bottom: 2px solid rgb(143, 138, 138);
-}
+} */
 
-.sort-button {
-    font-size: 19px;
-    margin-left: 5px;
-}
 
-tr {
-    display: flex;
-}
-
-.tr {
-    display: flex;
-}
-
-td {
+/* td {
     display: flex;
     justify-content: center;
     align-items: center;
     height: 50px;
     border-top: 1px solid #CCCCCC;
     width: 100%;
-}
+} */
 
-.tr:hover {
-    background-color: #cccccc65;
-}
-
-.pagination button {
-    width: 40px;
-    height: 30px;
-    border: 1px solid #CCCCCC;
-    margin: 2px;
-    border-radius: 6px;
-}
-
-.pagination input {
-    margin: 5px;
-    width: 50px;
-    padding: .2em;
-    border: 1px solid #44434663;
-    border-radius: 4px;
-}
-
-.pagination input:focus-visible {
-    outline: 1px solid #44434663;
-}
-
-.pagination select {
-    width: 100px;
-    padding: .2em;
-    border: 1px solid #44434663;
-    border-radius: 4px;
-}
-
-.pagination select:focus-visible {
-    outline: 1px solid #44434663;
-}
-
-.column-input input {
-    margin-top: 5px;
-    width: 140px;
-    padding: .2em;
-    border: 1px solid #44434663;
-    border-radius: 4px;
-}
-
-.column-input input:focus-visible {
-    outline: 1px solid #44434663;
-}
-
-
-/* @media screen and (max-width: 2000px) {
-    .container { 
-        margin-left: 250px;
-    }
-    .table-container {
-        overflow-x: scroll;
-        width: 170vh;
-    }
-       
-}  */

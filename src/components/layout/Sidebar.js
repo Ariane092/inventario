@@ -88,7 +88,7 @@ function Sidebar(props) {
   } = theme.useToken();
   
   return (
-      <Layout style={{height: '100vh'}}>
+      <Layout>
       <Sider trigger={null} collapsible collapsed={collapsed} theme="light" style={{background: 'rgb(55, 119, 87)'}}>
         <Menu
           theme="light"
@@ -130,7 +130,7 @@ function Sidebar(props) {
         </Menu>
       </Sider>
 
-      <Layout style={{height: '100vh'}} className="layout-ant">
+      <Layout className="layout-ant">
         <Header
           style={{
             padding: 0,
@@ -163,7 +163,7 @@ function Sidebar(props) {
             borderRadius: borderRadiusLG,
           }}
         >
-          <div>
+          <div style={{height: '100vh'}}> 
             {props.children} {/*pages props*/}
           </div>
         </Content>

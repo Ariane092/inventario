@@ -1,95 +1,25 @@
-import React, { useMemo, useState, useEffect } from "react";
+import React, { useRef, useState, useEffect } from "react";
 import {
   useReactTable,
   getCoreRowModel,
-  getFilteredRowModel,
-  getFacetedRowModel,
-  getFacetedUniqueValues,
-  getFacetedMinMaxValues,
-  getPaginationRowModel,
-  getSortedRowModel,
-  flexRender,
 } from "@tanstack/react-table";
 import "./Home.css";
-import { Input } from "antd";
-import { BiSortAlt2 } from "react-icons/bi";
+import { SearchOutlined } from '@ant-design/icons';
+import { Button, Input, Space, Table } from 'antd';
+import Highlighter from 'react-highlight-words';
 
 function Home() {
-  const [columnFilters, setColumnFilters] = useState([]);
   const [globalFilter, setGlobalFilter] = useState("");
-
-  const columns = [
-    {
-      accessorKey: "id",
-      header: "ID",
-      cell: (info) => info.getValue(),
-    },
-    {
-      accessorKey: "projeto",
-      header: "Projeto",
-      cell: (info) => info.getValue(),
-    },
-    {
-      accessorKey: "responsavel",
-      header: "Responsável",
-      cell: (info) => info.getValue(),
-    },
-    {
-      accessorKey: "tipo",
-      header: "Tipo",
-      cell: (info) => info.getValue(),
-    },
-    {
-      accessorKey: "servicetag",
-      header: "S/N",
-      cell: (info) => info.getValue(),
-    },
-    {
-      accessorKey: "patrimonio",
-      header: "Patrimônio",
-      cell: (info) => info.getValue(),
-    },
-    {
-      accessorKey: "marca",
-      header: "Marca",
-      cell: (info) => info.getValue(),
-    },
-    {
-      accessorKey: "modelo",
-      header: "Modelo",
-      cell: (info) => info.getValue(),
-    },
-    {
-      accessorKey: "configuracao",
-      header: "Configuração",
-      cell: (info) => info.getValue(),
-    },
-    {
-      accessorKey: "status",
-      header: "Status",
-      cell: (info) => info.getValue(),
-    },
-  ];
-
   const [data, setData] = useState([]);
   const { Search } = Input;
 
   const table = useReactTable({
     data,
-    columns,
     state: {
-      columnFilters,
       globalFilter,
-    },
-    onColumnFiltersChange: setColumnFilters,
+    }, 
     onGlobalFilterChange: setGlobalFilter,
     getCoreRowModel: getCoreRowModel(),
-    getFilteredRowModel: getFilteredRowModel(),
-    getSortedRowModel: getSortedRowModel(),
-    getPaginationRowModel: getPaginationRowModel(),
-    getFacetedRowModel: getFacetedRowModel(),
-    getFacetedUniqueValues: getFacetedUniqueValues(),
-    getFacetedMinMaxValues: getFacetedMinMaxValues(),
   });
 
   useEffect(() => {
@@ -105,224 +35,212 @@ function Home() {
     fetchData();
   }, []);
 
+  const [searchText, setSearchText] = useState('');
+  const [searchedColumn, setSearchedColumn] = useState('');
+  const searchInput = useRef(null);
+  const handleSearch = (selectedKeys, confirm, dataIndex) => {
+    confirm();
+    setSearchText(selectedKeys[0]);
+    setSearchedColumn(dataIndex);
+  };
+  const handleReset = (clearFilters) => {
+    clearFilters();
+    setSearchText('');
+  };
+  const getColumnSearchProps = (dataIndex) => ({
+    filterDropdown: ({ setSelectedKeys, selectedKeys, confirm, clearFilters, close }) => (
+      <div
+        style={{
+          padding: 8,
+        }}
+        onKeyDown={(e) => e.stopPropagation()}
+      >
+        <Input
+          ref={searchInput}
+          placeholder={`Search ${dataIndex}`}
+          value={selectedKeys[0]}
+          onChange={(e) => setSelectedKeys(e.target.value ? [e.target.value] : [])}
+          onPressEnter={() => handleSearch(selectedKeys, confirm, dataIndex)}
+          style={{
+            marginBottom: 8,
+            display: 'block',
+          }}
+        />
+        <Space>
+          <Button
+            type="primary"
+            onClick={() => handleSearch(selectedKeys, confirm, dataIndex)}
+            icon={<SearchOutlined />}
+            size="small"
+            style={{
+              width: 90,
+            }}
+          >
+            Search
+          </Button>
+          <Button
+            onClick={() => clearFilters && handleReset(clearFilters)}
+            size="small"
+            style={{
+              width: 90,
+            }}
+          >
+            Reset
+          </Button>
+          <Button
+            type="link"
+            size="small"
+            onClick={() => {
+              confirm({
+                closeDropdown: false,
+              });
+              setSearchText(selectedKeys[0]);
+              setSearchedColumn(dataIndex);
+            }}
+          >
+            Filter
+          </Button>
+          <Button
+            type="link"
+            size="small"
+            onClick={() => {
+              close();
+            }}
+          >
+            close
+          </Button>
+        </Space>
+      </div>
+    ),
+    filterIcon: (filtered) => (
+      <SearchOutlined
+        style={{
+          color: filtered ? '#1677ff' : undefined,
+        }}
+      />
+    ),
+    onFilter: (value, record) =>
+      record[dataIndex].toString().toLowerCase().includes(value.toLowerCase()),
+    onFilterDropdownOpenChange: (visible) => {
+      if (visible) {
+        setTimeout(() => searchInput.current?.select(), 100);
+      }
+    },
+    render: (text) =>
+      searchedColumn === dataIndex ? (
+        <Highlighter
+          highlightStyle={{
+            backgroundColor: '#ffc069',
+            padding: 0,
+          }}
+          searchWords={[searchText]}
+          autoEscape
+          textToHighlight={text ? text.toString() : ''}
+        />
+      ) : (
+        text
+      ),
+  });
+
+  const columns = [
+    {
+      key: "id",
+      title: "ID",
+      cell: (info) => info.getValue(),
+      ...getColumnSearchProps('id'),
+      sorter: (a, b) => a.id.length - b.id.length,
+      sortDirections: ['descend', 'ascend'],
+    },
+    {
+      key: "projeto",
+      title: "Projeto",
+      cell: (info) => info.getValue(),
+      ...getColumnSearchProps('projeto'),
+      sorter: (a, b) => a.projeto.length - b.projeto.length,
+      sortDirections: ['descend', 'ascend'],
+    },
+    {
+      key: "responsavel",
+      title: "Responsável",
+      cell: (info) => info.getValue(),
+      ...getColumnSearchProps('responsavel'),
+      sorter: (a, b) => a.responsavel.length - b.responsavel.length,
+      sortDirections: ['descend', 'ascend'],
+    },
+    {
+      key: "tipo",
+      title: "Tipo",
+      cell: (info) => info.getValue(),
+      ...getColumnSearchProps('tipo'),
+      sorter: (a, b) => a.tipo.length - b.tipo.length,
+      sortDirections: ['descend', 'ascend'],
+    },
+    {
+      key: "servicetag",
+      title: "S/N",
+      cell: (info) => info.getValue(),
+      ...getColumnSearchProps('servicetag'),
+      sorter: (a, b) => a.servicetag.length - b.servicetag.length,
+      sortDirections: ['descend', 'ascend'],
+    },
+    {
+      key: "patrimonio",
+      title: "Patrimônio",
+      cell: (info) => info.getValue(),
+      ...getColumnSearchProps('patrimonio'),
+      sorter: (a, b) => a.patrimonio.length - b.patrimonio.length,
+      sortDirections: ['descend', 'ascend'],
+    },
+    {
+      key: "marca",
+      title: "Marca",
+      cell: (info) => info.getValue(),
+      ...getColumnSearchProps('marca'),
+      sorter: (a, b) => a.marca.length - b.marca.length,
+      sortDirections: ['descend', 'ascend'],
+    },
+    {
+      key: "modelo",
+      title: "Modelo",
+      cell: (info) => info.getValue(),
+      ...getColumnSearchProps('modelo'),
+      sorter: (a, b) => a.modelo.length - b.modelo.length,
+      sortDirections: ['descend', 'ascend'],
+    },
+    {
+      key: "configuracao",
+      title: "Config",
+      cell: (info) => info.getValue(),
+      ...getColumnSearchProps('configuracao'),
+      sorter: (a, b) => a.configuracao.length - b.configuracao.length,
+      sortDirections: ['descend', 'ascend'],
+    },
+    {
+      key: "status",
+      title: "Status",
+      cell: (info) => info.getValue(),
+      ...getColumnSearchProps('status'),
+      sorter: (a, b) => a.status.length - b.status.length,
+      sortDirections: ['descend', 'ascend'],
+    },
+  ];
+
   return (
     <>
-      <div className="title">
-        <h4>Lista de Equipamentos</h4>
-      </div>
-
       <div className="container">
         <Search
           placeholder="Pesquisar"
           allowClear
           value={globalFilter}
           onChange={(e) => setGlobalFilter(e.target.value)}
-          className="global-search"
-          style={{ width: 230, marginTop: 30 }}
+          style={{ width: 230, marginTop: 0 }}
         />
 
         {/*Tabela*/}
-        <div className="table-container">
-        <table>
-          <thead>
-            {table.getHeaderGroups().map((headerGroup) => (
-              <tr key={headerGroup.id}>
-                {headerGroup.headers.map((header) => {
-                  return (
-                    <th key={header.id} colSpan={header.colSpan}>
-                      {header.isPlaceholder ? null : (
-                        <>
-                          <div>
-                            {flexRender(
-                              header.column.columnDef.header,
-                              header.getContext()
-                            )}
-                            {header.column.getCanSort() &&
-                              header.column.id !== "action" && (
-                                <BiSortAlt2
-                                  className="sort-button"
-                                  onClick={header.column.getToggleSortingHandler()}
-                                />
-                              )}
-                          </div>
-                          {header.column.getCanFilter() &&
-                          header.column.id !== "action" ? (
-                            <div>
-                              <Filter column={header.column} table={table} />
-                            </div>
-                          ) : null}
-                        </>
-                      )}
-                    </th>
-                  );
-                })}
-              </tr>
-            ))}
-          </thead>
-          <tbody>
-            {table.getRowModel().rows.map((row) => {
-              return (
-                <div className="tr" key={row.id}>
-                  {row.getVisibleCells().map((cell) => {
-                    return (
-                      <td key={cell.id}>
-                        {flexRender(
-                          cell.column.columnDef.cell,
-                          cell.getContext()
-                        )}
-                      </td>
-                    );
-                  })}
-                </div>
-              );
-            })}
-          </tbody>
-        </table>
-        </div>
-        <br />
-
-        {/*Paginação botoões*/}
-        <div className="pagination">
-          <button
-            onClick={() => table.setPageIndex(0)}
-            disabled={!table.getCanPreviousPage()}
-          >
-            {"<<"}
-          </button>
-          <button
-            onClick={() => table.previousPage()}
-            disabled={!table.getCanPreviousPage()}
-          >
-            {"<"}
-          </button>
-          <button
-            onClick={() => table.nextPage()}
-            disabled={!table.getCanNextPage()}
-          >
-            {">"}
-          </button>
-          <button
-            onClick={() => table.setPageIndex(table.getPageCount() - 1)}
-            disabled={!table.getCanNextPage()}
-          >
-            {">>"}
-          </button>
-
-          {/*Paginação*/}
-
-          <span>
-            <br />
-            <br />
-            <strong>
-              <span> Página </span>
-              {table.getState().pagination.pageIndex + 1} de{" "}
-              {table.getPageCount()}
-            </strong>
-          </span>
-
-          <span>
-            | Página:
-            <input
-              type="number"
-              defaultValue={table.getState().pagination.pageIndex + 1}
-              onChange={(e) => {
-                const page = e.target.value ? e.target.value - 1 : 0;
-                table.setPageIndex(page);
-              }}
-              min={1}
-            />
-          </span>
-
-          <select
-            value={table.getState().pagination.pageSize}
-            onChange={(e) => {
-              table.setPageSize(e.target.value);
-            }}
-          >
-            {[10, 20, 40, 60, 100].map((pageSize) => (
-              <option key={pageSize} value={pageSize}>
-                Mostrar {pageSize}
-              </option>
-            ))}
-          </select>
-        </div>
-        <div>{table.getPrePaginationRowModel().rows.length} Itens totais. </div>
+        <div className="table-container"></div>
+        <Table columns={columns} dataSource={data.map((item, index) => ({ ...item, key: index }))} />
       </div>
     </>
-  );
-}
-
-function Filter({ column, table }) {
-  const firstValue = table
-    .getPreFilteredRowModel()
-    .flatRows[0]?.getValue(column.id);
-
-  const columnFilterValue = column.getFilterValue();
-
-  const sortedUniqueValues = useMemo(
-    () =>
-      typeof firstValue === "number"
-        ? []
-        : Array.from(column.getFacetedUniqueValues().keys()).sort(),
-    [column.getFacetedUniqueValues()]
-  );
-
-  return typeof firstValue === "number" ? (
-    <div>
-      <DebouncedInput
-        type="number"
-        value={columnFilterValue?.[0] ?? ""}
-        onChange={(value) => column.setFilterValue((old) => [value, old?.[1]])}
-        min={0}
-        placeholder={"Filtrar"}
-      />
-    </div>
-  ) : (
-    <>
-      <datalist id={column.id + "list"}>
-        {sortedUniqueValues.slice(0, 5000).map((value) => (
-          <option value={value} key={value} />
-        ))}
-      </datalist>
-      <DebouncedInput
-        type="text"
-        value={columnFilterValue ?? ""}
-        onChange={(value) => column.setFilterValue(value)}
-        placeholder={"Filtrar"}
-        list={column.id + "list"}
-      />
-    </>
-  );
-}
-
-function DebouncedInput({
-  value: initialValue,
-  onChange,
-  debounce = 500,
-  ...props
-}) {
-  const [value, setValue] = useState(initialValue);
-
-  useEffect(() => {
-    setValue(initialValue);
-  }, [initialValue]);
-
-  useEffect(() => {
-    const timeout = setTimeout(() => {
-      onChange(value);
-    }, debounce);
-
-    return () => clearTimeout(timeout);
-  }, [value]);
-
-  return (
-    <div className="column-input">
-      <input
-        {...props}
-        value={value}
-        onChange={(e) => setValue(e.target.value)}
-      />
-    </div>
   );
 }
 
