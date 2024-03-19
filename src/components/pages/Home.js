@@ -1,26 +1,28 @@
 import React, { useRef, useState, useEffect } from "react";
-import {
-  useReactTable,
-  getCoreRowModel,
-} from "@tanstack/react-table";
+import { Link } from "react-router-dom";
+// import {
+//   useReactTable,
+//   getCoreRowModel,
+// } from "@tanstack/react-table";
 import "./Home.css";
-import { SearchOutlined } from '@ant-design/icons';
-import { Button, Input, Space, Table } from 'antd';
-import Highlighter from 'react-highlight-words';
+import { SearchOutlined, EyeOutlined } from "@ant-design/icons";
+import { Button, Input, Space, Table } from "antd";
+import Highlighter from "react-highlight-words";
+import Visualizar from "./Visualizar.js";
 
 function Home() {
   const [globalFilter, setGlobalFilter] = useState("");
   const [data, setData] = useState([]);
   const { Search } = Input;
 
-  const table = useReactTable({
-    data,
-    state: {
-      globalFilter,
-    }, 
-    onGlobalFilterChange: setGlobalFilter,
-    getCoreRowModel: getCoreRowModel(),
-  });
+  // const table = useReactTable({
+  //   data,
+  //   state: {
+  //     globalFilter,
+  //   },
+  //   onGlobalFilterChange: setGlobalFilter,
+  //   getCoreRowModel: getCoreRowModel(),
+  // });
 
   useEffect(() => {
     const fetchData = async () => {
@@ -35,8 +37,8 @@ function Home() {
     fetchData();
   }, []);
 
-  const [searchText, setSearchText] = useState('');
-  const [searchedColumn, setSearchedColumn] = useState('');
+  const [searchText, setSearchText] = useState("");
+  const [searchedColumn, setSearchedColumn] = useState("");
   const searchInput = useRef(null);
   const handleSearch = (selectedKeys, confirm, dataIndex) => {
     confirm();
@@ -45,10 +47,16 @@ function Home() {
   };
   const handleReset = (clearFilters) => {
     clearFilters();
-    setSearchText('');
+    setSearchText("");
   };
   const getColumnSearchProps = (dataIndex) => ({
-    filterDropdown: ({ setSelectedKeys, selectedKeys, confirm, clearFilters, close }) => (
+    filterDropdown: ({
+      setSelectedKeys,
+      selectedKeys,
+      confirm,
+      clearFilters,
+      close,
+    }) => (
       <div
         style={{
           padding: 8,
@@ -59,11 +67,13 @@ function Home() {
           ref={searchInput}
           placeholder={`Search ${dataIndex}`}
           value={selectedKeys[0]}
-          onChange={(e) => setSelectedKeys(e.target.value ? [e.target.value] : [])}
+          onChange={(e) =>
+            setSelectedKeys(e.target.value ? [e.target.value] : [])
+          }
           onPressEnter={() => handleSearch(selectedKeys, confirm, dataIndex)}
           style={{
             marginBottom: 8,
-            display: 'block',
+            display: "block",
           }}
         />
         <Space>
@@ -115,7 +125,7 @@ function Home() {
     filterIcon: (filtered) => (
       <SearchOutlined
         style={{
-          color: filtered ? '#1677ff' : undefined,
+          color: filtered ? "#1677ff" : undefined,
         }}
       />
     ),
@@ -130,98 +140,113 @@ function Home() {
       searchedColumn === dataIndex ? (
         <Highlighter
           highlightStyle={{
-            backgroundColor: '#ffc069',
+            backgroundColor: "#ffc069",
             padding: 0,
           }}
           searchWords={[searchText]}
           autoEscape
-          textToHighlight={text ? text.toString() : ''}
+          textToHighlight={text ? text.toString() : ""}
         />
       ) : (
         text
       ),
   });
 
+  const toView = (dataTable) => {
+    window.location.href = `/visualizar?id=${dataTable.id}`;
+  };
+
   const columns = [
     {
       key: "id",
+      dataIndex: "id",
       title: "ID",
-      cell: (info) => info.getValue(),
-      ...getColumnSearchProps('id'),
+      ...getColumnSearchProps("id"),
       sorter: (a, b) => a.id.length - b.id.length,
-      sortDirections: ['descend', 'ascend'],
+      sortDirections: ["descend", "ascend"],
     },
     {
       key: "projeto",
+      dataIndex: "projeto",
       title: "Projeto",
-      cell: (info) => info.getValue(),
-      ...getColumnSearchProps('projeto'),
+      ...getColumnSearchProps("projeto"),
       sorter: (a, b) => a.projeto.length - b.projeto.length,
-      sortDirections: ['descend', 'ascend'],
+      sortDirections: ["descend", "ascend"],
     },
     {
       key: "responsavel",
+      dataIndex: "responsavel",
       title: "Responsável",
-      cell: (info) => info.getValue(),
-      ...getColumnSearchProps('responsavel'),
+      ...getColumnSearchProps("responsavel"),
       sorter: (a, b) => a.responsavel.length - b.responsavel.length,
-      sortDirections: ['descend', 'ascend'],
+      sortDirections: ["descend", "ascend"],
     },
     {
-      key: "tipo",
+      key: "tipo_equipamento",
+      dataIndex: "tipo_equipamento",
       title: "Tipo",
-      cell: (info) => info.getValue(),
-      ...getColumnSearchProps('tipo'),
+      ...getColumnSearchProps("tipo"),
       sorter: (a, b) => a.tipo.length - b.tipo.length,
-      sortDirections: ['descend', 'ascend'],
+      sortDirections: ["descend", "ascend"],
     },
     {
       key: "servicetag",
+      dataIndex: "servicetag",
       title: "S/N",
-      cell: (info) => info.getValue(),
-      ...getColumnSearchProps('servicetag'),
+      ...getColumnSearchProps("servicetag"),
       sorter: (a, b) => a.servicetag.length - b.servicetag.length,
-      sortDirections: ['descend', 'ascend'],
+      sortDirections: ["descend", "ascend"],
     },
     {
       key: "patrimonio",
+      dataIndex: "patrimonio",
       title: "Patrimônio",
-      cell: (info) => info.getValue(),
-      ...getColumnSearchProps('patrimonio'),
+      ...getColumnSearchProps("patrimonio"),
       sorter: (a, b) => a.patrimonio.length - b.patrimonio.length,
-      sortDirections: ['descend', 'ascend'],
+      sortDirections: ["descend", "ascend"],
     },
     {
       key: "marca",
+      dataIndex: "marca",
       title: "Marca",
-      cell: (info) => info.getValue(),
-      ...getColumnSearchProps('marca'),
+      ...getColumnSearchProps("marca"),
       sorter: (a, b) => a.marca.length - b.marca.length,
-      sortDirections: ['descend', 'ascend'],
+      sortDirections: ["descend", "ascend"],
     },
     {
       key: "modelo",
+      dataIndex: "modelo",
       title: "Modelo",
-      cell: (info) => info.getValue(),
-      ...getColumnSearchProps('modelo'),
+      ...getColumnSearchProps("modelo"),
       sorter: (a, b) => a.modelo.length - b.modelo.length,
-      sortDirections: ['descend', 'ascend'],
+      sortDirections: ["descend", "ascend"],
     },
     {
       key: "configuracao",
+      dataIndex: "configuracao",
       title: "Config",
-      cell: (info) => info.getValue(),
-      ...getColumnSearchProps('configuracao'),
+      ...getColumnSearchProps("configuracao"),
       sorter: (a, b) => a.configuracao.length - b.configuracao.length,
-      sortDirections: ['descend', 'ascend'],
+      sortDirections: ["descend", "ascend"],
     },
     {
       key: "status",
+      dataIndex: "status",
       title: "Status",
-      cell: (info) => info.getValue(),
-      ...getColumnSearchProps('status'),
+      ...getColumnSearchProps("status"),
       sorter: (a, b) => a.status.length - b.status.length,
-      sortDirections: ['descend', 'ascend'],
+      sortDirections: ["descend", "ascend"],
+    },
+    {
+      title: "Action",
+      key: "operation",
+      fixed: "right",
+      width: 100,
+      render: (value, dataTable) => (
+        <Button type="link" onClick={() => toView(dataTable)}>
+          <EyeOutlined />
+        </Button>
+      ),
     },
   ];
 
@@ -236,9 +261,10 @@ function Home() {
           style={{ width: 230, marginTop: 0 }}
         />
 
-        {/*Tabela*/}
-        <div className="table-container"></div>
-        <Table columns={columns} dataSource={data.map((item, index) => ({ ...item, key: index }))} />
+        <Table
+          columns={columns}
+          dataSource={data.map((item, index) => ({ ...item, key: index }))}
+        />
       </div>
     </>
   );

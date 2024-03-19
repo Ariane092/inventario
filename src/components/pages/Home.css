@@ -1,32 +1,15 @@
-/* .container {
-    display: flex;
-    flex-direction: column;
-} */
-
-/* table {
-    display: flex;
-    flex-direction: column;
-    border: 1px solid #CCCCCC;
+table { 
+    margin-top: 15px;
     border-radius: 8px;
     margin-top: 20px;
-} */
+}
 
-/* th {
-    display: flex;
-    flex-direction: column;
-    padding: 10px;
-    height: 80px;
-    background-color: rgba(179, 176, 176, 0.233);
-    border-bottom: 2px solid rgb(143, 138, 138);
-} */
-
-
-/* td {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 50px;
+td {  
     border-top: 1px solid #CCCCCC;
-    width: 100%;
-} */
+}
 
+@media screen and (max-width: 768px) {
+    table{
+        overflow-x: scroll;
+    }
+}

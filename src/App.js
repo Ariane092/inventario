@@ -8,6 +8,7 @@ import Computadores from "./components/pages/Computadores.js";
 import Impressoras from "./components/pages/Impressoras.js";
 import Monitores from "./components/pages/Monitores.js";
 import Escritorio from "./components/pages/Escritorio.js";
+import Visualizar from "./components/pages/Visualizar.js";
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
         <Route path="/monitores" element={<Monitores />} />
         <Route path="/escritorio" element={<Escritorio />} />
         <Route path="/login" element={<Login />} />
+        <Route path="/visualizar" element={<Visualizar />} />
       </Routes>
       </Sidebar>
     </Router>
