@@ -1,19 +1,19 @@
 import React, { useRef, useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 // import {
 //   useReactTable,
 //   getCoreRowModel,
 // } from "@tanstack/react-table";
 import "./Home.css";
-import { SearchOutlined, EyeOutlined } from "@ant-design/icons";
+import { SearchOutlined, EyeOutlined, CopyOutlined } from "@ant-design/icons";
 import { Button, Input, Space, Table } from "antd";
 import Highlighter from "react-highlight-words";
-import Visualizar from "./Visualizar.js";
 
 function Home() {
   const [globalFilter, setGlobalFilter] = useState("");
   const [data, setData] = useState([]);
   const { Search } = Input;
+  const { id } = useParams();
 
   // const table = useReactTable({
   //   data,
@@ -152,10 +152,6 @@ function Home() {
       ),
   });
 
-  const toView = (dataTable) => {
-    window.location.href = `/visualizar?id=${dataTable.id}`;
-  };
-
   const columns = [
     {
       key: "id",
@@ -185,8 +181,8 @@ function Home() {
       key: "tipo_equipamento",
       dataIndex: "tipo_equipamento",
       title: "Tipo",
-      ...getColumnSearchProps("tipo"),
-      sorter: (a, b) => a.tipo.length - b.tipo.length,
+      ...getColumnSearchProps("tipo_equipamento"),
+      sorter: (a, b) => a.tipo_equipamento.length - b.tipo_equipamento.length,
       sortDirections: ["descend", "ascend"],
     },
     {
@@ -241,11 +237,10 @@ function Home() {
       title: "Action",
       key: "operation",
       fixed: "right",
-      width: 100,
-      render: (value, dataTable) => (
-        <Button type="link" onClick={() => toView(dataTable)}>
+      render: (data) => (
+        <Link to={`/visualizar/${data.id}`}>
           <EyeOutlined />
-        </Button>
+        </Link>
       ),
     },
   ];
@@ -261,10 +256,7 @@ function Home() {
           style={{ width: 230, marginTop: 0 }}
         />
 
-        <Table
-          columns={columns}
-          dataSource={data.map((item, index) => ({ ...item, key: index }))}
-        />
+        <Table columns={columns} dataSource={data} />
       </div>
     </>
   );

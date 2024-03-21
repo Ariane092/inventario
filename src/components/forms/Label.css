@@ -1,25 +1,12 @@
 .label{
     display: flex;
     flex-direction: row;
-    padding: 7px 15px 0px 0px;
+    padding: 7px;
     width: 230px;
+    font-weight: bolder;
 }
 
-.label label{
-    margin-bottom: 0.6em;
-    font-size: .8em;
+.label div {
+    margin-left: 5px;
 }
 
-.label input{
-    padding: .3em;
-    border: 1px solid  #44434663;
-    border-radius: 4px;
-}
-
-.label input::placeholder{
-    color: #7b7b77;
-}
-
-.label input:focus-visible{
-    outline: 1px solid  #44434663;
-}

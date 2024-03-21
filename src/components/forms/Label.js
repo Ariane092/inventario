@@ -1,18 +1,12 @@
 import './Label.css';
 
-function Input({ type, text, date, name, value }) {
+function Label({ text, value }) {
     return (
         <div className="label">
-            <label htmlFor={name}>{text}:</label>
-            <div
-                type={type}
-                name={name}
-                id={name}
-                date={date}
-                value={value}
-            />
+            <label>{text}:</label>
+            <div>{value}</div>
         </div>
     );
 };
 
-export default Input;
+export default Label;

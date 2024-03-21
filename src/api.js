@@ -27,6 +27,18 @@ app.get('/cadastro', async (req, res) => {
   }
 });
 
+/*visualizar*/
+app.get('/cadastro/:id', async (req, res) => {
+  try {
+    const id = parseInt(req.params.id);
+    const result = await pool.query('SELECT * FROM cadastro WHERE id = $1', [id]);
+    res.json(result.rows[0]);
+  } catch (error) {
+    console.error('Erro ao obter dados do banco de dados', error);
+    res.status(500).send('Erro interno do servidor');
+  }
+});
+
 /*get selects*/
 app.get('/responsavel', async (req, res) => {
   try {

@@ -23,7 +23,7 @@ function App() {
         <Route path="/monitores" element={<Monitores />} />
         <Route path="/escritorio" element={<Escritorio />} />
         <Route path="/login" element={<Login />} />
-        <Route path="/visualizar" element={<Visualizar />} />
+        <Route path="/visualizar/:id" element={<Visualizar />} />
       </Routes>
       </Sidebar>
     </Router>
