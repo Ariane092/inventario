@@ -88,7 +88,7 @@ function Computadores() {
               type="text"
               text="Usuário"
               name="usuario"
-              placeholder="Caso não possua, digite ROTATIVO"
+              placeholder="Senão, digite ROTATIVO"
               value={formData.usuario}
               onChange={handleOnChange}
             />
@@ -203,7 +203,7 @@ function Computadores() {
             <Radio.Group value={size} onChange={(e) => setSize(e.target.value)}>
               <Button
                 type="primary"
-                shape="round"
+                shape="default"
                 size={size}
                 style={{ background: "rgb(55, 119, 87)" }}
                 htmlType="submit"
@@ -213,7 +213,7 @@ function Computadores() {
               <Button
                 type="primary"
                 size={size}
-                shape="circle"
+                shape="default"
                 style={{ margin: 10, background: "rgb(55, 119, 87)" }}
                 icon={<MdLinkedCamera />}
               ></Button>

@@ -1,5 +1,5 @@
 import React, { useRef, useState, useEffect } from "react";
-import { Link, useParams } from "react-router-dom";
+import { Link } from "react-router-dom";
 // import {
 //   useReactTable,
 //   getCoreRowModel,
@@ -13,7 +13,6 @@ function Home() {
   const [globalFilter, setGlobalFilter] = useState("");
   const [data, setData] = useState([]);
   const { Search } = Input;
-  const { id } = useParams();
 
   // const table = useReactTable({
   //   data,
@@ -217,14 +216,14 @@ function Home() {
       sorter: (a, b) => a.modelo.length - b.modelo.length,
       sortDirections: ["descend", "ascend"],
     },
-    {
-      key: "configuracao",
-      dataIndex: "configuracao",
-      title: "Config",
-      ...getColumnSearchProps("configuracao"),
-      sorter: (a, b) => a.configuracao.length - b.configuracao.length,
-      sortDirections: ["descend", "ascend"],
-    },
+    // {
+    //   key: "configuracao",
+    //   dataIndex: "configuracao",
+    //   title: "Config",
+    //   ...getColumnSearchProps("configuracao"),
+    //   sorter: (a, b) => a.configuracao.length - b.configuracao.length,
+    //   sortDirections: ["descend", "ascend"],
+    // },
     {
       key: "status",
       dataIndex: "status",
@@ -247,7 +246,7 @@ function Home() {
 
   return (
     <>
-      <div className="container">
+      <div>
         <Search
           placeholder="Pesquisar"
           allowClear

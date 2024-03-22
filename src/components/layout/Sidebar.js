@@ -89,7 +89,7 @@ function Sidebar(props) {
   
   return (
       <Layout>
-      <Sider trigger={null} collapsible collapsed={collapsed} theme="light" style={{background: 'rgb(55, 119, 87)'}}>
+      <Sider trigger={null} collapsible collapsed={collapsed} theme="light" style={{background: 'rgb(55, 119, 87)', height: '100vh'}}>
         <Menu
           theme="light"
           mode="inline"
@@ -157,13 +157,13 @@ function Sidebar(props) {
         </Header>
         <Content
           style={{
-            margin: "15px 20px 0px 20px",
+            margin: "15px 15px 0px 15px",
             padding: 24,
             background: colorBgContainer,
             borderRadius: borderRadiusLG,
           }}
         >
-          <div style={{height: '100vh'}}> 
+          <div> 
             {props.children} {/*pages props*/}
           </div>
         </Content>

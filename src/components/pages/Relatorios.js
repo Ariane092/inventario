@@ -122,7 +122,7 @@ function Relatorios() {
             <Radio.Group value={size} onChange={(e) => setSize(e.target.value)}>
               <Button
                 type="primary"
-                shape="round"
+                shape="default"
                 size={size}
                 style={{ background: "rgb(55, 119, 87)" }}
                 htmlType="submit"

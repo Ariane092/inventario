@@ -2,8 +2,9 @@ import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { Button, Radio, Modal } from "antd";
 import Label from "../forms/Label.js";
-import styles from "./Cadastro.module.css";
+import "./Visualizar.css";
 import { EditOutlined, QrcodeOutlined } from "@ant-design/icons";
+import Computadores from "./Computadores.js";
 
 function Visualizar() {
   const [size, setSize] = useState("default");
@@ -25,12 +26,10 @@ function Visualizar() {
   }, [id]);
 
   return (
-    <div className={styles.container}>
-      <form className={styles.form}>
+    <div className="container">
+      <div className="form">
         <h4>Equipamentos CEPEA</h4>
-        <div className={styles.input_group}>
-          {Object.keys(data).length > 0 && (
-            <>
+        <div className="form-group">       
               <Label text="Processo" value={data.processo} />
               <Label text="Data Compra" value={data.data_compra} />
               <Label text="Responsável" value={data.responsavel} />
@@ -51,16 +50,14 @@ function Visualizar() {
               <Label text="Tipo de Equipamento" value={data.tipo_equipamento} />
               <Label text="Configuração" value={data.configuracao} />
               <Label text="Observação" value={data.observacao} />
-            </>
-          )}
         </div>
 
-        <div className={styles.form_btn}>
+        <div className="form-btn">
           <Radio.Group value={size} onChange={(e) => setSize(e.target.value)}>
             <Button
               type="primary"
-              shape="round"
-              size={size}
+              shape="default"
+              size={"small"}
               style={{ background: "rgb(55, 119, 87)" }}
               onClick={() => setEditOpen(true)}
             >
@@ -68,28 +65,26 @@ function Visualizar() {
             </Button>
             <Button
               type="primary"
-              shape="round"
-              size={size}
-              style={{ background: "rgb(55, 119, 87)" }}
+              shape="default"
+              size={"small"}
+              style={{ margin: 10, background: "rgb(55, 119, 87)" }}
             >
               <QrcodeOutlined /> Qr Code
             </Button>
           </Radio.Group>
         </div>
-      </form>
+      </div>
 
       <Modal
-        title="Editar Equipamento"
         style={{
           top: 20,
         }}
+        width={1000}
         open={editOpen}
         onOk={() => setEditOpen(false)}
         onCancel={() => setEditOpen(false)}
       >
-        <p>some contents...</p>
-        <p>some contents...</p>
-        <p>some contents...</p>
+        <Computadores />
       </Modal>
     </div>
   );

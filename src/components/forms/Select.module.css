@@ -6,12 +6,12 @@
 }
 
 .selects label{
-    margin-bottom: 0.6em;
-    font-size: .8em;
+    margin-bottom: 2px;
+    font-size: 12px;
 }
 
 .selects select{
-    padding: .3em;
+    padding: 3px;
     border: 1px solid  #44434663;
     border-radius: 4px;
 }
