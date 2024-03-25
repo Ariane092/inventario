@@ -18,18 +18,20 @@
 
 .input_group {
     display: flex;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
     flex-direction: row;
     flex-wrap: wrap;
     margin-top: 40px;
 }
 
-.obs_box textarea {
+.input_group textarea {
     border: 1px solid #44434663;
-    margin-left: .5em;
     border-radius: 4px;
-    width: 400px;
+    width: 350px;
+}
+.input_group label {
+   font-size: 12px;
 }
 
 textarea:focus-visible {

@@ -16,6 +16,13 @@
     border-radius: 4px;
 }
 
+.textarea {
+    display: flex;
+    flex-direction: column;
+    padding: 7px 15px 0px 0px;
+    width: 250px;
+}
+
 .inputs input::placeholder{
     color: #7b7b77;
 }

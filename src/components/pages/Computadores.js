@@ -6,7 +6,7 @@ import { Button, Radio, App } from "antd";
 import { MdLinkedCamera } from "react-icons/md";
 import axios from "axios";
 
-function Computadores() {
+function Computadores(editData, title) {
   const [size, setSize] = useState("default");
   const [formData, setFormData] = useState({
     processo: "",
@@ -62,6 +62,7 @@ function Computadores() {
               name="processo"
               value={formData.processo}
               onChange={handleOnChange}
+              editData={editData}
             />
             <Input
               type="date"
@@ -69,6 +70,7 @@ function Computadores() {
               name="data_compra"
               value={formData.data_compra}
               onChange={handleOnChange}
+              editData={editData}
             />
             <Select
               name="responsavel"
@@ -76,6 +78,7 @@ function Computadores() {
               apiUrl="http://localhost:3001/responsavel"
               value={formData.responsavel}
               onChange={handleOnChange}
+              editData={editData}
             />
             <Input
               type="text"
@@ -83,6 +86,7 @@ function Computadores() {
               name="local"
               value={formData.local}
               onChange={handleOnChange}
+              editData={editData}
             />
             <Input
               type="text"
@@ -91,6 +95,7 @@ function Computadores() {
               placeholder="Senão, digite ROTATIVO"
               value={formData.usuario}
               onChange={handleOnChange}
+              editData={editData}
             />
             <Input
               type="number"
@@ -98,6 +103,7 @@ function Computadores() {
               name="nota_fiscal"
               value={formData.nota_fiscal}
               onChange={handleOnChange}
+              editData={editData}
             />
             <Input
               type="number"
@@ -105,6 +111,7 @@ function Computadores() {
               name="cod_doacao"
               value={formData.cod_doacao}
               onChange={handleOnChange}
+              editData={editData}
             />
             <Input
               type="number"
@@ -112,6 +119,7 @@ function Computadores() {
               name="patrimonio"
               value={formData.patrimonio}
               onChange={handleOnChange}
+              editData={editData}
             />
             <Select
               name="projeto"
@@ -119,6 +127,7 @@ function Computadores() {
               apiUrl="http://localhost:3001/projeto"
               value={formData.projeto}
               onChange={handleOnChange}
+              editData={editData}
             />
             <Select
               name="status"
@@ -126,6 +135,7 @@ function Computadores() {
               apiUrl="http://localhost:3001/status"
               value={formData.status}
               onChange={handleOnChange}
+              editData={editData}
             />
             <Input
               type="text"
@@ -133,6 +143,7 @@ function Computadores() {
               name="servicetag"
               value={formData.servicetag}
               onChange={handleOnChange}
+              editData={editData}
             />
             <Select
               name="marca"
@@ -140,6 +151,7 @@ function Computadores() {
               apiUrl="http://localhost:3001/marca"
               value={formData.marca}
               onChange={handleOnChange}
+              editData={editData}
             />
             <Select
               name="modelo"
@@ -147,6 +159,7 @@ function Computadores() {
               apiUrl="http://localhost:3001/modelo"
               value={formData.modelo}
               onChange={handleOnChange}
+              editData={editData}
             />
             <Select
               name="memoria"
@@ -154,6 +167,7 @@ function Computadores() {
               apiUrl="http://localhost:3001/memoria"
               value={formData.memoria}
               onChange={handleOnChange}
+              editData={editData}
             />
             <Select
               name="hard_disk"
@@ -161,6 +175,7 @@ function Computadores() {
               apiUrl="http://localhost:3001/hd"
               value={formData.hard_disk}
               onChange={handleOnChange}
+              editData={editData}
             />
             <Select
               name="processador"
@@ -168,6 +183,7 @@ function Computadores() {
               apiUrl="http://localhost:3001/processador"
               value={formData.processador}
               onChange={handleOnChange}
+              editData={editData}
             />
             <Select
               name="office"
@@ -175,6 +191,7 @@ function Computadores() {
               apiUrl="http://localhost:3001/office"
               value={formData.office}
               onChange={handleOnChange}
+              editData={editData}
             />
             <Select
               name="tipo_equipamento"
@@ -182,6 +199,7 @@ function Computadores() {
               apiUrl="http://localhost:3001/computadores"
               value={formData.tipo_computadores}
               onChange={handleOnChange}
+              editData={editData}
             />
             <Input
               type="text"
@@ -189,15 +207,16 @@ function Computadores() {
               name="configuracao"
               value={formData.configuracao}
               onChange={handleOnChange}
+              editData={editData}
             />
-            <div className={styles.obs_box}>
-              <label>Observação:</label>
-              <textarea
-                name="observacao"
-                value={formData.observacao}
-                onChange={handleOnChange}
-              ></textarea>
-            </div>
+            <Input
+              type="textarea"
+              text="Observação"
+              name="observacao"
+              value={formData.observacao}
+              onChange={handleOnChange}
+              editData={editData}
+            />
           </div>
           <div className={styles.form_btn}>
             <Radio.Group value={size} onChange={(e) => setSize(e.target.value)}>

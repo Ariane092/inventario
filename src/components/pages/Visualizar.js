@@ -79,12 +79,12 @@ function Visualizar() {
         style={{
           top: 20,
         }}
-        width={1000}
+        width={900}
         open={editOpen}
-        onOk={() => setEditOpen(false)}
+        footer={null}
         onCancel={() => setEditOpen(false)}
       >
-        <Computadores />
+        <Computadores editData={data}/>
       </Modal>
     </div>
   );

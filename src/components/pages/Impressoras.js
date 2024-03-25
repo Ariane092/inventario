@@ -150,15 +150,13 @@ function Impressoras() {
               value={formData.tipo_impressoras}
               onChange={handleOnChange}
             />
-
-            <div className={styles.obs_box}>
-              <label>Observação:</label>
-              <textarea
-                name="observacao"
-                value={formData.observacao}
-                onChange={handleOnChange}
-              ></textarea>
-            </div>
+            <Input
+              type="textarea"
+              text="Observação"
+              name="observacao"
+              value={formData.observacao}
+              onChange={handleOnChange}
+            />
           </div>
           <div className={styles.form_btn}>
             <Radio.Group value={size} onChange={(e) => setSize(e.target.value)}>

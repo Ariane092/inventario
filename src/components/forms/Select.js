@@ -142,7 +142,7 @@ function Select({ text, name, onChange, value, apiUrl, isVisibleAdd = true }) {
             width: "240px",
             boxShadow: "0 0 10px rgba(0,0,0,0.3)",
             borderRadius: "6px",
-            zIndex: "9999",
+            zIndex: "1",
           }}
           className={styles.add_option}
         >
@@ -164,14 +164,14 @@ function Select({ text, name, onChange, value, apiUrl, isVisibleAdd = true }) {
             <Button
               type="link"
               size={"small"}
-              shape="round"
+              shape="default"
               onClick={handleClose}
             >
               Fechar
             </Button>
             <Button
               type="primary"
-              shape="round"
+              shape="default"
               size={"small"}
               style={{ background: "rgb(55, 119, 87)" }}
               onClick={(e) => handleCreate(e, name)}
