@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
+import { EditOutlined, QrcodeOutlined } from "@ant-design/icons";
 import { Button, Radio, Modal } from "antd";
 import Label from "../forms/Label.js";
+import Editar from "./Editar.js";
 import "./Visualizar.css";
-import { EditOutlined, QrcodeOutlined } from "@ant-design/icons";
-import Computadores from "./Computadores.js";
+
 
 function Visualizar() {
   const [size, setSize] = useState("default");
@@ -84,7 +85,7 @@ function Visualizar() {
         footer={null}
         onCancel={() => setEditOpen(false)}
       >
-        <Computadores editData={data}/>
+        <Editar />
       </Modal>
     </div>
   );

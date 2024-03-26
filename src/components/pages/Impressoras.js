@@ -41,7 +41,7 @@ function Impressoras() {
       alert("Usuário cadastrado com sucesso!");
     } catch (error) {
       console.error("Error:", error);
-      alert("Erro ao cadastrar usuário.");
+      alert("Erro ao cadastrar.");
     }
   };
 

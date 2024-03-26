@@ -342,3 +342,21 @@ app.listen(port, () => {
   console.log(`Servidor rodando na porta ${port}`);
 });
 
+/*alter table*/
+app.put('/cadastro/:id', async (req, res) => {
+  const id = req.params.id; 
+  try {
+    const { projeto, responsavel, tipo_equipamento, servicetag, patrimonio, marca, modelo, processo, 
+      data_compra, local, usuario, nota_fiscal, cod_doacao, memoria, hard_disk, processador, office, configuracao, observacao, status } = req.body;
+
+    const result = await pool.query(
+      'UPDATE cadastro SET projeto = $1, responsavel = $2, tipo_equipamento = $3, servicetag = $4, patrimonio = $5, marca = $6, modelo = $7, processo = $8, data_compra = $9, local = $10, usuario = $11, nota_fiscal = $12, cod_doacao = $13, memoria = $14, hard_disk = $15, processador = $16, office = $17, configuracao = $18, observacao = $19, status = $20 WHERE id = $21 RETURNING *',
+      [projeto, responsavel, tipo_equipamento, servicetag, patrimonio, marca, modelo, processo, data_compra, local, usuario, nota_fiscal, cod_doacao, memoria, hard_disk, processador, office, configuracao, observacao, status, id]
+    );
+    res.json(result.rows[0]);
+  } catch (error) {
+    console.error('Erro ao atualizar dados no banco de dados', error);
+    res.status(500).send('Erro interno do servidor');
+  }
+});
+

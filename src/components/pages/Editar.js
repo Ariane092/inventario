@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { useParams } from "react-router-dom";
 import Input from "../forms/Input.js";
 import Select from "../forms/Select.js";
 import styles from "./Cadastro.module.css";
@@ -6,9 +7,10 @@ import { Button, Radio, Alert, Space } from "antd";
 import { MdLinkedCamera } from "react-icons/md";
 import axios from "axios";
 
-function Computadores(editData, title) {
+function Editar() {
   const [size, setSize] = useState("default");
-  const [submitSuccess, setSubmitSuccess] = useState(false);
+  const [editSuccess, setEditSuccess] = useState(false);
+  const { id } = useParams();
   const [formData, setFormData] = useState({
     processo: "",
     data_compra: "",
@@ -40,37 +42,58 @@ function Computadores(editData, title) {
     }));
   };
 
-  const handleSubmit = async (e) => {
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await fetch(`http://localhost:3001/cadastro/${id}`);
+        const data = await response.json();
+        setFormData({
+          ...data,
+          data_compra: data.data_compra
+            ? data.data_compra
+            : new Date().toString(),
+        });
+      } catch (error) {
+        console.error("Erro ao obter dados da API", error);
+      }
+    };
+    fetchData();
+  }, [id]);
+
+  const handleEdit = async (e) => {
     e.preventDefault();
     try {
-      await axios.post("http://localhost:3001/cadastro", formData);
-      setSubmitSuccess(true);
+      await axios.put(`http://localhost:3001/cadastro/${id}`, formData);
+      setEditSuccess(true);
     } catch (error) {
       console.error("Error:", error);
-      alert("Erro ao cadastrar.");
     }
+  };
+
+  const handleClose = () => {
+    setEditSuccess(false);
   };
 
   return (
     <>
       <div className={styles.container}>
-        <form className={styles.form} onSubmit={handleSubmit}>
-        <Space
+        <form className={styles.form} onSubmit={handleEdit}>
+          <Space
             direction="vertical"
             style={{
               width: '100%',
               marginBottom: '10px'
             }}
           >
-            {submitSuccess && ( 
+            {editSuccess && ( 
               <Alert
-                message="Cadastro realizado com sucesso!"
+                message="Equipamento atualizado com sucesso!"
                 type="success"
                 showIcon
               />
             )}
           </Space>
-          <h4>Cadastro de Computadores</h4>
+          <h4>Editar Equipamento</h4>
           <div className={styles.input_group}>
             <Input
               type="text"
@@ -78,7 +101,6 @@ function Computadores(editData, title) {
               name="processo"
               value={formData.processo}
               onChange={handleOnChange}
-              editData={editData}
             />
             <Input
               type="date"
@@ -86,7 +108,6 @@ function Computadores(editData, title) {
               name="data_compra"
               value={formData.data_compra}
               onChange={handleOnChange}
-              editData={editData}
             />
             <Select
               name="responsavel"
@@ -94,7 +115,6 @@ function Computadores(editData, title) {
               apiUrl="http://localhost:3001/responsavel"
               value={formData.responsavel}
               onChange={handleOnChange}
-              editData={editData}
             />
             <Input
               type="text"
@@ -102,7 +122,6 @@ function Computadores(editData, title) {
               name="local"
               value={formData.local}
               onChange={handleOnChange}
-              editData={editData}
             />
             <Input
               type="text"
@@ -111,7 +130,6 @@ function Computadores(editData, title) {
               placeholder="Senão, digite ROTATIVO"
               value={formData.usuario}
               onChange={handleOnChange}
-              editData={editData}
             />
             <Input
               type="number"
@@ -119,7 +137,6 @@ function Computadores(editData, title) {
               name="nota_fiscal"
               value={formData.nota_fiscal}
               onChange={handleOnChange}
-              editData={editData}
             />
             <Input
               type="number"
@@ -127,7 +144,6 @@ function Computadores(editData, title) {
               name="cod_doacao"
               value={formData.cod_doacao}
               onChange={handleOnChange}
-              editData={editData}
             />
             <Input
               type="number"
@@ -135,7 +151,6 @@ function Computadores(editData, title) {
               name="patrimonio"
               value={formData.patrimonio}
               onChange={handleOnChange}
-              editData={editData}
             />
             <Select
               name="projeto"
@@ -143,7 +158,6 @@ function Computadores(editData, title) {
               apiUrl="http://localhost:3001/projeto"
               value={formData.projeto}
               onChange={handleOnChange}
-              editData={editData}
             />
             <Select
               name="status"
@@ -151,7 +165,6 @@ function Computadores(editData, title) {
               apiUrl="http://localhost:3001/status"
               value={formData.status}
               onChange={handleOnChange}
-              editData={editData}
             />
             <Input
               type="text"
@@ -159,7 +172,6 @@ function Computadores(editData, title) {
               name="servicetag"
               value={formData.servicetag}
               onChange={handleOnChange}
-              editData={editData}
             />
             <Select
               name="marca"
@@ -167,7 +179,6 @@ function Computadores(editData, title) {
               apiUrl="http://localhost:3001/marca"
               value={formData.marca}
               onChange={handleOnChange}
-              editData={editData}
             />
             <Select
               name="modelo"
@@ -175,7 +186,6 @@ function Computadores(editData, title) {
               apiUrl="http://localhost:3001/modelo"
               value={formData.modelo}
               onChange={handleOnChange}
-              editData={editData}
             />
             <Select
               name="memoria"
@@ -183,7 +193,6 @@ function Computadores(editData, title) {
               apiUrl="http://localhost:3001/memoria"
               value={formData.memoria}
               onChange={handleOnChange}
-              editData={editData}
             />
             <Select
               name="hard_disk"
@@ -191,7 +200,6 @@ function Computadores(editData, title) {
               apiUrl="http://localhost:3001/hd"
               value={formData.hard_disk}
               onChange={handleOnChange}
-              editData={editData}
             />
             <Select
               name="processador"
@@ -199,7 +207,6 @@ function Computadores(editData, title) {
               apiUrl="http://localhost:3001/processador"
               value={formData.processador}
               onChange={handleOnChange}
-              editData={editData}
             />
             <Select
               name="office"
@@ -207,15 +214,13 @@ function Computadores(editData, title) {
               apiUrl="http://localhost:3001/office"
               value={formData.office}
               onChange={handleOnChange}
-              editData={editData}
             />
             <Select
               name="tipo_equipamento"
               text="Tipo de Equipamento"
-              apiUrl="http://localhost:3001/computadores"
-              value={formData.tipo_computadores}
+              apiUrl="http://localhost:3001/equipamento"
+              value={formData.tipo_equipamento}
               onChange={handleOnChange}
-              editData={editData}
             />
             <Input
               type="text"
@@ -223,7 +228,6 @@ function Computadores(editData, title) {
               name="configuracao"
               value={formData.configuracao}
               onChange={handleOnChange}
-              editData={editData}
             />
             <Input
               type="textarea"
@@ -231,7 +235,6 @@ function Computadores(editData, title) {
               name="observacao"
               value={formData.observacao}
               onChange={handleOnChange}
-              editData={editData}
             />
           </div>
           <div className={styles.form_btn}>
@@ -243,7 +246,7 @@ function Computadores(editData, title) {
                 style={{ background: "rgb(55, 119, 87)" }}
                 htmlType="submit"
               >
-                Enviar
+                Alterar
               </Button>
               <Button
                 type="primary"
@@ -260,4 +263,4 @@ function Computadores(editData, title) {
   );
 }
 
-export default Computadores;
+export default Editar;
