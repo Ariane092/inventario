@@ -2,12 +2,14 @@ import React, { useState } from "react";
 import Input from "../forms/Input.js";
 import Select from "../forms/Select.js";
 import styles from "./Cadastro.module.css";
-import { Button, Radio, App } from "antd";
+import { Button, Radio, Alert, Space } from "antd";
 import { MdLinkedCamera } from "react-icons/md";
 import axios from "axios";
 
 function Impressoras() {
   const [size, setSize] = useState("default");
+  const [submitSuccess, setSubmitSuccess] = useState(false);
+  const [submitError, setSubmitError] = useState(false);
   const [formData, setFormData] = useState({
     processo: "",
     data_compra: "",
@@ -38,10 +40,13 @@ function Impressoras() {
     e.preventDefault();
     try {
       await axios.post("http://localhost:3001/cadastro", formData);
-      alert("Usuário cadastrado com sucesso!");
+      setSubmitSuccess(true);
+      setTimeout(() => {
+        window.location.reload(); 
+    }, 1500);
     } catch (error) {
       console.error("Error:", error);
-      alert("Erro ao cadastrar.");
+      setSubmitError(true);
     }
   };
 
@@ -49,6 +54,27 @@ function Impressoras() {
     <>
       <div className={styles.container}>
         <form className={styles.form} onSubmit={handleSubmit}>
+          <Space
+            direction="vertical"
+            style={{
+              width: "100%",
+              marginBottom: "10px",
+            }}
+          >
+            {submitSuccess ? (
+              <Alert
+                message="Equipamento cadastrado!"
+                type="success"
+                showIcon
+              />
+            ) : submitError ? (
+              <Alert
+                message="Erro ao cadastrar equipamento."
+                type="error"
+                showIcon
+              />
+            ) : null}
+          </Space>
           <h4>Cadastro de Impressoras</h4>
           <div className={styles.input_group}>
             <Input
@@ -173,10 +199,9 @@ function Impressoras() {
                 type="primary"
                 size={size}
                 shape="default"
-                style={{ margin: 10, background: "rgb(55, 119, 87)"}}
+                style={{ margin: 10, background: "rgb(55, 119, 87)" }}
                 icon={<MdLinkedCamera />}
-              >
-              </Button>
+              ></Button>
             </Radio.Group>
           </div>
         </form>

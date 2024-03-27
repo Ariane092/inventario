@@ -6,9 +6,10 @@ import { Button, Radio, Alert, Space } from "antd";
 import { MdLinkedCamera } from "react-icons/md";
 import axios from "axios";
 
-function Computadores(editData, title) {
+function Computadores(editData) {
   const [size, setSize] = useState("default");
   const [submitSuccess, setSubmitSuccess] = useState(false);
+  const [submitError, setSubmitError] = useState(false);
   const [formData, setFormData] = useState({
     processo: "",
     data_compra: "",
@@ -45,9 +46,12 @@ function Computadores(editData, title) {
     try {
       await axios.post("http://localhost:3001/cadastro", formData);
       setSubmitSuccess(true);
+      setTimeout(() => {
+        window.location.reload(); 
+    }, 1500);
     } catch (error) {
       console.error("Error:", error);
-      alert("Erro ao cadastrar.");
+      setSubmitError(true);
     }
   };
 
@@ -55,20 +59,26 @@ function Computadores(editData, title) {
     <>
       <div className={styles.container}>
         <form className={styles.form} onSubmit={handleSubmit}>
-        <Space
+          <Space
             direction="vertical"
             style={{
-              width: '100%',
-              marginBottom: '10px'
+              width: "100%",
+              marginBottom: "10px",
             }}
           >
-            {submitSuccess && ( 
+            {submitSuccess ? (
               <Alert
-                message="Cadastro realizado com sucesso!"
+                message="Equipamento cadastrado!"
                 type="success"
                 showIcon
               />
-            )}
+            ) : submitError ? (
+              <Alert
+                message="Erro ao cadastrar equipamento."
+                type="error"
+                showIcon
+              />
+            ) : null}
           </Space>
           <h4>Cadastro de Computadores</h4>
           <div className={styles.input_group}>

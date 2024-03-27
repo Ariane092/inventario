@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { useParams } from "react-router-dom";
 import Input from "../forms/Input.js";
 import Select from "../forms/Select.js";
 import styles from "./Cadastro.module.css";
@@ -6,10 +7,10 @@ import { Button, Radio, Alert, Space } from "antd";
 import { MdLinkedCamera } from "react-icons/md";
 import axios from "axios";
 
-function Escritorio() {
+function Duplicar() {
   const [size, setSize] = useState("default");
-  const [submitSuccess, setSubmitSuccess] = useState(false);
-  const [submitError, setSubmitError] = useState(false);
+  const [editSuccess, setEditSuccess] = useState(false);
+  const { id } = useParams();
   const [formData, setFormData] = useState({
     processo: "",
     data_compra: "",
@@ -25,6 +26,11 @@ function Escritorio() {
     tipo_equipamento: "",
     marca: "",
     modelo: "",
+    memoria: "",
+    hard_disk: "",
+    processador: "",
+    office: "",
+    configuracao: "",
     observacao: "",
   });
 
@@ -36,46 +42,58 @@ function Escritorio() {
     }));
   };
 
-  const handleSubmit = async (e) => {
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await fetch(`http://localhost:3001/cadastro/${id}`);
+        const data = await response.json();
+        setFormData({
+          ...data,
+          data_compra: data.data_compra
+            ? data.data_compra
+            : new Date().toString(),
+        });
+      } catch (error) {
+        console.error("Erro ao obter dados da API", error);
+      }
+    };
+    fetchData();
+  }, [id]);
+
+  const handleEdit = async (e) => {
     e.preventDefault();
     try {
-      await axios.post("http://localhost:3001/cadastro", formData);
-      setSubmitSuccess(true);
+      await axios.post(`http://localhost:3001/cadastro/${id}`, formData);
+      setEditSuccess(true);
       setTimeout(() => {
         window.location.reload(); 
-    }, 1500);
+    }, 1000);
     } catch (error) {
       console.error("Error:", error);
-      setSubmitError(true);
     }
   };
 
   return (
     <>
       <div className={styles.container}>
-        <form className={styles.form} onSubmit={handleSubmit}>
-        <Space
+        <form className={styles.form} onSubmit={handleEdit}>
+          <Space
             direction="vertical"
             style={{
               width: '100%',
+              marginTop: '10px',
               marginBottom: '10px'
             }}
           >
-            {submitSuccess ? (
+            {editSuccess && ( 
               <Alert
-                message="Equipamento cadastrado!"
+                message="Equipamento atualizado!"
                 type="success"
                 showIcon
               />
-            ) : submitError ? (
-              <Alert
-                message="Erro ao cadastrar equipamento."
-                type="error"
-                showIcon
-              />
-            ) : null}
+            )}
           </Space>
-          <h4>Cadastro Itens de Escritório</h4>
+          <h4>Duplicar e Cadastrar</h4>
           <div className={styles.input_group}>
             <Input
               type="text"
@@ -170,10 +188,45 @@ function Escritorio() {
               onChange={handleOnChange}
             />
             <Select
+              name="memoria"
+              text="Memória"
+              apiUrl="http://localhost:3001/memoria"
+              value={formData.memoria}
+              onChange={handleOnChange}
+            />
+            <Select
+              name="hard_disk"
+              text="Hard Disk"
+              apiUrl="http://localhost:3001/hd"
+              value={formData.hard_disk}
+              onChange={handleOnChange}
+            />
+            <Select
+              name="processador"
+              text="Processador"
+              apiUrl="http://localhost:3001/processador"
+              value={formData.processador}
+              onChange={handleOnChange}
+            />
+            <Select
+              name="office"
+              text="Office"
+              apiUrl="http://localhost:3001/office"
+              value={formData.office}
+              onChange={handleOnChange}
+            />
+            <Select
               name="tipo_equipamento"
               text="Tipo de Equipamento"
-              apiUrl="http://localhost:3001/escritorio"
-              value={formData.tipo_escritorio}
+              apiUrl="http://localhost:3001/equipamento"
+              value={formData.tipo_equipamento}
+              onChange={handleOnChange}
+            />
+            <Input
+              type="text"
+              text="Configuração"
+              name="configuracao"
+              value={formData.configuracao}
               onChange={handleOnChange}
             />
             <Input
@@ -199,10 +252,9 @@ function Escritorio() {
                 type="primary"
                 size={size}
                 shape="default"
-                style={{ margin: 10, background: "rgb(55, 119, 87)"}}
+                style={{ margin: 10, background: "rgb(55, 119, 87)" }}
                 icon={<MdLinkedCamera />}
-              >
-              </Button>
+              ></Button>
             </Radio.Group>
           </div>
         </form>
@@ -211,4 +263,4 @@ function Escritorio() {
   );
 }
 
-export default Escritorio;
+export default Duplicar;

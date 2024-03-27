@@ -65,13 +65,12 @@ function Editar() {
     try {
       await axios.put(`http://localhost:3001/cadastro/${id}`, formData);
       setEditSuccess(true);
+      setTimeout(() => {
+        window.location.reload(); 
+    }, 1000);
     } catch (error) {
       console.error("Error:", error);
     }
-  };
-
-  const handleClose = () => {
-    setEditSuccess(false);
   };
 
   return (
@@ -82,12 +81,13 @@ function Editar() {
             direction="vertical"
             style={{
               width: '100%',
+              marginTop: '10px',
               marginBottom: '10px'
             }}
           >
             {editSuccess && ( 
               <Alert
-                message="Equipamento atualizado com sucesso!"
+                message="Equipamento atualizado!"
                 type="success"
                 showIcon
               />

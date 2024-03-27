@@ -6,11 +6,13 @@ import { Link } from "react-router-dom";
 // } from "@tanstack/react-table";
 import "./Home.css";
 import { SearchOutlined, EyeOutlined, CopyOutlined } from "@ant-design/icons";
-import { Button, Input, Space, Table } from "antd";
+import { Button, Input, Space, Table, Modal } from "antd";
 import Highlighter from "react-highlight-words";
+import Duplicar from "./Duplicar.js";
 
 function Home() {
   const [globalFilter, setGlobalFilter] = useState("");
+  const [editOpen, setEditOpen] = useState(false);
   const [data, setData] = useState([]);
   const { Search } = Input;
 
@@ -35,6 +37,19 @@ function Home() {
     };
     fetchData();
   }, []);
+  const handleCopy = ()=>{
+    <Modal
+        style={{
+          top: 20,
+        }}
+        width={900}
+        open={editOpen}
+        footer={null}
+        onCancel={() => setEditOpen(false)}
+      >
+        <Duplicar />
+      </Modal>
+  }
 
   const [searchText, setSearchText] = useState("");
   const [searchedColumn, setSearchedColumn] = useState("");
@@ -237,16 +252,19 @@ function Home() {
       key: "operation",
       fixed: "right",
       render: (data) => (
-        <Link to={`/visualizar/${data.id}`}>
-          <EyeOutlined />
-        </Link>
+        <div style={{display: 'flex', justifyContent: 'space-between'}}>
+          <Link to={`/visualizar/${data.id}`}>
+            <EyeOutlined style={{fontSize: '16px'}} />
+          </Link>
+          <CopyOutlined className="copy-btn" onClick={() => setEditOpen(true)} /> 
+        </div>
       ),
     },
   ];
 
   return (
     <>
-      <div>
+      <div className="table-container">
         <Search
           placeholder="Pesquisar"
           allowClear
@@ -257,6 +275,18 @@ function Home() {
 
         <Table columns={columns} dataSource={data} />
       </div>
+
+      <Modal
+        style={{
+          top: 20,
+        }}
+        width={900}
+        open={editOpen}
+        footer={null}
+        onCancel={() => setEditOpen(false)}
+      >
+        <Duplicar />
+      </Modal>
     </>
   );
 }

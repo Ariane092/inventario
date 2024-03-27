@@ -48,7 +48,7 @@ function Visualizar() {
               <Label text="Hard Disk" value={data.hard_disk} />
               <Label text="Processador" value={data.processador} />
               <Label text="Office" value={data.office} />
-              <Label text="Tipo de Equipamento" value={data.tipo_equipamento} />
+              <Label text="Tipo" value={data.tipo_equipamento} />
               <Label text="Configuração" value={data.configuracao} />
               <Label text="Observação" value={data.observacao} />
         </div>
