@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, useCallback } from "react";
 import { MdAddCircleOutline } from "react-icons/md";
 import { Button, Radio } from "antd";
 import Input from "../forms/Input.js";
@@ -12,7 +12,7 @@ function Select({ text, name, onChange, value, apiUrl, isVisibleAdd = true }) {
   const [inputValue, setInputValue] = useState("");
   const selectRef = useRef(null);
 
-  const fetchData = async () => {
+  const fetchData = useCallback(async () => {
     try {
       const response = await fetch(apiUrl);
       const data = await response.json();
@@ -20,11 +20,11 @@ function Select({ text, name, onChange, value, apiUrl, isVisibleAdd = true }) {
     } catch (error) {
       console.error("Erro ao obter dados da API", error);
     }
-  };
+  }, [apiUrl]);
 
   useEffect(() => {
     fetchData();
-  }, [apiUrl]);
+  }, [fetchData]);
 
   const handleCreate = async (e, tableName) => {
     e.preventDefault();

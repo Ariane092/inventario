@@ -4,6 +4,7 @@ import { EditOutlined, QrcodeOutlined } from "@ant-design/icons";
 import { Button, Radio, Modal } from "antd";
 import Label from "../forms/Label.js";
 import Editar from "./Editar.js";
+import moment from "moment";
 import "./Visualizar.css";
 
 
@@ -18,6 +19,7 @@ function Visualizar() {
       try {
         const response = await fetch(`http://localhost:3001/cadastro/${id}`);
         const data = await response.json();
+        data.data_compra = moment(data.data_compra).format('DD-MM-YYYY');
         setData(data);
       } catch (error) {
         console.error("Erro ao obter dados da API", error);

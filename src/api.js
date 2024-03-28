@@ -27,7 +27,7 @@ app.get('/cadastro', async (req, res) => {
   }
 });
 
-/*visualizar*/
+/*visualizar/editar/duplicar*/
 app.get('/cadastro/:id', async (req, res) => {
   try {
     const id = parseInt(req.params.id);
@@ -342,7 +342,7 @@ app.listen(port, () => {
   console.log(`Servidor rodando na porta ${port}`);
 });
 
-/*alter table*/
+/*editar table*/
 app.put('/cadastro/:id', async (req, res) => {
   const id = req.params.id; 
   try {
@@ -359,4 +359,5 @@ app.put('/cadastro/:id', async (req, res) => {
     res.status(500).send('Erro interno do servidor');
   }
 });
+
 

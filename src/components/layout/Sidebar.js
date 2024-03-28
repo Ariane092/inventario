@@ -14,9 +14,9 @@ import {
   LogoutOutlined,
   MenuFoldOutlined,
   MenuUnfoldOutlined,
-  UserOutlined
+  UserOutlined,
 } from "@ant-design/icons";
-import { Layout, Menu, Button, theme, Avatar } from "antd";
+import { Layout, Menu, Button, theme, Avatar, Space } from "antd";
 import { PiOfficeChair } from "react-icons/pi";
 
 const { Header, Sider, Content } = Layout;
@@ -86,10 +86,22 @@ function Sidebar(props) {
   const {
     token: { colorBgContainer, borderRadiusLG },
   } = theme.useToken();
-  
+
   return (
-      <Layout>
-      <Sider trigger={null} collapsible collapsed={collapsed} theme="light" style={{background: 'rgb(55, 119, 87)', height: '100vh'}}>
+    <Layout>
+      <Sider
+        trigger={null}
+        collapsible
+        collapsed={collapsed}
+        theme="light"
+        style={{ background: "rgb(55, 119, 87)", height: "100vh" }}
+      >
+        <Space direction="vertical" size={16}>
+          <Space wrap size={16} className="user-style">
+            <Avatar size="large" icon={<UserOutlined />} className="avatar" />
+            <p>ariane.diniz</p>
+          </Space>
+        </Space>
         <Menu
           theme="light"
           mode="inline"
@@ -133,19 +145,24 @@ function Sidebar(props) {
       <Layout className="layout-ant">
         <Header
           style={{
-            padding: 0,
-            background: 'whitesmoke',
-            display: 'flex',
-            padding: '10px 5px 10px 5px',
-            justifyContent: 'flex-start',
-            alignItems: 'center',
-            height: '55px'
+            background: "whitesmoke",
+            display: "flex",
+            padding: "10px 5px 10px 5px",
+            justifyContent: "flex-start",
+            alignItems: "center",
+            height: "55px",
           }}
         >
           <Button
             type="text"
             shape="circle"
-            icon={collapsed ? <MenuUnfoldOutlined style={{fontSize: "20px",}} /> : <MenuFoldOutlined style={{fontSize: "20px"}}/>}
+            icon={
+              collapsed ? (
+                <MenuUnfoldOutlined style={{ fontSize: "20px" }} />
+              ) : (
+                <MenuFoldOutlined style={{ fontSize: "20px" }} />
+              )
+            }
             onClick={() => setCollapsed(!collapsed)}
           />
           <div>
@@ -163,7 +180,7 @@ function Sidebar(props) {
             borderRadius: borderRadiusLG,
           }}
         >
-          <div> 
+          <div>
             {props.children} {/*pages props*/}
           </div>
         </Content>

@@ -9,7 +9,8 @@ import axios from "axios";
 
 function Duplicar() {
   const [size, setSize] = useState("default");
-  const [editSuccess, setEditSuccess] = useState(false);
+  const [duplicateSuccess, setDuplicateSuccess] = useState(false);
+  const [duplicateError, setDuplicateError] = useState(false);
   const { id } = useParams();
   const [formData, setFormData] = useState({
     processo: "",
@@ -48,10 +49,7 @@ function Duplicar() {
         const response = await fetch(`http://localhost:3001/cadastro/${id}`);
         const data = await response.json();
         setFormData({
-          ...data,
-          data_compra: data.data_compra
-            ? data.data_compra
-            : new Date().toString(),
+          ...data
         });
       } catch (error) {
         console.error("Erro ao obter dados da API", error);
@@ -60,23 +58,24 @@ function Duplicar() {
     fetchData();
   }, [id]);
 
-  const handleEdit = async (e) => {
+  const handleDuplicate = async (e) => {
     e.preventDefault();
     try {
-      await axios.post(`http://localhost:3001/cadastro/${id}`, formData);
-      setEditSuccess(true);
+      await axios.post("http://localhost:3001/cadastro", formData);
+      setDuplicateSuccess(true);
       setTimeout(() => {
         window.location.reload(); 
-    }, 1000);
+    }, 2000);
     } catch (error) {
       console.error("Error:", error);
+      setDuplicateError(true);
     }
   };
 
   return (
     <>
       <div className={styles.container}>
-        <form className={styles.form} onSubmit={handleEdit}>
+        <form className={styles.form} onSubmit={handleDuplicate}>
           <Space
             direction="vertical"
             style={{
@@ -85,13 +84,19 @@ function Duplicar() {
               marginBottom: '10px'
             }}
           >
-            {editSuccess && ( 
+            {duplicateSuccess ? (
               <Alert
-                message="Equipamento atualizado!"
+                message="O equipamento foi duplicado e cadastrado com novo id."
                 type="success"
                 showIcon
               />
-            )}
+            ) : duplicateError ? (
+              <Alert
+                message="Erro ao cadastrar equipamento."
+                type="error"
+                showIcon
+              />
+            ) : null}
           </Space>
           <h4>Duplicar e Cadastrar</h4>
           <div className={styles.input_group}>

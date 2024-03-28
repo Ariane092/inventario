@@ -1,9 +1,5 @@
 import React, { useRef, useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-// import {
-//   useReactTable,
-//   getCoreRowModel,
-// } from "@tanstack/react-table";
 import "./Home.css";
 import { SearchOutlined, EyeOutlined, CopyOutlined } from "@ant-design/icons";
 import { Button, Input, Space, Table, Modal } from "antd";
@@ -11,19 +7,12 @@ import Highlighter from "react-highlight-words";
 import Duplicar from "./Duplicar.js";
 
 function Home() {
-  const [globalFilter, setGlobalFilter] = useState("");
-  const [editOpen, setEditOpen] = useState(false);
+  const [duplicateOpen, setDuplicateOpen] = useState(false);
   const [data, setData] = useState([]);
+  const [searchText, setSearchText] = useState("");
+  const [searchedColumn, setSearchedColumn] = useState("");
+  const searchInput = useRef(null);
   const { Search } = Input;
-
-  // const table = useReactTable({
-  //   data,
-  //   state: {
-  //     globalFilter,
-  //   },
-  //   onGlobalFilterChange: setGlobalFilter,
-  //   getCoreRowModel: getCoreRowModel(),
-  // });
 
   useEffect(() => {
     const fetchData = async () => {
@@ -37,23 +26,17 @@ function Home() {
     };
     fetchData();
   }, []);
-  const handleCopy = ()=>{
-    <Modal
-        style={{
-          top: 20,
-        }}
-        width={900}
-        open={editOpen}
-        footer={null}
-        onCancel={() => setEditOpen(false)}
-      >
-        <Duplicar />
-      </Modal>
-  }
 
-  const [searchText, setSearchText] = useState("");
-  const [searchedColumn, setSearchedColumn] = useState("");
-  const searchInput = useRef(null);
+  const handleGlobalSearch = (dataIndex) => {
+    setSearchText(dataIndex);
+  };
+  const globalSearchProps = {
+    placeholder: "Pesquisar",
+    allowClear: true,
+    value: searchText,
+    onChange: (e) => setSearchText(e.target.value),
+    onSearch: (value) => handleGlobalSearch(value),
+  };
   const handleSearch = (selectedKeys, confirm, dataIndex) => {
     confirm();
     setSearchText(selectedKeys[0]);
@@ -231,14 +214,6 @@ function Home() {
       sorter: (a, b) => a.modelo.length - b.modelo.length,
       sortDirections: ["descend", "ascend"],
     },
-    // {
-    //   key: "configuracao",
-    //   dataIndex: "configuracao",
-    //   title: "Config",
-    //   ...getColumnSearchProps("configuracao"),
-    //   sorter: (a, b) => a.configuracao.length - b.configuracao.length,
-    //   sortDirections: ["descend", "ascend"],
-    // },
     {
       key: "status",
       dataIndex: "status",
@@ -252,11 +227,16 @@ function Home() {
       key: "operation",
       fixed: "right",
       render: (data) => (
-        <div style={{display: 'flex', justifyContent: 'space-between'}}>
+        <div style={{ display: "flex", justifyContent: "space-between" }}>
           <Link to={`/visualizar/${data.id}`}>
-            <EyeOutlined style={{fontSize: '16px'}} />
+            <EyeOutlined style={{ fontSize: "16px" }} />
           </Link>
-          <CopyOutlined className="copy-btn" onClick={() => setEditOpen(true)} /> 
+          <Link to={`/home/${data.id}`}>
+            <CopyOutlined
+              className="copy-btn"
+              onClick={() => setDuplicateOpen(true)}
+            />
+          </Link>
         </div>
       ),
     },
@@ -264,26 +244,21 @@ function Home() {
 
   return (
     <>
-      <div className="table-container">
         <Search
-          placeholder="Pesquisar"
-          allowClear
-          value={globalFilter}
-          onChange={(e) => setGlobalFilter(e.target.value)}
-          style={{ width: 230, marginTop: 0 }}
+          {...globalSearchProps}
+          style={{ width: 220, marginTop: 0 }}
         />
 
         <Table columns={columns} dataSource={data} />
-      </div>
 
       <Modal
         style={{
           top: 20,
         }}
         width={900}
-        open={editOpen}
+        open={duplicateOpen}
         footer={null}
-        onCancel={() => setEditOpen(false)}
+        onCancel={() => setDuplicateOpen(false)}
       >
         <Duplicar />
       </Modal>

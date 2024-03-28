@@ -10,6 +10,7 @@ import axios from "axios";
 function Editar() {
   const [size, setSize] = useState("default");
   const [editSuccess, setEditSuccess] = useState(false);
+  const [editError, setEditError] = useState(false);
   const { id } = useParams();
   const [formData, setFormData] = useState({
     processo: "",
@@ -48,10 +49,7 @@ function Editar() {
         const response = await fetch(`http://localhost:3001/cadastro/${id}`);
         const data = await response.json();
         setFormData({
-          ...data,
-          data_compra: data.data_compra
-            ? data.data_compra
-            : new Date().toString(),
+          ...data
         });
       } catch (error) {
         console.error("Erro ao obter dados da API", error);
@@ -67,9 +65,9 @@ function Editar() {
       setEditSuccess(true);
       setTimeout(() => {
         window.location.reload(); 
-    }, 1000);
+    }, 2000);
     } catch (error) {
-      console.error("Error:", error);
+      setEditError(true);
     }
   };
 
@@ -85,13 +83,19 @@ function Editar() {
               marginBottom: '10px'
             }}
           >
-            {editSuccess && ( 
+            {editSuccess ? (
               <Alert
-                message="Equipamento atualizado!"
+                message="O equipamento foi atualizado."
                 type="success"
                 showIcon
               />
-            )}
+            ) : editError ? (
+              <Alert
+                message="Erro ao atualizar equipamento."
+                type="error"
+                showIcon
+              />
+            ) : null}
           </Space>
           <h4>Editar Equipamento</h4>
           <div className={styles.input_group}>

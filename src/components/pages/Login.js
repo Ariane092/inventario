@@ -1,7 +1,7 @@
 import logo from "../../img/cepea.png";
 import "./Login.css";
 import { LockOutlined, UserOutlined } from "@ant-design/icons";
-import { Button, Checkbox, Form, Input } from "antd";
+import { Button, Form, Input } from "antd";
 
 function Login() {
   const onFinish = (values) => {

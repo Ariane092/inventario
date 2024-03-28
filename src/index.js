@@ -10,8 +10,17 @@ root.render(
   <React.StrictMode>
     <ConfigProvider
       theme={{
+        components: {
+          Table: {
+            headerBg: '#ebebeb',
+            borderColor: '#CCCCCC'
+          },
+          Menu: {
+            itemHoverColor: '#CCCCCC'
+          }
+        },
         token: {
-          colorPrimary: "color: rgb(89, 170, 129)",
+          colorPrimary: "rgb(89, 170, 129)",
           fontFamily: "Open Sans",
           colorSuccessBorder: "none",
           colorErrorBorder: "none",

@@ -15,9 +15,16 @@ h5 {
 }
 
 .avatar {
-    background: #e6e3e379;
-    margin-top: 15px;
-    margin-left: 55px;
+    background: #e6e3e3bb;
+}
+
+.user-style {
+    display: flex;
+    align-items: center;
+    color: rgba(245, 245, 245, 0.705);
+    margin-top: 20px;
+    margin-left: 20px;
+    font-size: 13px;
 }
 
 h3 {
@@ -28,9 +35,9 @@ h3 {
   
 .sidebar-menu {
     font-size: 14px;
-    margin-top: 35px;
+    margin-top: 25px;
     background-color: rgb(55, 119, 87);
-    color: rgb(207, 200, 200);
+    color: whitesmoke;
 }
 
 @media screen and (max-width: 768px) {

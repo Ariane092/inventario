@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import Select from "../forms/Select.js";
 import { Button, Radio } from "antd";
 import styles from "./Relatorios.module.css";
-import axios from "axios";
+// import axios from "axios";
 
 function Relatorios() {
   const [size, setSize] = useState("default");

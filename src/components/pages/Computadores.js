@@ -6,7 +6,7 @@ import { Button, Radio, Alert, Space } from "antd";
 import { MdLinkedCamera } from "react-icons/md";
 import axios from "axios";
 
-function Computadores(editData) {
+function Computadores() {
   const [size, setSize] = useState("default");
   const [submitSuccess, setSubmitSuccess] = useState(false);
   const [submitError, setSubmitError] = useState(false);
@@ -88,7 +88,6 @@ function Computadores(editData) {
               name="processo"
               value={formData.processo}
               onChange={handleOnChange}
-              editData={editData}
             />
             <Input
               type="date"
@@ -96,7 +95,6 @@ function Computadores(editData) {
               name="data_compra"
               value={formData.data_compra}
               onChange={handleOnChange}
-              editData={editData}
             />
             <Select
               name="responsavel"
@@ -104,7 +102,6 @@ function Computadores(editData) {
               apiUrl="http://localhost:3001/responsavel"
               value={formData.responsavel}
               onChange={handleOnChange}
-              editData={editData}
             />
             <Input
               type="text"
@@ -112,7 +109,6 @@ function Computadores(editData) {
               name="local"
               value={formData.local}
               onChange={handleOnChange}
-              editData={editData}
             />
             <Input
               type="text"
@@ -121,7 +117,6 @@ function Computadores(editData) {
               placeholder="Senão, digite ROTATIVO"
               value={formData.usuario}
               onChange={handleOnChange}
-              editData={editData}
             />
             <Input
               type="number"
@@ -129,7 +124,6 @@ function Computadores(editData) {
               name="nota_fiscal"
               value={formData.nota_fiscal}
               onChange={handleOnChange}
-              editData={editData}
             />
             <Input
               type="number"
@@ -137,7 +131,6 @@ function Computadores(editData) {
               name="cod_doacao"
               value={formData.cod_doacao}
               onChange={handleOnChange}
-              editData={editData}
             />
             <Input
               type="number"
@@ -145,7 +138,6 @@ function Computadores(editData) {
               name="patrimonio"
               value={formData.patrimonio}
               onChange={handleOnChange}
-              editData={editData}
             />
             <Select
               name="projeto"
@@ -153,7 +145,6 @@ function Computadores(editData) {
               apiUrl="http://localhost:3001/projeto"
               value={formData.projeto}
               onChange={handleOnChange}
-              editData={editData}
             />
             <Select
               name="status"
@@ -161,7 +152,6 @@ function Computadores(editData) {
               apiUrl="http://localhost:3001/status"
               value={formData.status}
               onChange={handleOnChange}
-              editData={editData}
             />
             <Input
               type="text"
@@ -169,7 +159,6 @@ function Computadores(editData) {
               name="servicetag"
               value={formData.servicetag}
               onChange={handleOnChange}
-              editData={editData}
             />
             <Select
               name="marca"
@@ -177,7 +166,6 @@ function Computadores(editData) {
               apiUrl="http://localhost:3001/marca"
               value={formData.marca}
               onChange={handleOnChange}
-              editData={editData}
             />
             <Select
               name="modelo"
@@ -185,7 +173,6 @@ function Computadores(editData) {
               apiUrl="http://localhost:3001/modelo"
               value={formData.modelo}
               onChange={handleOnChange}
-              editData={editData}
             />
             <Select
               name="memoria"
@@ -193,7 +180,6 @@ function Computadores(editData) {
               apiUrl="http://localhost:3001/memoria"
               value={formData.memoria}
               onChange={handleOnChange}
-              editData={editData}
             />
             <Select
               name="hard_disk"
@@ -201,7 +187,6 @@ function Computadores(editData) {
               apiUrl="http://localhost:3001/hd"
               value={formData.hard_disk}
               onChange={handleOnChange}
-              editData={editData}
             />
             <Select
               name="processador"
@@ -209,7 +194,6 @@ function Computadores(editData) {
               apiUrl="http://localhost:3001/processador"
               value={formData.processador}
               onChange={handleOnChange}
-              editData={editData}
             />
             <Select
               name="office"
@@ -217,7 +201,6 @@ function Computadores(editData) {
               apiUrl="http://localhost:3001/office"
               value={formData.office}
               onChange={handleOnChange}
-              editData={editData}
             />
             <Select
               name="tipo_equipamento"
@@ -225,7 +208,6 @@ function Computadores(editData) {
               apiUrl="http://localhost:3001/computadores"
               value={formData.tipo_computadores}
               onChange={handleOnChange}
-              editData={editData}
             />
             <Input
               type="text"
@@ -233,7 +215,6 @@ function Computadores(editData) {
               name="configuracao"
               value={formData.configuracao}
               onChange={handleOnChange}
-              editData={editData}
             />
             <Input
               type="textarea"
@@ -241,7 +222,6 @@ function Computadores(editData) {
               name="observacao"
               value={formData.observacao}
               onChange={handleOnChange}
-              editData={editData}
             />
           </div>
           <div className={styles.form_btn}>
