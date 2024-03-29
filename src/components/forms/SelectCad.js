@@ -2,7 +2,7 @@ import { useState, useEffect, useRef, useCallback } from "react";
 import { PlusOutlined } from "@ant-design/icons";
 import { Button, Radio, Select, Space } from "antd";
 import Input from "./InputCad.js"
-import styles from "./Select.module.css";
+import "./SelectCad.css";
 import axios from "axios";
 
 function SelectCad({ text, name, onChange, value, apiUrl, isVisibleAdd = true }) {
@@ -110,7 +110,7 @@ function SelectCad({ text, name, onChange, value, apiUrl, isVisibleAdd = true })
   const selectOffsetLeft = selectRef.current ? selectRef.current.offsetLeft : 0;
 
   return (
-    <div className={styles.selects}>
+    <div className="selects">
       <label htmlFor={name}>
         {text}:{" "}
       </label>
@@ -126,7 +126,7 @@ function SelectCad({ text, name, onChange, value, apiUrl, isVisibleAdd = true })
         {isVisibleAdd &&
           <Button onClick={() => setShowPopup(true)}>
             <PlusOutlined 
-              className={styles.add_button}
+              className="add_button"
             />
           </Button>
         }
@@ -146,7 +146,7 @@ function SelectCad({ text, name, onChange, value, apiUrl, isVisibleAdd = true })
             borderRadius: "6px",
             zIndex: "2",
           }}
-          className={styles.add_option}
+          className="add_option"
         >
           <Input
             type="text"
