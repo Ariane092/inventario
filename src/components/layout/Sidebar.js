@@ -151,7 +151,7 @@ function Sidebar(props) {
       <Layout className="layout-ant">
         <Header
           style={{
-            background: 'colorBgContainer',
+            background: colorBgContainer,
             display: "flex",
             padding: "10px 5px 10px 5px",
             justifyContent: "flex-start",

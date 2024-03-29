@@ -125,9 +125,7 @@ function SelectCad({ text, name, onChange, value, apiUrl, isVisibleAdd = true })
         </Select>
         {isVisibleAdd &&
           <Button onClick={() => setShowPopup(true)}>
-            <PlusOutlined 
-              className="add_button"
-            />
+            <PlusOutlined className="add_button" />
           </Button>
         }
       </Space.Compact>
