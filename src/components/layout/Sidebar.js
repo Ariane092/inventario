@@ -94,7 +94,13 @@ function Sidebar(props) {
         collapsible
         collapsed={collapsed}
         theme="light"
-        style={{ background: "rgb(55, 119, 87)", height: "100vh" }}
+        style={{
+          background: "rgb(55, 119, 87)",
+          height: "100vh",
+          position: "sticky",
+          top: 0,
+          left: 0
+        }}
       >
         <Space direction="vertical" size={16}>
           <Space wrap size={16} className="user-style">
@@ -145,12 +151,16 @@ function Sidebar(props) {
       <Layout className="layout-ant">
         <Header
           style={{
-            background: colorBgContainer,
+            background: 'colorBgContainer',
             display: "flex",
             padding: "10px 5px 10px 5px",
             justifyContent: "flex-start",
             alignItems: "center",
             height: "55px",
+            position: "sticky",
+            zIndex: '2',
+            top: 0,
+            left: 0
           }}
         >
           <Button
