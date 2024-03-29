@@ -1,7 +1,6 @@
 import React, { useState } from "react";
-import Select from "../forms/Select.js";
+import Select from "../forms/SelectCad.js";
 import { Button, Radio } from "antd";
-import styles from "./Relatorios.module.css";
 // import axios from "axios";
 
 function Relatorios() {
@@ -36,10 +35,10 @@ function Relatorios() {
 
   return (
     <>
-      <div className={styles.container}>
-        <form className={styles.form} onSubmit={handleCreate}>
+      <div className="container">
+        <form onSubmit={handleCreate}>
           <h4>Relatórios</h4>
-          <div className={styles.input_group}>
+          <div className="input-group">
             <Select
               name="tipo_equipamento"
               text="Tipo de Equipamento"
@@ -89,7 +88,7 @@ function Relatorios() {
               isVisibleAdd={false}
             />
             {showComptSelect(formData.tipo_equipamento) && (
-            <div className={styles.select_compt}>
+            <div className="select-compt">
             <Select
               name="memoria"
               text="Memória"
@@ -117,8 +116,8 @@ function Relatorios() {
             </div>
 )}
           </div>
-
-          <div className={styles.form_btn}>
+        </form>
+        <div className="form-btn">
             <Radio.Group value={size} onChange={(e) => setSize(e.target.value)}>
               <Button
                 type="primary"
@@ -128,10 +127,9 @@ function Relatorios() {
                 htmlType="submit"
               >
                 Gerar
-              </Button>
+              </Button>s
             </Radio.Group>
           </div>
-        </form>
       </div>
     </>
   );

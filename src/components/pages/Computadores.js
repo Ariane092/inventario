@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import Input from "../forms/Input.js";
-import Select from "../forms/Select.js";
-import styles from "./Cadastro.module.css";
+import Input from "../forms/InputCad.js";
+import Select from "../forms/SelectCad.js";
+import "./Cadastro.css";
 import { Button, Radio, Alert, Space } from "antd";
 import { MdLinkedCamera } from "react-icons/md";
 import axios from "axios";
@@ -57,8 +57,8 @@ function Computadores() {
 
   return (
     <>
-      <div className={styles.container}>
-        <form className={styles.form} onSubmit={handleSubmit}>
+      <div className="container">
+        <form onSubmit={handleSubmit}>
           <Space
             direction="vertical"
             style={{
@@ -81,7 +81,7 @@ function Computadores() {
             ) : null}
           </Space>
           <h4>Cadastro de Computadores</h4>
-          <div className={styles.input_group}>
+          <div className="input-group">
             <Input
               type="text"
               text="Processo"
@@ -223,8 +223,8 @@ function Computadores() {
               value={formData.observacao}
               onChange={handleOnChange}
             />
-          </div>
-          <div className={styles.form_btn}>
+          </div> 
+          <div className="form-btn">
             <Radio.Group value={size} onChange={(e) => setSize(e.target.value)}>
               <Button
                 type="primary"
@@ -243,7 +243,7 @@ function Computadores() {
                 icon={<MdLinkedCamera />}
               ></Button>
             </Radio.Group>
-          </div>
+          </div>  
         </form>
       </div>
     </>

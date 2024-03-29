@@ -1,11 +1,11 @@
 import { useState, useEffect, useRef, useCallback } from "react";
-import { MdAddCircleOutline } from "react-icons/md";
-import { Button, Radio } from "antd";
-import Input from "../forms/Input.js";
+import { PlusOutlined } from "@ant-design/icons";
+import { Button, Radio, Select, Space } from "antd";
+import Input from "./InputCad.js"
 import styles from "./Select.module.css";
 import axios from "axios";
 
-function Select({ text, name, onChange, value, apiUrl, isVisibleAdd = true }) {
+function SelectCad({ text, name, onChange, value, apiUrl, isVisibleAdd = true }) {
   const [size, setSize] = useState("default");
   const [options, setOptions] = useState([]);
   const [showPopup, setShowPopup] = useState(false);
@@ -113,22 +113,24 @@ function Select({ text, name, onChange, value, apiUrl, isVisibleAdd = true }) {
     <div className={styles.selects}>
       <label htmlFor={name}>
         {text}:{" "}
-        {isVisibleAdd && 
-          <MdAddCircleOutline
-            onClick={() => setShowPopup(true)}
-            className={styles.add_button}
-          />
-        }
       </label>
-      <select ref={selectRef} name={name} onChange={onChange} value={value}>
-        <option></option>
-        {options.map((option) => (
-          <option value={option.id} key={option.id}>
-            {option.nome}
-          </option>
-        ))}
-      </select>
-
+      <Space.Compact>
+        <Select ref={selectRef} name={name} onChange={onChange} value={value}>
+          <option></option>
+          {options.map((option) => (
+            <option value={option.id} key={option.id}>
+              {option.nome}
+            </option>
+          ))}
+        </Select>
+        {isVisibleAdd &&
+          <Button onClick={() => setShowPopup(true)}>
+            <PlusOutlined 
+              className={styles.add_button}
+            />
+          </Button>
+        }
+      </Space.Compact>
       {showPopup && (
         <div
           style={{
@@ -139,10 +141,10 @@ function Select({ text, name, onChange, value, apiUrl, isVisibleAdd = true }) {
             left: selectOffsetLeft,
             background: "#fff",
             padding: "12px",
-            width: "240px",
+            width: "300px",
             boxShadow: "0 0 10px rgba(0,0,0,0.3)",
             borderRadius: "6px",
-            zIndex: "1",
+            zIndex: "2",
           }}
           className={styles.add_option}
         >
@@ -185,4 +187,4 @@ function Select({ text, name, onChange, value, apiUrl, isVisibleAdd = true }) {
   );
 }
 
-export default Select;
+export default SelectCad;

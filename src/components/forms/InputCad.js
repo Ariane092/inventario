@@ -1,18 +1,20 @@
-import styles from "./Input.module.css";
+import styles from "./InputCad.css";
+import { Input } from "antd";
+const { TextArea } = Input;
 
-function Input({ type, text, date, name, placeholder, onChange, value }) {
+function InputCad({ type, text, date, name, placeholder, onChange, value }) {
   if (type === "textarea") {
     return (
-      <div className={styles.textarea}>
+      <div className="inputs">
         <label htmlFor={name}>{text}:</label>
-        <textarea name={name} id={name} onChange={onChange} value={value} />
+        <TextArea name={name} id={name} onChange={onChange} value={value} />
       </div>
     );
   } else {
     return (
-      <div className={styles.inputs}>
+      <div className="inputs">
         <label htmlFor={name}>{text}:</label>
-        <input
+        <Input
           type={type}
           name={name}
           id={name}
@@ -20,10 +22,11 @@ function Input({ type, text, date, name, placeholder, onChange, value }) {
           placeholder={placeholder}
           onChange={onChange}
           value={value}
+          allowClear={true}
         />
       </div>
     );
   }
 }
 
-export default Input;
+export default InputCad;

@@ -1,29 +1,18 @@
 .selects{
     display: flex;
-    flex-direction: column;
-    padding: 7px 15px 0px 0px;
-    width: 230px;
+    flex-direction: row;
+    margin: 15px;
+    align-items: center;
 }
 
 .selects label{
-    margin-bottom: 2px;
-    font-size: 12px;
-}
-
-.selects select{
-    padding: 3px;
-    border: 1px solid  #44434663;
-    border-radius: 4px;
-}
-
-.selects select:focus-visible{
-    outline: 1px solid  #44434663;
+    font-size: 13px;
+    margin-right: 10px;
 }
 
 .add_button {
- font-size: 16px;
+ font-size: 13px;
  cursor: pointer;
- justify-content: space-between;
  color: #44434663;
 }
 

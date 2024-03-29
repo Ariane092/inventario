@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import Input from "../forms/Input.js";
-import Select from "../forms/Select.js";
-import styles from "./Cadastro.module.css";
+import Input from "../forms/InputCad.js";
+import Select from "../forms/SelectCad.js";
+import "./Cadastro.css";
 import { Button, Radio, Alert, Space } from "antd";
 import { MdLinkedCamera } from "react-icons/md";
 import axios from "axios";
@@ -73,8 +73,8 @@ function Editar() {
 
   return (
     <>
-      <div className={styles.container}>
-        <form className={styles.form} onSubmit={handleEdit}>
+      <div className="container">
+        <form onSubmit={handleEdit}>
           <Space
             direction="vertical"
             style={{
@@ -98,7 +98,7 @@ function Editar() {
             ) : null}
           </Space>
           <h4>Editar Equipamento</h4>
-          <div className={styles.input_group}>
+          <div className="input_group">
             <Input
               type="text"
               text="Processo"
@@ -241,7 +241,7 @@ function Editar() {
               onChange={handleOnChange}
             />
           </div>
-          <div className={styles.form_btn}>
+          <div className="form-btn">
             <Radio.Group value={size} onChange={(e) => setSize(e.target.value)}>
               <Button
                 type="primary"

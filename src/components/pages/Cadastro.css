@@ -1,0 +1,30 @@
+.container {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    max-width: 900px;
+}
+
+h4 {
+    text-align: center;
+    font-size: 22px;
+    font-weight: 600;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.input-group {
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: 55px;   
+}
+
+/* @media screen and (max-width: 768px) {
+    .obs-box textarea{
+        width: 250px;
+    }
+} */ 
