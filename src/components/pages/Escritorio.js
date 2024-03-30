@@ -52,7 +52,6 @@ function Escritorio() {
 
   return (
     <>
-      <div className="container">
         <form onSubmit={handleSubmit}>
         <Space
             direction="vertical"
@@ -206,7 +205,6 @@ function Escritorio() {
             </Radio.Group>
           </div>
         </form>
-      </div>
     </>
   );
 }

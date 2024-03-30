@@ -74,7 +74,6 @@ function Duplicar() {
 
   return (
     <>
-      <div className="container">
         <form onSubmit={handleDuplicate}>
           <Space
             direction="vertical"
@@ -263,7 +262,6 @@ function Duplicar() {
               ></Button>
             </Radio.Group>
           </div>
-      </div>
     </>
   );
 }

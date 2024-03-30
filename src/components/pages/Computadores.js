@@ -57,7 +57,6 @@ function Computadores() {
 
   return (
     <>
-      <div className="container">
         <form onSubmit={handleSubmit}>
           <Space
             direction="vertical"
@@ -245,7 +244,6 @@ function Computadores() {
             </Radio.Group>
           </div>  
         </form>
-      </div>
     </>
   );
 }

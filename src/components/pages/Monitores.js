@@ -52,7 +52,6 @@ function Monitores() {
 
   return (
     <>
-      <div className="container">
         <form onSubmit={handleSubmit}>
           <Space
             direction="vertical"
@@ -205,7 +204,6 @@ function Monitores() {
             </Radio.Group>
           </div>
         </form>
-      </div>
     </>
   );
 }

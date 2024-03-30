@@ -35,7 +35,6 @@ function Relatorios() {
 
   return (
     <>
-      <div className="container">
         <form onSubmit={handleCreate}>
           <h4>Relatórios</h4>
           <div className="input-group">
@@ -130,7 +129,6 @@ function Relatorios() {
               </Button>s
             </Radio.Group>
           </div>
-      </div>
     </>
   );
 }

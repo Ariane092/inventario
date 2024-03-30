@@ -73,7 +73,6 @@ function Editar() {
 
   return (
     <>
-      <div className="container">
         <form onSubmit={handleEdit}>
           <Space
             direction="vertical"
@@ -262,7 +261,6 @@ function Editar() {
             </Radio.Group>
           </div>
         </form>
-      </div>
     </>
   );
 }
