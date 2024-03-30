@@ -1,20 +1,25 @@
+import { useState } from "react";
 import logo from "../../img/cepea.png";
 import "./Login.css";
 import { LockOutlined, UserOutlined } from "@ant-design/icons";
 import { Button, Form, Input } from "antd";
 
 function Login() {
+  const [userName, setUserName] = useState("");
   const onFinish = (values) => {
     console.log("Received values of form: ", values);
   };
 
+  const handleChange = (e) => {
+    setUserName(e.target.value);
+  }
   return (
     <div className="form-container">
       <div className="title">
         <img src={logo} alt="cepea.png" />
         <h5>Inventário CEPEA/ESALQ-USP</h5>
       </div>
-
+      
       <Form
         name="normal_login"
         className="login-form"
@@ -35,6 +40,7 @@ function Login() {
           <Input
             prefix={<UserOutlined className="site-form-item-icon" />}
             placeholder="usuário"
+            onChange={handleChange}
           />
         </Form.Item>
         <Form.Item

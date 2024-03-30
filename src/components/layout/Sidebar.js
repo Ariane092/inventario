@@ -14,7 +14,6 @@ import {
   LogoutOutlined,
   MenuFoldOutlined,
   MenuUnfoldOutlined,
-  UserOutlined,
 } from "@ant-design/icons";
 import { Layout, Menu, Button, theme, Avatar, Space } from "antd";
 import { PiOfficeChair } from "react-icons/pi";
@@ -104,8 +103,17 @@ function Sidebar(props) {
       >
         <Space direction="vertical" size={16}>
           <Space wrap size={16} className="user-style">
-            <Avatar size="large" icon={<UserOutlined />} className="avatar" />
-            <p>ariane.diniz</p>
+            <Avatar
+            size={"large"}
+              style={{
+                backgroundColor: '#fde3cf',
+                color: '#f56a00',
+                fontSize: '15px'
+              }}
+            >
+              AD
+            </Avatar>
+            <p>{props.userName}</p>
           </Space>
         </Space>
         <Menu

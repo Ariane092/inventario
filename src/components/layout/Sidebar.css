@@ -21,10 +21,8 @@ h5 {
 .user-style {
     display: flex;
     align-items: center;
-    color: rgba(245, 245, 245, 0.705);
     margin-top: 20px;
     margin-left: 20px;
-    font-size: 13px;
 }
 
 h3 {
