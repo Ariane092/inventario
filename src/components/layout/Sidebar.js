@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import "./Sidebar.css";
 import logo from "../../img/cepea.png";
@@ -107,13 +107,13 @@ function Sidebar(props) {
             size={"large"}
               style={{
                 backgroundColor: '#fde3cf',
-                color: '#f56a00',
+                color: '#cb755d',
                 fontSize: '15px'
               }}
             >
               AD
             </Avatar>
-            <p>{props.userName}</p>
+            {!collapsed ? <p>ariane.diniz</p> : null}
           </Space>
         </Space>
         <Menu
