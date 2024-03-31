@@ -74,7 +74,7 @@ function Monitores() {
               />
             ) : null}
           </Space>
-          <h4>Cadastro de Monitores</h4>
+          <h2>Cadastro de Monitores</h2>
           <div className="input-group">
             <Input
               type="text"

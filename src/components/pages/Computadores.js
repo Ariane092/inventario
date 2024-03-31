@@ -79,7 +79,7 @@ function Computadores() {
             />
           ) : null}
         </Space>
-        <h4>Cadastro de Computadores</h4>
+        <h2>Cadastro de Computadores</h2>
         <div className="input-group">
           <Input
             type="text"

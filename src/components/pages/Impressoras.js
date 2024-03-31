@@ -74,7 +74,7 @@ function Impressoras() {
               />
             ) : null}
           </Space>
-          <h4>Cadastro de Impressoras</h4>
+          <h2>Cadastro de Impressoras</h2>
           <div className="input-group">
             <Input
               type="text"

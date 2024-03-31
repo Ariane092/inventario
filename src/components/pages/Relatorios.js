@@ -37,7 +37,7 @@ function Relatorios() {
   return (
     <>
         <form onSubmit={handleCreate} style={{maxWidth: '1000px'}}>
-          <h4>Relatórios</h4>
+          <h2>Relatórios</h2>
           <div className="input-group">
             <Select
               name="tipo_equipamento"

@@ -97,7 +97,7 @@ function Duplicar() {
               />
             ) : null}
           </Space>
-          <h4>Duplicar e Cadastrar</h4>
+          <h2>Duplicar e Cadastrar</h2>
           <div className="input-group">
             <Input
               type="text"

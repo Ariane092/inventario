@@ -19,7 +19,7 @@ function QrCode() {
 
     return (
         <div>
-            <h1>QR Codes</h1>
+            <h2>QR Codes</h2>
             <div>
                 {data.map(item => (
                     <div key={item.id}>

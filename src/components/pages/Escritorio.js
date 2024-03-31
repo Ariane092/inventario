@@ -74,7 +74,7 @@ function Escritorio() {
               />
             ) : null}
           </Space>
-          <h4>Cadastro Itens de Escritório</h4>
+          <h2>Cadastro Itens de Escritório</h2>
           <div className="input-group">
             <Input
               type="text"

@@ -96,7 +96,7 @@ function Editar() {
               />
             ) : null}
           </Space>
-          <h4>Editar Equipamento</h4>
+          <h2>Editar Equipamento</h2>
           <div className="input_group">
             <Input
               type="text"
