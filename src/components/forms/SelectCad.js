@@ -1,11 +1,18 @@
 import { useState, useEffect, useRef, useCallback } from "react";
 import { PlusOutlined } from "@ant-design/icons";
 import { Button, Radio, Select, Space } from "antd";
-import Input from "./InputCad.js"
+import Input from "./InputCad.js";
 import "./SelectCad.css";
 import axios from "axios";
 
-function SelectCad({ text, name, onChange, value, apiUrl, isVisibleAdd = true }) {
+function SelectCad({
+  text,
+  name,
+  onChange,
+  value,
+  apiUrl,
+  isVisibleAdd = true,
+}) {
   const [size, setSize] = useState("default");
   const [options, setOptions] = useState([]);
   const [showPopup, setShowPopup] = useState(false);
@@ -111,23 +118,35 @@ function SelectCad({ text, name, onChange, value, apiUrl, isVisibleAdd = true })
 
   return (
     <div className="selects">
-      <label htmlFor={name}>
-        {text}:{" "}
-      </label>
+      <label htmlFor={name}>{text}: </label>
       <Space.Compact>
-        <Select ref={selectRef} name={name} onChange={onChange} value={value}>
+        <Select 
+          style={{ width: "150px" }}
+          options={
+            options.map((option) => (
+              { value: option.id, label: option.nome } 
+          ))}
+        />
+
+        {/* <Select
+          ref={selectRef}
+          name={name}
+          onChange={onChange}
+          value={value}
+          style={{ width: "150px" }}
+        >
           <option></option>
           {options.map((option) => (
-            <option value={option.id} key={option.id}>
+            <option value={option.id} key={option.id.toString()}>
               {option.nome}
             </option>
           ))}
-        </Select>
-        {isVisibleAdd &&
+        </Select> */}
+        {isVisibleAdd && (
           <Button onClick={() => setShowPopup(true)}>
             <PlusOutlined className="add_button" />
           </Button>
-        }
+        )}
       </Space.Compact>
       {showPopup && (
         <div
