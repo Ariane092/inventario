@@ -18,7 +18,7 @@ function Relatorios() {
     processador: "",
   });
 
-  const handleOnChange = (e) => {
+  const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData((prevData) => ({
       ...prevData,
@@ -44,7 +44,7 @@ function Relatorios() {
               text="Tipo de Equipamento"
               apiUrl="http://localhost:3001/equipamento"
               value={formData.tipo_equipamento}
-              onChange={handleOnChange}
+              onChange={handleChange}
               isVisibleAdd={false}
             />
             <Select
@@ -52,7 +52,7 @@ function Relatorios() {
               text="Responsável"
               apiUrl="http://localhost:3001/responsavel"
               value={formData.responsavel}
-              onChange={handleOnChange}
+              onChange={handleChange}
               isVisibleAdd={false}
             />
             <Select
@@ -60,7 +60,7 @@ function Relatorios() {
               text="Projeto"
               apiUrl="http://localhost:3001/projeto"
               value={formData.projeto}
-              onChange={handleOnChange}
+              onChange={handleChange}
               isVisibleAdd={false}
             />
             <Select
@@ -68,7 +68,7 @@ function Relatorios() {
               text="Status"
               apiUrl="http://localhost:3001/status"
               value={formData.status}
-              onChange={handleOnChange}
+              onChange={handleChange}
               isVisibleAdd={false}
             />
             <Select
@@ -76,7 +76,7 @@ function Relatorios() {
               text="Marca"
               apiUrl="http://localhost:3001/marca"
               value={formData.marca}
-              onChange={handleOnChange}
+              onChange={handleChange}
               isVisibleAdd={false}
             />
             <Select
@@ -84,7 +84,7 @@ function Relatorios() {
               text="Modelo"
               apiUrl="http://localhost:3001/modelo"
               value={formData.modelo}
-              onChange={handleOnChange}
+              onChange={handleChange}
               isVisibleAdd={false}
             />
             {showComptSelect(formData.tipo_equipamento) && (
@@ -94,7 +94,7 @@ function Relatorios() {
               text="Memória"
               apiUrl="http://localhost:3001/memoria"
               value={formData.memoria}
-              onChange={handleOnChange}
+              onChange={handleChange}
               isVisibleAdd={false}
             />
             <Select
@@ -102,7 +102,7 @@ function Relatorios() {
               text="Hard Disk"
               apiUrl="http://localhost:3001/hd"
               value={formData.hard_disk}
-              onChange={handleOnChange}
+              onChange={handleChange}
               isVisibleAdd={false}
             />
             <Select
@@ -110,7 +110,7 @@ function Relatorios() {
               text="Processador"
               apiUrl="http://localhost:3001/processador"
               value={formData.processador}
-              onChange={handleOnChange}
+              onChange={handleChange}
               isVisibleAdd={false}
             />
             </div>

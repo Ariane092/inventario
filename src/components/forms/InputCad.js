@@ -1,5 +1,5 @@
 import "./InputCad.css";
-import { Input, DatePicker, InputNumber, } from "antd";
+import { Input, DatePicker, InputNumber } from "antd";
 const { TextArea } = Input;
 
 function InputCad({ type, text, name, placeholder, onChange, value }) {
@@ -21,7 +21,13 @@ function InputCad({ type, text, name, placeholder, onChange, value }) {
     return (
       <div className="inputs">
         <label htmlFor={name}>{text}:</label>
-        <InputNumber name={name} id={name} onChange={onChange} value={value} />
+        <InputNumber
+          name={name}
+          id={name}
+          onChange={onChange}
+          value={value}
+          style={{ width: "130px" }}
+        />
       </div>
     );
   } else {

@@ -14,16 +14,12 @@ h5 {
     background: rgba(156, 154, 154, 0.144);
 }
 
-.avatar {
-    background: #e6e3e3bb;
-}
-
 .user-style {
     display: flex;
     align-items: center;
     margin-top: 20px;
     margin-left: 20px;
-    color: rgb(204, 200, 200);
+    color: #fde3cf;
 }
 
 h3 {

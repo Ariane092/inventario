@@ -126,6 +126,10 @@ function SelectCad({
             options.map((option) => (
               { value: option.id, label: option.nome } 
           ))}
+          name={name}
+          value={value}
+          onChange={onChange}
+          ref={selectRef}
         />
 
         {/* <Select
@@ -137,7 +141,7 @@ function SelectCad({
         >
           <option></option>
           {options.map((option) => (
-            <option value={option.id} key={option.id.toString()}>
+            <option value={option.id} key={option.id}>
               {option.nome}
             </option>
           ))}

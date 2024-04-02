@@ -33,11 +33,10 @@ function Computadores() {
     observacao: "",
   });
 
-  const handleOnChange = (e) => {
-    const { name, value } = e.target;
+  const handleChange = (option, value) => {
     setFormData((prevData) => ({
       ...prevData,
-      [name]: value,
+      [option.id]: value,
     }));
   };
 
@@ -66,11 +65,7 @@ function Computadores() {
           }}
         >
           {submitSuccess ? (
-            <Alert
-              message="Equipamento cadastrado!"
-              type="success"
-              showIcon
-            />
+            <Alert message="Equipamento cadastrado!" type="success" showIcon />
           ) : submitError ? (
             <Alert
               message="Erro ao cadastrar equipamento."
@@ -86,28 +81,28 @@ function Computadores() {
             text="Processo"
             name="processo"
             value={formData.processo}
-            onChange={handleOnChange}
+            onChange={handleChange}
           />
           <Input
             type="date"
             text="Data Compra"
             name="data_compra"
             value={formData.data_compra}
-            onChange={handleOnChange}
+            onChange={handleChange}
           />
           <Select
             name="responsavel"
             text="Responsável"
             apiUrl="http://localhost:3001/responsavel"
             value={formData.responsavel}
-            onChange={handleOnChange}
+            onChange={handleChange}
           />
           <Input
             type="text"
             text="Local"
             name="local"
             value={formData.local}
-            onChange={handleOnChange}
+            onChange={handleChange}
           />
           <Input
             type="text"
@@ -115,105 +110,105 @@ function Computadores() {
             name="usuario"
             placeholder="Senão, digite ROTATIVO"
             value={formData.usuario}
-            onChange={handleOnChange}
+            onChange={handleChange}
           />
           <Input
             type="number"
             text="NF"
             name="nota_fiscal"
             value={formData.nota_fiscal}
-            onChange={handleOnChange}
+            onChange={handleChange}
           />
           <Input
             type="number"
             text="Cód. Doação"
             name="cod_doacao"
             value={formData.cod_doacao}
-            onChange={handleOnChange}
+            onChange={handleChange}
           />
           <Input
             type="number"
             text="Patrimônio"
             name="patrimonio"
             value={formData.patrimonio}
-            onChange={handleOnChange}
+            onChange={handleChange}
           />
           <Select
             name="projeto"
             text="Projeto"
             apiUrl="http://localhost:3001/projeto"
             value={formData.projeto}
-            onChange={handleOnChange}
+            onChange={handleChange}
           />
           <Select
             name="status"
             text="Status"
             apiUrl="http://localhost:3001/status"
             value={formData.status}
-            onChange={handleOnChange}
+            onChange={handleChange}
           />
           <Input
             type="text"
             text="Service Tag"
             name="servicetag"
             value={formData.servicetag}
-            onChange={handleOnChange}
+            onChange={handleChange}
           />
           <Select
             name="marca"
             text="Marca"
             apiUrl="http://localhost:3001/marca"
             value={formData.marca}
-            onChange={handleOnChange}
+            onChange={handleChange}
           />
           <Select
             name="modelo"
             text="Modelo"
             apiUrl="http://localhost:3001/modelo"
             value={formData.modelo}
-            onChange={handleOnChange}
+            onChange={handleChange}
           />
           <Select
             name="memoria"
             text="Memória"
             apiUrl="http://localhost:3001/memoria"
             value={formData.memoria}
-            onChange={handleOnChange}
+            onChange={handleChange}
           />
           <Select
             name="hard_disk"
             text="Hard Disk"
             apiUrl="http://localhost:3001/hd"
             value={formData.hard_disk}
-            onChange={handleOnChange}
+            onChange={handleChange}
           />
           <Select
             name="processador"
             text="Processador"
             apiUrl="http://localhost:3001/processador"
             value={formData.processador}
-            onChange={handleOnChange}
+            onChange={handleChange}
           />
           <Select
             name="office"
             text="Office"
             apiUrl="http://localhost:3001/office"
             value={formData.office}
-            onChange={handleOnChange}
+            onChange={handleChange}
           />
           <Select
             name="tipo_equipamento"
             text="Tipo de Equipamento"
             apiUrl="http://localhost:3001/computadores"
             value={formData.tipo_computadores}
-            onChange={handleOnChange}
+            onChange={handleChange}
           />
           <Input
             type="text"
             text="Configuração"
             name="configuracao"
             value={formData.configuracao}
-            onChange={handleOnChange}
+            onChange={handleChange}
           />
           <div className="textarea">
             <Input
@@ -221,7 +216,7 @@ function Computadores() {
               text="Observação"
               name="observacao"
               value={formData.observacao}
-              onChange={handleOnChange}
+              onChange={handleChange}
             />
           </div>
         </div>
