@@ -5,6 +5,7 @@ import { Button, Radio, Modal } from "antd";
 import Label from "../forms/Label.js";
 import Editar from "./Editar.js";
 import moment from "moment";
+import QRCode from "qrcode.react";
 import "./Visualizar.css";
 
 
@@ -27,6 +28,16 @@ function Visualizar() {
     };
     fetchData();
   }, [id]);
+
+  const handleGenerateQRCode = () => {
+    const qrCodeValue = `ID: ${data.id}`;
+    const qrCodeURL = `https://api.qrserver.com/v1/create-qr-code/?data=${encodeURIComponent(
+      qrCodeValue
+    )}`;
+    const newWindow = window.open();
+    const qrCodeHTML = `<html><head><title>QR Code</title></head><body><img src="${qrCodeURL}" alt="QR Code"/></body></html>`;
+    newWindow.document.write(qrCodeHTML);
+  };
 
   return (
     <div className="container">
@@ -71,6 +82,7 @@ function Visualizar() {
               shape="default"
               size={"small"}
               style={{ margin: 10, background: "rgb(55, 119, 87)" }}
+              onClick={handleGenerateQRCode}
             >
               <QrcodeOutlined /> Qr Code
             </Button>

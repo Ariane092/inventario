@@ -19,29 +19,7 @@ function Computadores({ data }) {
   const { TextArea } = Input;
   const [submitSuccess, setSubmitSuccess] = useState(false);
   const [submitError, setSubmitError] = useState(false);
-  const [formData, setFormData] = useState({
-    processo: "",
-    data_compra: "",
-    responsavel: "",
-    local: "",
-    usuario: "",
-    nota_fiscal: "",
-    cod_doacao: "",
-    patrimonio: "",
-    projeto: "",
-    status: "",
-    servicetag: "",
-    tipo_equipamento: "",
-    marca: "",
-    modelo: "",
-    memoria: "",
-    hard_disk: "",
-    processador: "",
-    office: "",
-    configuracao: "",
-    observacao: "",
-  });
-
+  
   const onFinish = (values) => {
     console.log("Success:", values);
   };
@@ -49,19 +27,19 @@ function Computadores({ data }) {
     console.log("Failed:", errorInfo);
   };
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    try {
-      await axios.post("http://localhost:3001/cadastro", formData);
-      setSubmitSuccess(true);
-      setTimeout(() => {
-        window.location.reload();
-      }, 1500);
-    } catch (error) {
-      console.error("Error:", error);
-      setSubmitError(true);
-    }
-  };
+  // const handleSubmit = async (e) => {
+  //   e.preventDefault();
+  //   try {
+  //     await axios.post("http://localhost:3001/cadastro", formData);
+  //     setSubmitSuccess(true);
+  //     setTimeout(() => {
+  //       window.location.reload();
+  //     }, 1500);
+  //   } catch (error) {
+  //     console.error("Error:", error);
+  //     setSubmitError(true);
+  //   }
+  // };
 
   return (
       <div>

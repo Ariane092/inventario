@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef, useCallback } from "react";
+import { useState, useRef } from "react";
 import { PlusOutlined } from "@ant-design/icons";
 import { Button, Radio, Select, Space } from "antd";
 import FetchContext from "../pages/FetchContext.js";
@@ -6,7 +6,7 @@ import Input from "./InputCad.js";
 import "./SelectCad.css";
 import axios from "axios";
 
-function SelectCad({ name, onChange, value, apiUrl, isVisibleAdd = true }) {
+function SelectCad({ name, isVisibleAdd = true }) {
   const [size, setSize] = useState("default");
   const [options, setOptions] = useState([]);
   const [showPopup, setShowPopup] = useState(false);
@@ -81,7 +81,7 @@ function SelectCad({ name, onChange, value, apiUrl, isVisibleAdd = true }) {
         default:
           break;
       }
-      fetchData();
+      // fetchData();
       setInputValue("");
       setShowPopup(false);
     } catch (error) {
@@ -99,7 +99,7 @@ function SelectCad({ name, onChange, value, apiUrl, isVisibleAdd = true }) {
   return (
     <div className="selects">
       <Space.Compact>
-        <FetchContext>
+        
           <Select
             style={{ width: "150px" }}
             options={options.map((option) => ({
@@ -108,7 +108,7 @@ function SelectCad({ name, onChange, value, apiUrl, isVisibleAdd = true }) {
             }))}
             ref={selectRef}
           />
-        </FetchContext>
+       
 
         {/* <Select
           ref={selectRef}

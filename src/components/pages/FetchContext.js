@@ -35,4 +35,4 @@ function FetchContext({ children }) {
   return <MyContext.Provider value={data}>{children}</MyContext.Provider>;
 }
 
-export default FetchContext;
+export { FetchContext, MyContext };
