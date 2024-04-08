@@ -105,13 +105,13 @@ function Editar() {
               value={formData.processo}
               onChange={handleChange}
             />
-            <Input
+            {/* <Input
               type="date"
               text="Data Compra"
               name="data_compra"
               value={formData.data_compra}
               onChange={handleChange}
-            />
+            /> */}
             <Select
               name="responsavel"
               text="Responsável"

@@ -1,13 +1,22 @@
 import React, { useState } from "react";
-import Input from "../forms/InputCad.js";
 import Select from "../forms/SelectCad.js";
 import "./Cadastro.css";
-import { Button, Radio, Alert, Space } from "antd";
+import {
+  Button,
+  Radio,
+  Alert,
+  Space,
+  Form,
+  Input,
+  DatePicker,
+  InputNumber,
+} from "antd";
 import { MdLinkedCamera } from "react-icons/md";
 import axios from "axios";
 
-function Computadores() {
+function Computadores({ data }) {
   const [size, setSize] = useState("default");
+  const { TextArea } = Input;
   const [submitSuccess, setSubmitSuccess] = useState(false);
   const [submitError, setSubmitError] = useState(false);
   const [formData, setFormData] = useState({
@@ -33,11 +42,11 @@ function Computadores() {
     observacao: "",
   });
 
-  const handleChange = (option, value) => {
-    setFormData((prevData) => ({
-      ...prevData,
-      [option.id]: value,
-    }));
+  const onFinish = (values) => {
+    console.log("Success:", values);
+  };
+  const onFinishFailed = (errorInfo) => {
+    console.log("Failed:", errorInfo);
   };
 
   const handleSubmit = async (e) => {
@@ -55,8 +64,7 @@ function Computadores() {
   };
 
   return (
-    <>
-      <form onSubmit={handleSubmit}>
+      <div>
         <Space
           direction="vertical"
           style={{
@@ -75,151 +83,162 @@ function Computadores() {
           ) : null}
         </Space>
         <h2>Cadastro de Computadores</h2>
-        <div className="input-group">
-          <Input
-            type="text"
-            text="Processo"
+        <Form
+          name="basic"
+          labelCol={{
+            span: 8,
+          }}
+          wrapperCol={{
+            span: 16,
+          }}
+          style={{
+            display: "flex",
+            flexDirection: "row",
+            flexWrap: "wrap",
+            justifyContent: "flex-start",
+            marginTop: "35px",
+          }}
+          initialValues={{
+            remember: true,
+          }}
+          onFinish={onFinish}
+          onFinishFailed={onFinishFailed}
+          autoComplete="off"
+        >
+          <Form.Item
+            label="Processo"
             name="processo"
-            value={formData.processo}
-            onChange={handleChange}
-          />
-          <Input
-            type="date"
-            text="Data Compra"
-            name="data_compra"
-            value={formData.data_compra}
-            onChange={handleChange}
-          />
-          <Select
-            name="responsavel"
-            text="Responsável"
-            apiUrl="http://localhost:3001/responsavel"
-            value={formData.responsavel}
-            onChange={handleChange}
-          />
-          <Input
-            type="text"
-            text="Local"
+            rules={[
+              {
+                required: true,
+                message: "Please input!",
+              },
+            ]}
+            
+          >
+            <Input />
+          </Form.Item>
+          <Form.Item label="Data Compra">
+            <DatePicker format="DD-MM-YYYY" />
+          </Form.Item>
+          <Form.Item label="Responsável" name="responsavel">
+            <Select />
+          </Form.Item>
+          <Form.Item
+            label="Local"
             name="local"
-            value={formData.local}
-            onChange={handleChange}
-          />
-          <Input
-            type="text"
-            text="Usuário"
+            rules={[
+              {
+                required: true,
+                message: "Please input!",
+              },
+            ]}
+          >
+            <Input />
+          </Form.Item>
+          <Form.Item
+            label="Usuário"
             name="usuario"
-            placeholder="Senão, digite ROTATIVO"
-            value={formData.usuario}
-            onChange={handleChange}
-          />
-          <Input
-            type="number"
-            text="NF"
+            rules={[
+              {
+                required: true,
+                message: "Please input!",
+              },
+            ]}
+          >
+            <Input placeholder="Senão, digite ROTATIVO" />
+          </Form.Item>
+          <Form.Item
+            label="NF"
             name="nota_fiscal"
-            value={formData.nota_fiscal}
-            onChange={handleChange}
-          />
-          <Input
-            type="number"
-            text="Cód. Doação"
+            rules={[
+              {
+                required: true,
+                message: "Please input!",
+              },
+            ]}
+          >
+            <InputNumber />
+          </Form.Item>
+          <Form.Item
+            label="Cód. Doação"
             name="cod_doacao"
-            value={formData.cod_doacao}
-            onChange={handleChange}
-          />
-          <Input
-            type="number"
-            text="Patrimônio"
+            rules={[
+              {
+                required: true,
+                message: "Please input!",
+              },
+            ]}
+          >
+            <InputNumber />
+          </Form.Item>
+          <Form.Item
+            label="Patrimônio"
             name="patrimonio"
-            value={formData.patrimonio}
-            onChange={handleChange}
-          />
-          <Select
-            name="projeto"
-            text="Projeto"
-            apiUrl="http://localhost:3001/projeto"
-            value={formData.projeto}
-            onChange={handleChange}
-          />
-          <Select
-            name="status"
-            text="Status"
-            apiUrl="http://localhost:3001/status"
-            value={formData.status}
-            onChange={handleChange}
-          />
-          <Input
-            type="text"
-            text="Service Tag"
+            rules={[
+              {
+                required: true,
+                message: "Please input!",
+              },
+            ]}
+          >
+            <InputNumber />
+          </Form.Item>
+          <Form.Item label="Projeto" name="projeto">
+            <Select />
+          </Form.Item>
+          <Form.Item label="Status" name="status">
+            <Select />
+          </Form.Item>
+          <Form.Item
+            label="Service Tag"
             name="servicetag"
-            value={formData.servicetag}
-            onChange={handleChange}
-          />
-          <Select
-            name="marca"
-            text="Marca"
-            apiUrl="http://localhost:3001/marca"
-            value={formData.marca}
-            onChange={handleChange}
-          />
-          <Select
-            name="modelo"
-            text="Modelo"
-            apiUrl="http://localhost:3001/modelo"
-            value={formData.modelo}
-            onChange={handleChange}
-          />
-          <Select
-            name="memoria"
-            text="Memória"
-            apiUrl="http://localhost:3001/memoria"
-            value={formData.memoria}
-            onChange={handleChange}
-          />
-          <Select
-            name="hard_disk"
-            text="Hard Disk"
-            apiUrl="http://localhost:3001/hd"
-            value={formData.hard_disk}
-            onChange={handleChange}
-          />
-          <Select
-            name="processador"
-            text="Processador"
-            apiUrl="http://localhost:3001/processador"
-            value={formData.processador}
-            onChange={handleChange}
-          />
-          <Select
-            name="office"
-            text="Office"
-            apiUrl="http://localhost:3001/office"
-            value={formData.office}
-            onChange={handleChange}
-          />
-          <Select
-            name="tipo_equipamento"
-            text="Tipo de Equipamento"
-            apiUrl="http://localhost:3001/computadores"
-            value={formData.tipo_computadores}
-            onChange={handleChange}
-          />
-          <Input
-            type="text"
-            text="Configuração"
+            rules={[
+              {
+                required: true,
+                message: "Please input!",
+              },
+            ]}
+          >
+            <Input />
+          </Form.Item>
+          <Form.Item label="Marca" name="marca">
+            <Select />
+          </Form.Item>
+          <Form.Item label="Modelo" name="modelo">
+            <Select />
+          </Form.Item>
+          <Form.Item label="Memória" name="memoria">
+            <Select />
+          </Form.Item>
+          <Form.Item label="HD" name="hard_disk">
+            <Select />
+          </Form.Item>
+          <Form.Item label="Processador" name="processador">
+            <Select />
+          </Form.Item>
+          <Form.Item label="Office" name="office">
+            <Select />
+          </Form.Item>
+          <Form.Item label="Tipo de Equipamento" name="tipo_computadores">
+            <Select />
+          </Form.Item>
+          <Form.Item
+            label="Configuração"
             name="configuracao"
-            value={formData.configuracao}
-            onChange={handleChange}
-          />
-          <div className="textarea">
-            <Input
-              type="textarea"
-              text="Observação"
-              name="observacao"
-              value={formData.observacao}
-              onChange={handleChange}
-            />
-          </div>
-        </div>
+            rules={[
+              {
+                required: true,
+                message: "Please input!",
+              },
+            ]}
+          >
+            <Input />
+          </Form.Item>
+          <Form.Item label="Observação" name="observacao">
+            <TextArea size="large" />
+          </Form.Item>
+        </Form>
         <div className="form-btn">
           <Radio.Group value={size} onChange={(e) => setSize(e.target.value)}>
             <Button
@@ -240,9 +259,27 @@ function Computadores() {
             ></Button>
           </Radio.Group>
         </div>
-      </form>
-    </>
+      </div>
   );
 }
 
 export default Computadores;
+
+{
+  /* <Input
+            type="date"
+            text="Data Compra"
+            name="data_compra"
+            value={formData.data_compra}
+            onChange={handleChange}
+          /> */
+}
+{
+  /* <Select
+            name="responsavel"
+            text="Responsável"
+            apiUrl="http://localhost:3001/responsavel"
+            value={formData.responsavel}
+            onChange={handleChange}
+          /> */
+}

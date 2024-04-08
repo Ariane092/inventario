@@ -1,37 +1,17 @@
 import { useState, useEffect, useRef, useCallback } from "react";
 import { PlusOutlined } from "@ant-design/icons";
 import { Button, Radio, Select, Space } from "antd";
+import FetchContext from "../pages/FetchContext.js";
 import Input from "./InputCad.js";
 import "./SelectCad.css";
 import axios from "axios";
 
-function SelectCad({
-  text,
-  name,
-  onChange,
-  value,
-  apiUrl,
-  isVisibleAdd = true,
-}) {
+function SelectCad({ name, onChange, value, apiUrl, isVisibleAdd = true }) {
   const [size, setSize] = useState("default");
   const [options, setOptions] = useState([]);
   const [showPopup, setShowPopup] = useState(false);
   const [inputValue, setInputValue] = useState("");
   const selectRef = useRef(null);
-
-  const fetchData = useCallback(async () => {
-    try {
-      const response = await fetch(apiUrl);
-      const data = await response.json();
-      setOptions(data);
-    } catch (error) {
-      console.error("Erro ao obter dados da API", error);
-    }
-  }, [apiUrl]);
-
-  useEffect(() => {
-    fetchData();
-  }, [fetchData]);
 
   const handleCreate = async (e, tableName) => {
     e.preventDefault();
@@ -118,19 +98,17 @@ function SelectCad({
 
   return (
     <div className="selects">
-      <label htmlFor={name}>{text}: </label>
       <Space.Compact>
-        <Select 
-          style={{ width: "150px" }}
-          options={
-            options.map((option) => (
-              { value: option.id, label: option.nome } 
-          ))}
-          name={name}
-          value={value}
-          onChange={onChange}
-          ref={selectRef}
-        />
+        <FetchContext>
+          <Select
+            style={{ width: "150px" }}
+            options={options.map((option) => ({
+              value: option.id,
+              label: option.nome,
+            }))}
+            ref={selectRef}
+          />
+        </FetchContext>
 
         {/* <Select
           ref={selectRef}
