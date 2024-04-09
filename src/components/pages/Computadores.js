@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import Select from "../forms/SelectCad.js";
 import "./Cadastro.css";
 import {
   Button,
@@ -10,16 +9,18 @@ import {
   Input,
   DatePicker,
   InputNumber,
+  Select
 } from "antd";
 import { MdLinkedCamera } from "react-icons/md";
 import axios from "axios";
+import Projeto from "../forms/Selects/Projeto.js";
 
 function Computadores({ data }) {
   const [size, setSize] = useState("default");
   const { TextArea } = Input;
   const [submitSuccess, setSubmitSuccess] = useState(false);
   const [submitError, setSubmitError] = useState(false);
-  
+
   const onFinish = (values) => {
     console.log("Success:", values);
   };
@@ -42,47 +43,48 @@ function Computadores({ data }) {
   // };
 
   return (
-      <div>
-        <Space
-          direction="vertical"
-          style={{
-            width: "100%",
-            marginBottom: "10px",
-          }}
-        >
-          {submitSuccess ? (
-            <Alert message="Equipamento cadastrado!" type="success" showIcon />
-          ) : submitError ? (
-            <Alert
-              message="Erro ao cadastrar equipamento."
-              type="error"
-              showIcon
-            />
-          ) : null}
-        </Space>
-        <h2>Cadastro de Computadores</h2>
-        <Form
-          name="basic"
-          labelCol={{
-            span: 8,
-          }}
-          wrapperCol={{
-            span: 16,
-          }}
-          style={{
-            display: "flex",
-            flexDirection: "row",
-            flexWrap: "wrap",
-            justifyContent: "flex-start",
-            marginTop: "35px",
-          }}
-          initialValues={{
-            remember: true,
-          }}
-          onFinish={onFinish}
-          onFinishFailed={onFinishFailed}
-          autoComplete="off"
-        >
+    <div>
+      <Space
+        direction="vertical"
+        style={{
+          width: "100%",
+          marginBottom: "10px",
+        }}
+      >
+        {submitSuccess ? (
+          <Alert message="Equipamento cadastrado!" type="success" showIcon />
+        ) : submitError ? (
+          <Alert
+            message="Erro ao cadastrar equipamento."
+            type="error"
+            showIcon
+          />
+        ) : null}
+      </Space>
+      <h2>Cadastro de Computadores</h2>
+      <Form
+        name="basic"
+        labelCol={{
+          span: 8,
+        }}
+        wrapperCol={{
+          span: 16,
+        }}
+        style={{
+          display: "flex",
+          flexDirection: "row",
+          flexWrap: "wrap",
+          justifyContent: "flex-start",
+          marginTop: "35px",
+        }}
+        initialValues={{
+          remember: true,
+        }}
+        onFinish={onFinish}
+        onFinishFailed={onFinishFailed}
+        autoComplete="off"
+      >
+      
           <Form.Item
             label="Processo"
             name="processo"
@@ -92,7 +94,6 @@ function Computadores({ data }) {
                 message: "Please input!",
               },
             ]}
-            
           >
             <Input />
           </Form.Item>
@@ -162,9 +163,7 @@ function Computadores({ data }) {
           >
             <InputNumber />
           </Form.Item>
-          <Form.Item label="Projeto" name="projeto">
-            <Select />
-          </Form.Item>
+          <Projeto />
           <Form.Item label="Status" name="status">
             <Select />
           </Form.Item>
@@ -216,28 +215,29 @@ function Computadores({ data }) {
           <Form.Item label="Observação" name="observacao">
             <TextArea size="large" />
           </Form.Item>
-        </Form>
-        <div className="form-btn">
-          <Radio.Group value={size} onChange={(e) => setSize(e.target.value)}>
-            <Button
-              type="primary"
-              shape="default"
-              size={size}
-              style={{ background: "rgb(55, 119, 87)" }}
-              htmlType="submit"
-            >
-              Enviar
-            </Button>
-            <Button
-              type="primary"
-              size={size}
-              shape="default"
-              style={{ margin: 10, background: "rgb(55, 119, 87)" }}
-              icon={<MdLinkedCamera />}
-            ></Button>
-          </Radio.Group>
-        </div>
+   
+      </Form>
+      <div className="form-btn">
+        <Radio.Group value={size} onChange={(e) => setSize(e.target.value)}>
+          <Button
+            type="primary"
+            shape="default"
+            size={size}
+            style={{ background: "rgb(55, 119, 87)" }}
+            htmlType="submit"
+          >
+            Enviar
+          </Button>
+          <Button
+            type="primary"
+            size={size}
+            shape="default"
+            style={{ margin: 10, background: "rgb(55, 119, 87)" }}
+            icon={<MdLinkedCamera />}
+          ></Button>
+        </Radio.Group>
       </div>
+    </div>
   );
 }
 

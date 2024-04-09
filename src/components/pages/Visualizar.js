@@ -3,7 +3,7 @@ import { useParams } from "react-router-dom";
 import { EditOutlined, QrcodeOutlined } from "@ant-design/icons";
 import { Button, Radio, Modal } from "antd";
 import Label from "../forms/Label.js";
-import Editar from "./Editar.js";
+// import Editar from "./Editar.js";
 import moment from "moment";
 import QRCode from "qrcode.react";
 import "./Visualizar.css";
@@ -99,7 +99,7 @@ function Visualizar() {
         footer={null}
         onCancel={() => setEditOpen(false)}
       >
-        <Editar />
+        {/* <Editar /> */}
       </Modal>
     </div>
   );

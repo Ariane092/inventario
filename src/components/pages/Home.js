@@ -4,7 +4,7 @@ import "./Home.css";
 import { SearchOutlined, EyeOutlined, CopyOutlined } from "@ant-design/icons";
 import { Button, Input, Space, Table, Modal } from "antd";
 import Highlighter from "react-highlight-words";
-import Duplicar from "./Duplicar.js";
+// import Duplicar from "./Duplicar.js";
 
 function Home() {
   const [duplicateOpen, setDuplicateOpen] = useState(false);
@@ -260,7 +260,7 @@ function Home() {
         footer={null}
         onCancel={() => setDuplicateOpen(false)}
       >
-        <Duplicar />
+        {/* <Duplicar /> */}
       </Modal>
     </>
   );

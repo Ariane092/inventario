@@ -19,11 +19,11 @@ function App() {
         <Route path="/home" element={<Home />} />
         <Route path="/home/:id" element={<Home />} />
         <Route path="/inventario" element={<Inventario />} />
-        <Route path="/relatorios" element={<Relatorios />} />
+        {/* <Route path="/relatorios" element={<Relatorios />} /> */}
         <Route path="/computadores" element={<Computadores />} />
-        <Route path="/impressoras" element={<Impressoras />} />
-        <Route path="/monitores" element={<Monitores />} />
-        <Route path="/escritorio" element={<Escritorio />} />
+        {/* <Route path="/impressoras" element={<Impressoras />} /> */}
+        {/* <Route path="/monitores" element={<Monitores />} /> */}
+        {/* <Route path="/escritorio" element={<Escritorio />} /> */}
         <Route path="/login" element={<Login />} />
         <Route path="/etiquetas" element={<QrCode/>} />
         <Route path="/visualizar/:id" element={<Visualizar />} />
