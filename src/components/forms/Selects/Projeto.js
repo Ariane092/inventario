@@ -4,9 +4,8 @@ import { Button, Select, Space, Form } from "antd";
 import { FetchProvider, Context } from "../../pages/FetchProvider.js";
 
 function Projeto({ isVisibleAdd = true }) {
-  const {auth} = useContext(Context);
-  console.log('1', auth);
-
+  const data = useContext(Context);
+  console.log(data.projeto);
   return (
     <div className="selects">
       <Space.Compact>
