@@ -4,20 +4,22 @@ import { Button, Select, Space, Form } from "antd";
 import { FetchProvider, Context } from "../../pages/FetchProvider.js";
 
 function Projeto({ isVisibleAdd = true }) {
-  const data = useContext(Context);
-  console.log(data.projeto);
+  const { data } = useContext(Context);
+  if(!data.projeto) return null; 
+  const projetos = data.projeto;
+  console.log(projetos);
   return (
     <div className="selects">
       <Space.Compact>
         <FetchProvider>
-          <Form.Item label="Projeto" name="projeto">
-            {/* <Select
+          <Form.Item label="Projeto">
+            <Select
               style={{ width: "150px" }}
-              options={data.map((option) => ({
+              options={projetos.map((option) => ({
                 value: option.id,
                 label: option.nome,
               }))}
-            /> */}
+            />
           </Form.Item>
         </FetchProvider>
         {isVisibleAdd && (
@@ -32,21 +34,4 @@ function Projeto({ isVisibleAdd = true }) {
 
 export default Projeto;
 
-{
-  /* <Select
-          ref={selectRef}
-          name={name}
-          onChange={onChange}
-          value={value}
-          style={{ width: "150px" }}
-        >
-          <option></option>
-          {options.map((option) => (
-            <option value={option.id} key={option.id}>
-              {option.nome}
-            </option>
-          ))}
-        </Select> */
-}
 
-// const [size, setSize] = useState("default");

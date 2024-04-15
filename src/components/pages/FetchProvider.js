@@ -4,7 +4,6 @@ const Context = createContext();
 
 function FetchProvider({ children }) {
   const [data, setData] = useState({});
-  console.log(data);
   useEffect(() => {
     fetch("http://localhost:3001/responsavel")
       .then(response => response.json())

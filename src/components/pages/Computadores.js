@@ -9,13 +9,14 @@ import {
   Input,
   DatePicker,
   InputNumber,
-  Select
+  Select,
 } from "antd";
 import { MdLinkedCamera } from "react-icons/md";
 import axios from "axios";
 import Projeto from "../forms/Selects/Projeto.js";
+import { FetchProvider, Context } from "../pages/FetchProvider.js";
 
-function Computadores({ data }) {
+function Computadores() {
   const [size, setSize] = useState("default");
   const { TextArea } = Input;
   const [submitSuccess, setSubmitSuccess] = useState(false);
@@ -84,138 +85,138 @@ function Computadores({ data }) {
         onFinishFailed={onFinishFailed}
         autoComplete="off"
       >
-      
-          <Form.Item
-            label="Processo"
-            name="processo"
-            rules={[
-              {
-                required: true,
-                message: "Please input!",
-              },
-            ]}
-          >
-            <Input />
-          </Form.Item>
-          <Form.Item label="Data Compra">
-            <DatePicker format="DD-MM-YYYY" />
-          </Form.Item>
-          <Form.Item label="Responsável" name="responsavel">
-            <Select />
-          </Form.Item>
-          <Form.Item
-            label="Local"
-            name="local"
-            rules={[
-              {
-                required: true,
-                message: "Please input!",
-              },
-            ]}
-          >
-            <Input />
-          </Form.Item>
-          <Form.Item
-            label="Usuário"
-            name="usuario"
-            rules={[
-              {
-                required: true,
-                message: "Please input!",
-              },
-            ]}
-          >
-            <Input placeholder="Senão, digite ROTATIVO" />
-          </Form.Item>
-          <Form.Item
-            label="NF"
-            name="nota_fiscal"
-            rules={[
-              {
-                required: true,
-                message: "Please input!",
-              },
-            ]}
-          >
-            <InputNumber />
-          </Form.Item>
-          <Form.Item
-            label="Cód. Doação"
-            name="cod_doacao"
-            rules={[
-              {
-                required: true,
-                message: "Please input!",
-              },
-            ]}
-          >
-            <InputNumber />
-          </Form.Item>
-          <Form.Item
-            label="Patrimônio"
-            name="patrimonio"
-            rules={[
-              {
-                required: true,
-                message: "Please input!",
-              },
-            ]}
-          >
-            <InputNumber />
-          </Form.Item>
+        <Form.Item
+          label="Processo"
+          name="processo"
+          rules={[
+            {
+              required: true,
+              message: "Please input!",
+            },
+          ]}
+        >
+          <Input />
+        </Form.Item>
+        <Form.Item label="Data Compra">
+          <DatePicker format="DD-MM-YYYY" />
+        </Form.Item>
+        <Form.Item label="Responsável" name="responsavel">
+          <Select />
+        </Form.Item>
+        <Form.Item
+          label="Local"
+          name="local"
+          rules={[
+            {
+              required: true,
+              message: "Please input!",
+            },
+          ]}
+        >
+          <Input />
+        </Form.Item>
+        <Form.Item
+          label="Usuário"
+          name="usuario"
+          rules={[
+            {
+              required: true,
+              message: "Please input!",
+            },
+          ]}
+        >
+          <Input placeholder="Senão, digite ROTATIVO" />
+        </Form.Item>
+        <Form.Item
+          label="NF"
+          name="nota_fiscal"
+          rules={[
+            {
+              required: true,
+              message: "Please input!",
+            },
+          ]}
+        >
+          <InputNumber />
+        </Form.Item>
+        <Form.Item
+          label="Cód. Doação"
+          name="cod_doacao"
+          rules={[
+            {
+              required: true,
+              message: "Please input!",
+            },
+          ]}
+        >
+          <InputNumber />
+        </Form.Item>
+        <Form.Item
+          label="Patrimônio"
+          name="patrimonio"
+          rules={[
+            {
+              required: true,
+              message: "Please input!",
+            },
+          ]}
+        >
+          <InputNumber />
+        </Form.Item>
+        <FetchProvider>
           <Projeto />
-          <Form.Item label="Status" name="status">
-            <Select />
-          </Form.Item>
-          <Form.Item
-            label="Service Tag"
-            name="servicetag"
-            rules={[
-              {
-                required: true,
-                message: "Please input!",
-              },
-            ]}
-          >
-            <Input />
-          </Form.Item>
-          <Form.Item label="Marca" name="marca">
-            <Select />
-          </Form.Item>
-          <Form.Item label="Modelo" name="modelo">
-            <Select />
-          </Form.Item>
-          <Form.Item label="Memória" name="memoria">
-            <Select />
-          </Form.Item>
-          <Form.Item label="HD" name="hard_disk">
-            <Select />
-          </Form.Item>
-          <Form.Item label="Processador" name="processador">
-            <Select />
-          </Form.Item>
-          <Form.Item label="Office" name="office">
-            <Select />
-          </Form.Item>
-          <Form.Item label="Tipo de Equipamento" name="tipo_computadores">
-            <Select />
-          </Form.Item>
-          <Form.Item
-            label="Configuração"
-            name="configuracao"
-            rules={[
-              {
-                required: true,
-                message: "Please input!",
-              },
-            ]}
-          >
-            <Input />
-          </Form.Item>
-          <Form.Item label="Observação" name="observacao">
-            <TextArea size="large" />
-          </Form.Item>
-   
+        </FetchProvider>
+        <Form.Item label="Status" name="status">
+          <Select />
+        </Form.Item>
+        <Form.Item
+          label="Service Tag"
+          name="servicetag"
+          rules={[
+            {
+              required: true,
+              message: "Please input!",
+            },
+          ]}
+        >
+          <Input />
+        </Form.Item>
+        <Form.Item label="Marca" name="marca">
+          <Select />
+        </Form.Item>
+        <Form.Item label="Modelo" name="modelo">
+          <Select />
+        </Form.Item>
+        <Form.Item label="Memória" name="memoria">
+          <Select />
+        </Form.Item>
+        <Form.Item label="HD" name="hard_disk">
+          <Select />
+        </Form.Item>
+        <Form.Item label="Processador" name="processador">
+          <Select />
+        </Form.Item>
+        <Form.Item label="Office" name="office">
+          <Select />
+        </Form.Item>
+        <Form.Item label="Tipo de Equipamento" name="tipo_computadores">
+          <Select />
+        </Form.Item>
+        <Form.Item
+          label="Configuração"
+          name="configuracao"
+          rules={[
+            {
+              required: true,
+              message: "Please input!",
+            },
+          ]}
+        >
+          <Input />
+        </Form.Item>
+        <Form.Item label="Observação" name="observacao">
+          <TextArea size="large" />
+        </Form.Item>
       </Form>
       <div className="form-btn">
         <Radio.Group value={size} onChange={(e) => setSize(e.target.value)}>
@@ -242,22 +243,3 @@ function Computadores({ data }) {
 }
 
 export default Computadores;
-
-{
-  /* <Input
-            type="date"
-            text="Data Compra"
-            name="data_compra"
-            value={formData.data_compra}
-            onChange={handleChange}
-          /> */
-}
-{
-  /* <Select
-            name="responsavel"
-            text="Responsável"
-            apiUrl="http://localhost:3001/responsavel"
-            value={formData.responsavel}
-            onChange={handleChange}
-          /> */
-}
