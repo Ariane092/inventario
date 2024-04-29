@@ -4,16 +4,16 @@ import { Button, Select, Space, Form } from "antd";
 import { Context } from "../../pages/FetchProvider.js";
 import "./SelectCad.css";
 
-function Projeto({ isVisibleAdd = true }) {
+function Memoria({ isVisibleAdd = true }) {
   const { data } = useContext(Context);
-  const projeto = data.projeto;
+  const memoria = data.memoria;
 
   return (
     <Space.Compact style={{ marginLeft: "15px" }}>
-      <Form.Item label="Projeto">
+      <Form.Item label="Memória">
         <Select
           style={{ width: "150px" }}
-          options={projeto.map((option) => ({
+          options={memoria.map((option) => ({
             value: option.id,
             label: option.nome,
           }))}
@@ -28,4 +28,4 @@ function Projeto({ isVisibleAdd = true }) {
   );
 }
 
-export default Projeto;
+export default Memoria;

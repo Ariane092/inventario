@@ -6,19 +6,33 @@ import {
   Alert,
   Space,
   Form,
-  Input,
-  DatePicker,
-  InputNumber,
-  Select,
 } from "antd";
 import { MdLinkedCamera } from "react-icons/md";
 import axios from "axios";
+import { FetchProvider } from "../pages/FetchProvider.js";
 import Projeto from "../forms/Selects/Projeto.js";
-import { FetchProvider, Context } from "../pages/FetchProvider.js";
+import Responsavel from "../forms/Selects/Responsavel.js";
+import Marca from "../forms/Selects/Marca.js";
+import Modelo from "../forms/Selects/Modelo.js";
+import Status from "../forms/Selects/Status.js";
+import Memoria from "../forms/Selects/Memoria.js";
+import HardDisk from "../forms/Selects/HardDisk.js";
+import Processador from "../forms/Selects/Processador.js";
+import Office from "../forms/Selects/Office.js";
+import TipoComputadores from "../forms/Selects/TipoComputadores.js";
+import Processo from "../forms/Inputs/Processo.js";
+import DataCompra from "../forms/Inputs/DataCompra.js";
+import Local from "../forms/Inputs/Local.js";
+import Usuario from "../forms/Inputs/Usuario.js";
+import NotaFiscal from "../forms/Inputs/NotaFiscal.js";
+import CodDoacao from "../forms/Inputs/CodDoacao.js";
+import Patrimonio from "../forms/Inputs/Patrimonio.js";
+import ServiceTag from "../forms/Inputs/ServiceTag.js";
+import Configuracao from "../forms/Inputs/Configuracao.js";
+import Observacao from "../forms/Inputs/Observacao.js";
 
 function Computadores() {
   const [size, setSize] = useState("default");
-  const { TextArea } = Input;
   const [submitSuccess, setSubmitSuccess] = useState(false);
   const [submitError, setSubmitError] = useState(false);
 
@@ -62,22 +76,12 @@ function Computadores() {
           />
         ) : null}
       </Space>
+      
       <h2>Cadastro de Computadores</h2>
+
       <Form
         name="basic"
-        labelCol={{
-          span: 8,
-        }}
-        wrapperCol={{
-          span: 16,
-        }}
-        style={{
-          display: "flex",
-          flexDirection: "row",
-          flexWrap: "wrap",
-          justifyContent: "flex-start",
-          marginTop: "35px",
-        }}
+        className="form-inputs"
         initialValues={{
           remember: true,
         }}
@@ -85,139 +89,30 @@ function Computadores() {
         onFinishFailed={onFinishFailed}
         autoComplete="off"
       >
-        <Form.Item
-          label="Processo"
-          name="processo"
-          rules={[
-            {
-              required: true,
-              message: "Please input!",
-            },
-          ]}
-        >
-          <Input />
-        </Form.Item>
-        <Form.Item label="Data Compra">
-          <DatePicker format="DD-MM-YYYY" />
-        </Form.Item>
-        <Form.Item label="Responsável" name="responsavel">
-          <Select />
-        </Form.Item>
-        <Form.Item
-          label="Local"
-          name="local"
-          rules={[
-            {
-              required: true,
-              message: "Please input!",
-            },
-          ]}
-        >
-          <Input />
-        </Form.Item>
-        <Form.Item
-          label="Usuário"
-          name="usuario"
-          rules={[
-            {
-              required: true,
-              message: "Please input!",
-            },
-          ]}
-        >
-          <Input placeholder="Senão, digite ROTATIVO" />
-        </Form.Item>
-        <Form.Item
-          label="NF"
-          name="nota_fiscal"
-          rules={[
-            {
-              required: true,
-              message: "Please input!",
-            },
-          ]}
-        >
-          <InputNumber />
-        </Form.Item>
-        <Form.Item
-          label="Cód. Doação"
-          name="cod_doacao"
-          rules={[
-            {
-              required: true,
-              message: "Please input!",
-            },
-          ]}
-        >
-          <InputNumber />
-        </Form.Item>
-        <Form.Item
-          label="Patrimônio"
-          name="patrimonio"
-          rules={[
-            {
-              required: true,
-              message: "Please input!",
-            },
-          ]}
-        >
-          <InputNumber />
-        </Form.Item>
         <FetchProvider>
+          <Processo />
+          <DataCompra />
+          <Responsavel />
+          <Local />
+          <Usuario />
+          <NotaFiscal />
+          <CodDoacao />
+          <Patrimonio />
           <Projeto />
+          <Status />
+          <ServiceTag />
+          <Marca />
+          <Modelo />
+          <Memoria />
+          <HardDisk />
+          <Processador />
+          <Office />
+          <TipoComputadores />
+          <Configuracao />
+          <Observacao />
         </FetchProvider>
-        <Form.Item label="Status" name="status">
-          <Select />
-        </Form.Item>
-        <Form.Item
-          label="Service Tag"
-          name="servicetag"
-          rules={[
-            {
-              required: true,
-              message: "Please input!",
-            },
-          ]}
-        >
-          <Input />
-        </Form.Item>
-        <Form.Item label="Marca" name="marca">
-          <Select />
-        </Form.Item>
-        <Form.Item label="Modelo" name="modelo">
-          <Select />
-        </Form.Item>
-        <Form.Item label="Memória" name="memoria">
-          <Select />
-        </Form.Item>
-        <Form.Item label="HD" name="hard_disk">
-          <Select />
-        </Form.Item>
-        <Form.Item label="Processador" name="processador">
-          <Select />
-        </Form.Item>
-        <Form.Item label="Office" name="office">
-          <Select />
-        </Form.Item>
-        <Form.Item label="Tipo de Equipamento" name="tipo_computadores">
-          <Select />
-        </Form.Item>
-        <Form.Item
-          label="Configuração"
-          name="configuracao"
-          rules={[
-            {
-              required: true,
-              message: "Please input!",
-            },
-          ]}
-        >
-          <Input />
-        </Form.Item>
-        <Form.Item label="Observação" name="observacao">
-          <TextArea size="large" />
-        </Form.Item>
       </Form>
+
       <div className="form-btn">
         <Radio.Group value={size} onChange={(e) => setSize(e.target.value)}>
           <Button

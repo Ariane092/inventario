@@ -1,11 +1,18 @@
+.form-inputs {
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: 40px;
+    justify-items: flex-start;
+}
+
 h2 {
     text-align: center;
     font-size: 22px;
     font-weight: 600;
-}
+} 
 
 @media screen and (max-width: 768px) {
     .textarea{
         width: 250px;
     }
-} 
+}  

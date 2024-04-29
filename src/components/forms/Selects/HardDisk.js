@@ -4,28 +4,30 @@ import { Button, Select, Space, Form } from "antd";
 import { Context } from "../../pages/FetchProvider.js";
 import "./SelectCad.css";
 
-function Projeto({ isVisibleAdd = true }) {
+function HardDisk({ isVisibleAdd = true }) {
   const { data } = useContext(Context);
-  const projeto = data.projeto;
+  const hd = data.hard_disk;
 
   return (
     <Space.Compact style={{ marginLeft: "15px" }}>
-      <Form.Item label="Projeto">
+      <Form.Item label="HD">
         <Select
           style={{ width: "150px" }}
-          options={projeto.map((option) => ({
+          options={hd.map((option) => ({
             value: option.id,
             label: option.nome,
           }))}
         />
       </Form.Item>
-      {isVisibleAdd && (
-        <Button>
-          <PlusOutlined className="add_button" />
-        </Button>
-      )}
+      <div>
+        {isVisibleAdd && (
+          <Button className="add_button">
+            <PlusOutlined />
+          </Button>
+        )}
+      </div>
     </Space.Compact>
   );
 }
 
-export default Projeto;
+export default HardDisk;
