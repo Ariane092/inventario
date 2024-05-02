@@ -12,7 +12,7 @@ function Patrimonio() {
         },
       ]}
     >
-      <InputNumber />
+      <InputNumber style={{width: "160px"}} />
     </Form.Item>
   );
 }

@@ -9,7 +9,7 @@ function Status({ isVisibleAdd = true }) {
   const status = data.status;
 
   return (
-    <Space.Compact style={{ marginLeft: "15px" }}>
+    <Space.Compact>
       <Form.Item label="Status">
         <Select
           style={{ width: "150px" }}

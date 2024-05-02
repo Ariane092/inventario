@@ -9,7 +9,7 @@ function Processador({ isVisibleAdd = true }) {
   const processador = data.processador;
 
   return (
-    <Space.Compact style={{ marginLeft: "15px" }}>
+    <Space.Compact>
       <Form.Item label="Processador">
         <Select
           style={{ width: "150px" }}

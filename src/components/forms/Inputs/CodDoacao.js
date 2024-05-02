@@ -12,7 +12,7 @@ function CodDoacao() {
         },
       ]}
     >
-      <InputNumber />
+      <InputNumber style={{width: "160px"}} />
     </Form.Item>
   );
 }

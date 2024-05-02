@@ -9,7 +9,7 @@ function Office({ isVisibleAdd = true }) {
   const office = data.office;
 
   return (
-    <Space.Compact style={{ marginLeft: "15px" }}>
+    <Space.Compact>
       <Form.Item label="Office">
         <Select
           style={{ width: "150px" }}

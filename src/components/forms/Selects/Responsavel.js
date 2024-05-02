@@ -9,7 +9,7 @@ function Responsavel({ isVisibleAdd = true }) {
   const responsavel = data.responsavel;
 
   return (
-    <Space.Compact style={{ marginLeft: "15px" }}>
+    <Space.Compact>
       <Form.Item label="Responsável">
         <Select
           style={{ width: "150px" }}

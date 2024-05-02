@@ -9,7 +9,7 @@ function Memoria({ isVisibleAdd = true }) {
   const memoria = data.memoria;
 
   return (
-    <Space.Compact style={{ marginLeft: "15px" }}>
+    <Space.Compact>
       <Form.Item label="Memória">
         <Select
           style={{ width: "150px" }}

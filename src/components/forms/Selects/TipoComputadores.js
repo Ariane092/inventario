@@ -9,7 +9,7 @@ function TipoComputadores({ isVisibleAdd = true }) {
   const computadores = data.tipo_computadores;
 
   return (
-    <Space.Compact style={{ marginLeft: "15px" }}>
+    <Space.Compact>
       <Form.Item label="Tipo">
         <Select
           style={{ width: "150px" }}

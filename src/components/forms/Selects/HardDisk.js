@@ -8,11 +8,17 @@ function HardDisk({ isVisibleAdd = true }) {
   const { data } = useContext(Context);
   const hd = data.hard_disk;
 
+  const handleChange = (value) => {
+  
+    console.log("selected:", value);
+  };
+
   return (
-    <Space.Compact style={{ marginLeft: "15px" }}>
+    <Space.Compact>
       <Form.Item label="HD">
         <Select
           style={{ width: "150px" }}
+          onChange={handleChange}
           options={hd.map((option) => ({
             value: option.id,
             label: option.nome,

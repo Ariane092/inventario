@@ -4,7 +4,7 @@ function Observacao() {
   const { TextArea } = Input;
   return (
     <Form.Item label="Observação" name="observacao">
-      <TextArea size="large" />
+      <TextArea style={{width: "300px"}} />
     </Form.Item>
   );
 }

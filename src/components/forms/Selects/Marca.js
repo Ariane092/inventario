@@ -8,11 +8,17 @@ function Marca({ isVisibleAdd = true }) {
   const { data } = useContext(Context);
   const marca = data.marca;
 
+  const handleChange = (value) => {
+    const selectedOption = marca.find(option => option.id === value);
+    console.log("selected:", selectedOption);
+  };
+
   return (
-    <Space.Compact style={{ marginLeft: "15px" }}>
+    <Space.Compact>
       <Form.Item label="Marca">
         <Select
           style={{ width: "150px" }}
+          onChange={handleChange}
           options={marca.map((option) => ({
             value: option.id,
             label: option.nome,

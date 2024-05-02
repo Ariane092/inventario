@@ -9,7 +9,7 @@ function Projeto({ isVisibleAdd = true }) {
   const projeto = data.projeto;
 
   return (
-    <Space.Compact style={{ marginLeft: "15px" }}>
+    <Space.Compact>
       <Form.Item label="Projeto">
         <Select
           style={{ width: "150px" }}

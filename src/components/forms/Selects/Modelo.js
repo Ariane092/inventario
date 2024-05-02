@@ -9,7 +9,7 @@ function Modelo({ isVisibleAdd = true }) {
   const modelo = data.modelo;
 
   return (
-    <Space.Compact style={{ marginLeft: "15px" }}>
+    <Space.Compact>
       <Form.Item label="Modelo">
         <Select
           style={{ width: "150px" }}
