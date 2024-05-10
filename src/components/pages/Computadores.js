@@ -21,33 +21,16 @@ import ServiceTag from "../forms/Inputs/ServiceTag.js";
 import Configuracao from "../forms/Inputs/Configuracao.js";
 import Observacao from "../forms/Inputs/Observacao.js";
 import "./Cadastro.css";
-import {
-  Button,
-  Radio,
-  Alert,
-  Space,
-  Form,
-} from "antd";
+import { Button, Alert, Space, Form } from "antd";
 import { MdLinkedCamera } from "react-icons/md";
 import axios from "axios";
 
 function Computadores() {
-  const [size, setSize] = useState("default");
   const [submitSuccess, setSubmitSuccess] = useState(false);
   const [submitError, setSubmitError] = useState(false);
-
-  const onFinish = async (values) => {
-    try {
-      await axios.post("http://localhost:3001/cadastro", values);
-      setSubmitSuccess(true);
-      setSubmitError(false);
-    } catch (error) {
-      console.error("Erro ao enviar dados:", error);
-      setSubmitSuccess(false);
-      setSubmitError(true);
-    }
+  const onFinish = (values) => {
+    console.log("Success:", values);
   };
-
   const onFinishFailed = (errorInfo) => {
     console.log("Failed:", errorInfo);
   };
@@ -71,20 +54,20 @@ function Computadores() {
           />
         ) : null}
       </Space>
-      
+
       <h2>Cadastro de Computadores</h2>
 
-      <Form
-        name="basic"
-        className="form-inputs"
-        initialValues={{
-          remember: true,
-        }}
-        onFinish={onFinish}
-        onFinishFailed={onFinishFailed}
-        autoComplete="off"
-      >
-        <FetchProvider>
+      <FetchProvider>
+        <Form
+          name="basic"
+          className="form-inputs"
+          initialValues={{
+            remember: true,
+          }}
+          onFinish={onFinish}
+          onFinishFailed={onFinishFailed}
+          autoComplete="off"
+        >
           <Processo />
           <DataCompra />
           <Responsavel />
@@ -105,46 +88,53 @@ function Computadores() {
           <TipoComputadores />
           <Configuracao />
           <Observacao />
-        </FetchProvider>
-      </Form>
 
-      <div className="form-btn">
-        <Radio.Group value={size} onChange={(e) => setSize(e.target.value)}>
-          <Button
-            type="primary"
-            shape="default"
-            size={size}
-            style={{ background: "rgb(55, 119, 87)" }}
-            htmlType="submit"
-          >
-            Enviar
-          </Button>
-          <Button
-            type="primary"
-            size={size}
-            shape="default"
-            style={{ margin: 10, background: "rgb(55, 119, 87)" }}
-            icon={<MdLinkedCamera />}
-          ></Button>
-        </Radio.Group>
-      </div>
+          <div className="form-btn">
+            <Button
+              type="primary"
+              shape="default"
+              style={{ background: "rgb(55, 119, 87)" }}
+              htmlType="submit"
+            >
+              Enviar
+            </Button>
+            <Button
+              type="primary"
+              shape="default"
+              style={{ margin: 10, background: "rgb(55, 119, 87)" }}
+              icon={<MdLinkedCamera />}
+            />
+          </div>
+        </Form>
+      </FetchProvider>
     </div>
   );
 }
 
 export default Computadores;
 
+//   const onFinish = async (values) => {
+//     try {
+//       await axios.post("http://localhost:3001/cadastro", values);
+//       setSubmitSuccess(true);
+//       setSubmitError(false);
+//     } catch (error) {
+//       console.error("Erro ao enviar dados:", error);
+//       setSubmitSuccess(false);
+//       setSubmitError(true);
+//     }
+//   };
 
- // const handleSubmit = async (e) => {
-  //   e.preventDefault();
-  //   try {
-  //     await axios.post("http://localhost:3001/cadastro", formData);
-  //     setSubmitSuccess(true);
-  //     setTimeout(() => {
-  //       window.location.reload();
-  //     }, 1500);
-  //   } catch (error) {
-  //     console.error("Error:", error);
-  //     setSubmitError(true);
-  //   }
-  // };
+// // const handleSubmit = async (e) => {
+// //   e.preventDefault();
+// //   try {
+// //     await axios.post("http://localhost:3001/cadastro", formData);
+// //     setSubmitSuccess(true);
+// //     setTimeout(() => {
+// //       window.location.reload();
+// //     }, 1500);
+// //   } catch (error) {
+// //     console.error("Error:", error);
+// //     setSubmitError(true);
+// //   }
+// // };

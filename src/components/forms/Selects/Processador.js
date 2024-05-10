@@ -10,7 +10,7 @@ function Processador({ isVisibleAdd = true }) {
 
   return (
     <Space.Compact>
-      <Form.Item label="Processador">
+      <Form.Item label="Processador" name="processador">
         <Select
           style={{ width: "150px" }}
           options={processador.map((option) => ({

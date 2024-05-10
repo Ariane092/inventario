@@ -10,7 +10,7 @@ function Status({ isVisibleAdd = true }) {
 
   return (
     <Space.Compact>
-      <Form.Item label="Status">
+      <Form.Item label="Status" name="status">
         <Select
           style={{ width: "150px" }}
           options={status.map((option) => ({

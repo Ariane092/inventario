@@ -10,7 +10,7 @@ function Responsavel({ isVisibleAdd = true }) {
 
   return (
     <Space.Compact>
-      <Form.Item label="Responsável">
+      <Form.Item label="Responsável" name="responsavel">
         <Select
           style={{ width: "150px" }}
           options={responsavel.map((option) => ({

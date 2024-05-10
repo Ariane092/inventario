@@ -10,7 +10,7 @@ function Modelo({ isVisibleAdd = true }) {
 
   return (
     <Space.Compact>
-      <Form.Item label="Modelo">
+      <Form.Item label="Modelo" name="modelo">
         <Select
           style={{ width: "150px" }}
           options={modelo.map((option) => ({

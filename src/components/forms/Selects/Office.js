@@ -10,7 +10,7 @@ function Office({ isVisibleAdd = true }) {
 
   return (
     <Space.Compact>
-      <Form.Item label="Office">
+      <Form.Item label="Office" name="office">
         <Select
           style={{ width: "150px" }}
           options={office.map((option) => ({

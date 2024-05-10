@@ -10,7 +10,7 @@ function Memoria({ isVisibleAdd = true }) {
 
   return (
     <Space.Compact>
-      <Form.Item label="Memória">
+      <Form.Item label="Memória" name="memoria">
         <Select
           style={{ width: "150px" }}
           options={memoria.map((option) => ({

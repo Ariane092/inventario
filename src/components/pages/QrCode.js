@@ -1,11 +1,13 @@
 import React, { useState, useEffect, useRef } from "react";
 import QRCode from "qrcode.react";
-import { Button } from "antd";
+import { Button, Pagination } from "antd";
 import { PrinterFilled } from "@ant-design/icons";
 import html2pdf from "html2pdf.js";
 
 function QrCode() {
   const [data, setData] = useState([]);
+  const [currentPage, setCurrentPage] = useState(1);
+  const pageSize = 28;
   const contentRef = useRef(null);
 
   useEffect(() => {
@@ -33,6 +35,35 @@ function QrCode() {
     html2pdf().from(contentRef.current).set(option).output("dataurlnewwindow");
   };
 
+  const renderItems = () => {
+    const startIndex = (currentPage - 1) * pageSize;
+    const endIndex = startIndex + pageSize;
+    return data.slice(startIndex, endIndex).map((item) => (
+      <div
+        key={item.id}
+        style={{
+          display: "flex",
+          alignItems: "center",
+          padding: "5px",
+          width: "250px",
+        }}
+      >
+        <QRCode value={`ID: ${item.id}`} size={60} includeMargin={true} />
+        <ul style={{ listStyleType: "none", justifyItens: "flex-start", fontSize: '13px'}}>
+          <li>CEPEA</li>
+          <li>
+            {item.tipo_equipamento} {item.id}
+          </li>
+          <li>{item.projeto}</li>
+        </ul>
+      </div>
+    ));
+  };
+
+  const handlePageChange = (page) => {
+    setCurrentPage(page);
+  };
+
   return (
     <div>
       <h2>Qr Code dos Equipamentos</h2>
@@ -45,29 +76,11 @@ function QrCode() {
       >
         <Button onClick={handlePrint}><PrinterFilled /> Imprimir</Button>
       </div>
-        <div style={{ display: "flex", flexWrap: "wrap", margin: "35px" }} ref={contentRef}>
-          {data.map((item) => (
-            <div
-              key={item.id}
-              style={{
-                display: "flex",
-                alignItems: "center",
-                padding: "5px",
-                width: "250px",
-              }}
-            >
-              <QRCode value={`ID: ${item.id}`} size={60} includeMargin={true} />
-              <ul style={{ listStyleType: "none", justifyItens: "flex-start", fontSize: '13px'}}>
-                <li>CEPEA</li>
-                <li>
-                  {item.tipo_equipamento} {item.id}
-                </li>
-                <li>{item.projeto}</li>
-              </ul>
-            </div>
-          ))}
-        </div>
+      <div style={{ display: "flex", flexWrap: "wrap", margin: "35px" }} ref={contentRef}>
+        {renderItems()}
       </div>
+      <Pagination current={currentPage} total={data.length} pageSize={pageSize} onChange={handlePageChange} />
+    </div>
   );
 }
 
