@@ -1,209 +1,114 @@
-// import React, { useState } from "react";
-// import "./Cadastro.css";
-// import { Button, Radio, Alert, Space, Input } from "antd";
-// import { MdLinkedCamera } from "react-icons/md";
-// import axios from "axios";
+import React, { useState } from "react";
+import { FetchProvider } from "../pages/FetchProvider.js";
+import Projeto from "../forms/Selects/Projeto.js";
+import Responsavel from "../forms/Selects/Responsavel.js";
+import Marca from "../forms/Selects/Marca.js";
+import Modelo from "../forms/Selects/Modelo.js";
+import Status from "../forms/Selects/Status.js";
+import Office from "../forms/Selects/Office.js";
+import Processo from "../forms/Inputs/Processo.js";
+import DataCompra from "../forms/Inputs/DataCompra.js";
+import Local from "../forms/Inputs/Local.js";
+import Usuario from "../forms/Inputs/Usuario.js";
+import NotaFiscal from "../forms/Inputs/NotaFiscal.js";
+import CodDoacao from "../forms/Inputs/CodDoacao.js";
+import Patrimonio from "../forms/Inputs/Patrimonio.js";
+import ServiceTag from "../forms/Inputs/ServiceTag.js";
+import Observacao from "../forms/Inputs/Observacao.js";
+import "./Cadastro.css";
+import { Button, Alert, Space, Form } from "antd";
+import { MdLinkedCamera } from "react-icons/md";
+import axios from "axios";
+import TipoImpressoras from "../forms/Selects/TipoImpressoras.js";
 
-// function Impressoras() {
-//   const [size, setSize] = useState("default");
-//   const [submitSuccess, setSubmitSuccess] = useState(false);
-//   const [submitError, setSubmitError] = useState(false);
-//   const [formData, setFormData] = useState({
-//     processo: "",
-//     data_compra: "",
-//     responsavel: "",
-//     local: "",
-//     usuario: "",
-//     nota_fiscal: "",
-//     cod_doacao: "",
-//     patrimonio: "",
-//     projeto: "",
-//     status: "",
-//     servicetag: "",
-//     tipo_equipamento: "",
-//     marca: "",
-//     modelo: "",
-//     observacao: "",
-//   });
+function Impressoras() {
+  const [submitSuccess, setSubmitSuccess] = useState(false);
+  const [submitError, setSubmitError] = useState(false);
+  const onFinish = async (values) => {
+    try {
+      await axios.post("http://localhost:3001/cadastro", values);
+      setSubmitSuccess(true);
+      setSubmitError(false);
+      window.location.reload();
+    } catch (error) {
+      console.error("Erro ao enviar dados:", error);
+      setSubmitSuccess(false);
+      setSubmitError(true);
+    }
+  };
+  const onFinishFailed = (errorInfo) => {
+    console.log("Failed:", errorInfo);
+  };
 
-//   const handleChange = (e) => {
-//     const { name, value } = e.target;
-//     setFormData((prevData) => ({
-//       ...prevData,
-//       [name]: value,
-//     }));
-//   };
+  return (
+    <div>
+      <Space
+        direction="vertical"
+        style={{
+          width: "100%",
+          marginBottom: "10px",
+        }}
+      >
+        {submitSuccess ? (
+          <Alert message="Equipamento cadastrado!" type="success" showIcon />
+        ) : submitError ? (
+          <Alert
+            message="Erro ao cadastrar equipamento."
+            type="error"
+            showIcon
+          />
+        ) : null}
+      </Space>
 
-//   const handleSubmit = async (e) => {
-//     e.preventDefault();
-//     try {
-//       await axios.post("http://localhost:3001/cadastro", formData);
-//       setSubmitSuccess(true);
-//       setTimeout(() => {
-//         window.location.reload(); 
-//     }, 1500);
-//     } catch (error) {
-//       console.error("Error:", error);
-//       setSubmitError(true);
-//     }
-//   };
+      <h2>Cadastro de Impressoras</h2>
 
-//   return (
-//     <>
-//         <form onSubmit={handleSubmit}>
-//           <Space
-//             direction="vertical"
-//             style={{
-//               width: "100%",
-//               marginBottom: "10px",
-//             }}
-//           >
-//             {submitSuccess ? (
-//               <Alert
-//                 message="Equipamento cadastrado!"
-//                 type="success"
-//                 showIcon
-//               />
-//             ) : submitError ? (
-//               <Alert
-//                 message="Erro ao cadastrar equipamento."
-//                 type="error"
-//                 showIcon
-//               />
-//             ) : null}
-//           </Space>
-//           <h2>Cadastro de Impressoras</h2>
-//           <div className="input-group">
-//             <Input
-//               type="text"
-//               text="Processo"
-//               name="processo"
-//               value={formData.processo}
-//               onChange={handleChange}
-//             />
-//             <Input
-//               type="date"
-//               text="Data Compra"
-//               name="data_compra"
-//               value={formData.data_compra}
-//               onChange={handleChange}
-//             />
-//             <Select
-//               name="responsavel"
-//               text="Responsável"
-//               apiUrl="http://localhost:3001/responsavel"
-//               value={formData.responsavel}
-//               onChange={handleChange}
-//             />
-//             <Input
-//               type="text"
-//               text="Local"
-//               name="local"
-//               value={formData.local}
-//               onChange={handleChange}
-//             />
-//             <Input
-//               type="text"
-//               text="Usuário"
-//               name="usuario"
-//               placeholder="Senão, digite ROTATIVO"
-//               value={formData.usuario}
-//               onChange={handleChange}
-//             />
-//             <Input
-//               type="number"
-//               text="NF"
-//               name="nota_fiscal"
-//               value={formData.nota_fiscal}
-//               onChange={handleChange}
-//             />
-//             <Input
-//               type="number"
-//               text="Cód. Doação"
-//               name="cod_doacao"
-//               value={formData.cod_doacao}
-//               onChange={handleChange}
-//             />
-//             <Input
-//               type="number"
-//               text="Patrimônio"
-//               name="patrimonio"
-//               value={formData.patrimonio}
-//               onChange={handleChange}
-//             />
-//             <Select
-//               name="projeto"
-//               text="Projeto"
-//               apiUrl="http://localhost:3001/projeto"
-//               value={formData.projeto}
-//               onChange={handleChange}
-//             />
-//             <Select
-//               name="status"
-//               text="Status"
-//               apiUrl="http://localhost:3001/status"
-//               value={formData.status}
-//               onChange={handleChange}
-//             />
-//             <Input
-//               type="text"
-//               text="Service Tag"
-//               name="servicetag"
-//               value={formData.servicetag}
-//               onChange={handleChange}
-//             />
-//             <Select
-//               name="marca"
-//               text="Marca"
-//               apiUrl="http://localhost:3001/marca"
-//               value={formData.marca}
-//               onChange={handleChange}
-//             />
-//             <Select
-//               name="modelo"
-//               text="Modelo"
-//               apiUrl="http://localhost:3001/modelo"
-//               value={formData.modelo}
-//               onChange={handleChange}
-//             />
-//             <Select
-//               name="tipo_equipamento"
-//               text="Tipo de Equipamento"
-//               apiUrl="http://localhost:3001/impressoras"
-//               value={formData.tipo_impressoras}
-//               onChange={handleChange}
-//             />
-//             <Input
-//               type="textarea"
-//               text="Observação"
-//               name="observacao"
-//               value={formData.observacao}
-//               onChange={handleChange}
-//             />
-//           </div>
-//           <div className="form-btn">
-//             <Radio.Group value={size} onChange={(e) => setSize(e.target.value)}>
-//               <Button
-//                 type="primary"
-//                 shape="default"
-//                 size={size}
-//                 style={{ background: "rgb(55, 119, 87)" }}
-//                 htmlType="submit"
-//               >
-//                 Enviar
-//               </Button>
-//               <Button
-//                 type="primary"
-//                 size={size}
-//                 shape="default"
-//                 style={{ margin: 10, background: "rgb(55, 119, 87)" }}
-//                 icon={<MdLinkedCamera />}
-//               ></Button>
-//             </Radio.Group>
-//           </div>
-//         </form>
-//     </>
-//   );
-// }
+      <FetchProvider>
+        <Form
+     
+          className="form-inputs"
+          initialValues={{
+            remember: true,
+          }}
+          onFinish={onFinish}
+          onFinishFailed={onFinishFailed}
+          autoComplete="off"
+        >
+          <Processo />
+          <DataCompra />
+          <Responsavel />
+          <Local />
+          <Usuario />
+          <NotaFiscal />
+          <CodDoacao />
+          <Patrimonio />
+          <Projeto />
+          <Status />
+          <ServiceTag />
+          <Marca />
+          <Modelo />
+          <Office />
+          <TipoImpressoras />
+          <Observacao />
+          <div>
+            <Button
+              type="primary"
+              shape="default"
+              style={{ background: "rgb(55, 119, 87)" }}
+              htmlType="submit"
+            >
+              Enviar
+            </Button>
+            <Button
+              type="primary"
+              shape="default"
+              style={{ margin: 10, background: "rgb(55, 119, 87)" }}
+              icon={<MdLinkedCamera />}
+            />
+          </div>
+        </Form>
+      </FetchProvider>
+    </div>
+  );
+}
 
-// export default Impressoras;
+export default Impressoras;

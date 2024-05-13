@@ -1,16 +1,71 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { PlusOutlined } from "@ant-design/icons";
-import { Button, Select, Space, Form } from "antd";
+import { Button, Select, Space, Form, Popover, Input } from "antd";
 import { Context } from "../../pages/FetchProvider.js";
 import "./SelectCad.css";
+import axios from "axios";
 
 function HardDisk({ isVisibleAdd = true }) {
-  const { data } = useContext(Context);
+  const { data, setData } = useContext(Context);
   const hd = data.hard_disk;
+  const [open, setOpen] = useState(false);
+  const hide = () => {
+    setOpen(false);
+  };
+  const handleOpenChange = (newOpen) => {
+    setOpen(newOpen);
+  };
+  const onFinish = async (values) => {
+    try {
+      const response = await axios.post("http://localhost:3001/hd", {
+        nome: values.hard_disk,
+      });
+      const newHD = response.data;
+      setData((prevData) => ({
+        ...prevData,
+        hard_disk: [...prevData.hard_disk, newHD],
+      }));
+      hide();
+    } catch (error) {
+      console.error("Erro ao enviar dados:", error);
+    }
+  };
+  const onFinishFailed = (errorInfo) => {
+    console.log("Failed:", errorInfo);
+  };
+  const content = (
+    <div>
+      <Form
+        initialValues={{
+          remember: true,
+        }}
+        onFinish={onFinish}
+        onFinishFailed={onFinishFailed}
+        autoComplete="off"
+      >
+        <Form.Item name="hard_disk">
+          <Input />
+        </Form.Item>
+        <div className="add-option">
+          <a onClick={hide}>close</a>
+          <div>
+            <Button
+              type="primary"
+              size={"small"}
+              style={{ background: "rgb(55, 119, 87)", marginLeft: "10px" }}
+              htmlType="submit"
+            >
+              ok
+            </Button>
+          </div>
+        </div>
+      </Form>
+    </div>
+  );
 
   return (
     <Space.Compact>
-      <Form.Item label= "HD" name="hard_disk">
+      <Form.Item label="HD" name="hard_disk">
         <Select
           style={{ width: 150 }}
           options={hd.map((option) => ({
@@ -21,9 +76,17 @@ function HardDisk({ isVisibleAdd = true }) {
       </Form.Item>
       <div>
         {isVisibleAdd && (
-          <Button className="add_button">
-            <PlusOutlined />
-          </Button>
+          <Popover
+            content={content}
+            title="Adicionar novo HD:"
+            trigger="click"
+            open={open}
+            onOpenChange={handleOpenChange}
+          >
+            <Button className="add-button">
+              <PlusOutlined />
+            </Button>
+          </Popover>
         )}
       </div>
     </Space.Compact>
@@ -31,4 +94,3 @@ function HardDisk({ isVisibleAdd = true }) {
 }
 
 export default HardDisk;
-

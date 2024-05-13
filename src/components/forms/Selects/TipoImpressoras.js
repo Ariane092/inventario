@@ -4,16 +4,16 @@ import { Button, Select, Space, Form } from "antd";
 import { Context } from "../../pages/FetchProvider.js";
 import "./SelectCad.css";
 
-function TipoComputadores({ isVisibleAdd = true }) {
+function TipoImpressoras({ isVisibleAdd = true }) {
   const { data } = useContext(Context);
-  const computadores = data.tipo_computadores;
+  const impressoras = data.tipo_impressoras;
 
   return (
     <Space.Compact>
       <Form.Item label="Tipo" name="tipo_equipamento">
         <Select
           style={{ width: "150px" }}
-          options={computadores.map((option) => ({
+          options={impressoras.map((option) => ({
             value: option.id,
             label: option.nome,
           }))}
@@ -28,4 +28,4 @@ function TipoComputadores({ isVisibleAdd = true }) {
   );
 }
 
-export default TipoComputadores;
+export default TipoImpressoras;

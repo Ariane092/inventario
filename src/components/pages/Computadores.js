@@ -28,8 +28,17 @@ import axios from "axios";
 function Computadores() {
   const [submitSuccess, setSubmitSuccess] = useState(false);
   const [submitError, setSubmitError] = useState(false);
-  const onFinish = (values) => {
-    console.log("Success:", values);
+  const onFinish = async (values) => {
+    try {
+      await axios.post("http://localhost:3001/cadastro", values);
+      setSubmitSuccess(true);
+      setSubmitError(false);
+      window.location.reload();
+    } catch (error) {
+      console.error("Erro ao enviar dados:", error);
+      setSubmitSuccess(false);
+      setSubmitError(true);
+    }
   };
   const onFinishFailed = (errorInfo) => {
     console.log("Failed:", errorInfo);
@@ -59,7 +68,6 @@ function Computadores() {
 
       <FetchProvider>
         <Form
-          name="basic"
           className="form-inputs"
           initialValues={{
             remember: true,
@@ -89,7 +97,7 @@ function Computadores() {
           <Configuracao />
           <Observacao />
 
-          <div className="form-btn">
+          <div>
             <Button
               type="primary"
               shape="default"
@@ -112,29 +120,3 @@ function Computadores() {
 }
 
 export default Computadores;
-
-//   const onFinish = async (values) => {
-//     try {
-//       await axios.post("http://localhost:3001/cadastro", values);
-//       setSubmitSuccess(true);
-//       setSubmitError(false);
-//     } catch (error) {
-//       console.error("Erro ao enviar dados:", error);
-//       setSubmitSuccess(false);
-//       setSubmitError(true);
-//     }
-//   };
-
-// // const handleSubmit = async (e) => {
-// //   e.preventDefault();
-// //   try {
-// //     await axios.post("http://localhost:3001/cadastro", formData);
-// //     setSubmitSuccess(true);
-// //     setTimeout(() => {
-// //       window.location.reload();
-// //     }, 1500);
-// //   } catch (error) {
-// //     console.error("Error:", error);
-// //     setSubmitError(true);
-// //   }
-// // };

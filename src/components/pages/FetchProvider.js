@@ -99,7 +99,7 @@ function FetchProvider({ children }) {
   )
     return null;
 
-  return <Context.Provider value={{ data }}>{children}</Context.Provider>;
+  return <Context.Provider value={{ data, setData }}>{children}</Context.Provider>;
 }
 
 export { FetchProvider, Context };

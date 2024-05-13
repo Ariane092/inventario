@@ -1,14 +1,15 @@
-.add_button {
+.add-button {
  font-size: 13px;
  cursor: pointer;
  color: #44434663;
 }
 
-.add_button:hover {
+.add-button:hover {
     color: #00a86b
 }
 
-.add_option {
+.add-option {
     display: flex;
-    justify-content: center;
+    justify-content: flex-end;
+    margin: 10px;
 } 
