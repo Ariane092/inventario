@@ -10,7 +10,7 @@ import Memoria from "../forms/Selects/Memoria.js";
 import HardDisk from "../forms/Selects/HardDisk.js";
 import Processador from "../forms/Selects/Processador.js";
 import Office from "../forms/Selects/Office.js";
-import TipoComputadores from "../forms/Selects/TipoComputadores.js";
+import TipoEquipamento from "../forms/Selects/TipoEquipamento.js";
 import Processo from "../forms/Inputs/Processo.js";
 import DataCompra from "../forms/Inputs/DataCompra.js";
 import Local from "../forms/Inputs/Local.js";
@@ -116,7 +116,7 @@ function Editar() {
             <HardDisk isVisibleAdd = {false} />
             <Processador isVisibleAdd = {false} />
             <Office isVisibleAdd = {false} />
-            <TipoComputadores isVisibleAdd = {false} />
+            <TipoEquipamento />
             <Configuracao />
             <Observacao />
 

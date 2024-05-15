@@ -43,7 +43,9 @@ function FetchProvider({ children }) {
           fetch("http://localhost:3001/memoria").then((response) =>
             response.json()
           ),
-          fetch("http://localhost:3001/hd").then((response) => response.json()),
+          fetch("http://localhost:3001/hd").then((response) => 
+            response.json()
+          ),
           fetch("http://localhost:3001/processador").then((response) =>
             response.json()
           ),

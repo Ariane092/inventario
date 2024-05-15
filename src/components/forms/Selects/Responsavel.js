@@ -65,7 +65,7 @@ function Responsavel({ isVisibleAdd = true }) {
     <Space.Compact>
       <Form.Item label="Responsavel" name="responsavel">
         <Select
-          style={{ width: 150 }}
+          style={{ width: 230 }}
           options={responsavel.map((option) => ({
             value: option.id,
             label: option.nome,

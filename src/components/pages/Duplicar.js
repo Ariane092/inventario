@@ -10,7 +10,7 @@ import Memoria from "../forms/Selects/Memoria.js";
 import HardDisk from "../forms/Selects/HardDisk.js";
 import Processador from "../forms/Selects/Processador.js";
 import Office from "../forms/Selects/Office.js";
-import TipoComputadores from "../forms/Selects/TipoComputadores.js";
+import TipoEquipamento from "../forms/Selects/TipoEquipamento.js";
 import Processo from "../forms/Inputs/Processo.js";
 import DataCompra from "../forms/Inputs/DataCompra.js";
 import Local from "../forms/Inputs/Local.js";
@@ -88,7 +88,7 @@ function Duplicar() {
         ) : null}
       </Space>
 
-      <h2>Copiar Equipamento</h2>
+      <h2>Duplicar e Cadastrar Equipamento</h2>
 
       <FetchProvider>
         {initialValues && (
@@ -116,7 +116,7 @@ function Duplicar() {
             <HardDisk isVisibleAdd = {false} />
             <Processador isVisibleAdd = {false} />
             <Office isVisibleAdd = {false} />
-            <TipoComputadores isVisibleAdd = {false} />
+            <TipoEquipamento />
             <Configuracao />
             <Observacao />
 
