@@ -29,7 +29,9 @@ function Impressoras() {
       await axios.post("http://localhost:3001/cadastro", values);
       setSubmitSuccess(true);
       setSubmitError(false);
-      window.location.reload();
+      setTimeout(() => {
+        window.location.reload();
+      }, 2000);
     } catch (error) {
       console.error("Erro ao enviar dados:", error);
       setSubmitSuccess(false);

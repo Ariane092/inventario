@@ -45,7 +45,7 @@ function Office({ isVisibleAdd = true }) {
           <Input />
         </Form.Item>
         <div className="add-option">
-          <a onClick={hide}>close</a>
+          <a onClick={hide}>fechar</a>
           <div>
             <Button
               type="primary"
