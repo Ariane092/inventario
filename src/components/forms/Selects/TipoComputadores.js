@@ -67,7 +67,7 @@ function TipoComputadores({ isVisibleAdd = true }) {
     <Space.Compact>
       <Form.Item label="Tipo" name="tipo_equipamento">
         <Select
-          style={{ width: 150 }}
+          style={{ width: 165 }}
           options={computadores.map((option) => ({
             value: option.id,
             label: option.nome,

@@ -10,7 +10,7 @@ function TipoEquipamento() {
   return (
       <Form.Item label="Tipo" name="tipo_equipamento">
         <Select
-          style={{ width: 150 }}
+          style={{ width: 165 }}
           options={equipamento.map((option) => ({
             value: option.id,
             label: option.nome,

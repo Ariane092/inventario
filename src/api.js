@@ -27,6 +27,64 @@ app.get('/cadastro', async (req, res) => {
   }
 });
 
+/*relatórios*/
+app.get('/cadastro', async (req, res) => {
+  try {
+    const { tipoEquipamento, responsavel, projeto, status, marca, modelo, memoria, hardDisk, processador, office } = req.query;
+
+    let query = 'SELECT * FROM cadastro WHERE 1=1';
+    const queryParams = [];
+
+    if (tipoEquipamento) {
+      queryParams.push(tipoEquipamento);
+      query += ` AND tipo_equipamento = $${queryParams.length}`;
+    }
+    if (responsavel) {
+      queryParams.push(responsavel);
+      query += ` AND responsavel = $${queryParams.length}`;
+    }
+    if (projeto) {
+      queryParams.push(projeto);
+      query += ` AND projeto = $${queryParams.length}`;
+    }
+    if (status) {
+      queryParams.push(status);
+      query += ` AND status = $${queryParams.length}`;
+    }
+    if (marca) {
+      queryParams.push(marca);
+      query += ` AND marca = $${queryParams.length}`;
+    }
+    if (modelo) {
+      queryParams.push(modelo);
+      query += ` AND modelo = $${queryParams.length}`;
+    }
+    if (memoria) {
+      queryParams.push(memoria);
+      query += ` AND memoria = $${queryParams.length}`;
+    }
+    if (hardDisk) {
+      queryParams.push(hardDisk);
+      query += ` AND hard_disk = $${queryParams.length}`;
+    }
+    if (processador) {
+      queryParams.push(processador);
+      query += ` AND processador = $${queryParams.length}`;
+    }
+    if (office) {
+      queryParams.push(office);
+      query += ` AND office = $${queryParams.length}`;
+    }
+
+    const result = await pool.query(query, queryParams);
+    res.json(result.rows);
+  } catch (error) {
+    console.error('Erro ao obter dados do banco de dados', error);
+    res.status(500).send('Erro interno do servidor');
+  }
+});
+
+
 /*visualizar/editar/duplicar*/
 app.get('/cadastro/:id', async (req, res) => {
   try {

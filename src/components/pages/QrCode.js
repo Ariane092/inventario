@@ -1,13 +1,11 @@
 import React, { useState, useEffect, useRef } from "react";
 import QRCode from "qrcode.react";
-import { Button, Pagination } from "antd";
+import { Button } from "antd";
 import { PrinterFilled } from "@ant-design/icons";
 import html2pdf from "html2pdf.js";
 
 function QrCode() {
   const [data, setData] = useState([]);
-  const [currentPage, setCurrentPage] = useState(1);
-  const pageSize = 28;
   const contentRef = useRef(null);
 
   useEffect(() => {
@@ -36,9 +34,7 @@ function QrCode() {
   };
 
   const renderItems = () => {
-    const startIndex = (currentPage - 1) * pageSize;
-    const endIndex = startIndex + pageSize;
-    return data.slice(startIndex, endIndex).map((item) => (
+    return data.map((item) => (
       <div
         key={item.id}
         style={{
@@ -60,10 +56,6 @@ function QrCode() {
     ));
   };
 
-  const handlePageChange = (page) => {
-    setCurrentPage(page);
-  };
-
   return (
     <div>
       <h2>Qr Code dos Equipamentos</h2>
@@ -76,12 +68,12 @@ function QrCode() {
       >
         <Button onClick={handlePrint}><PrinterFilled /> Imprimir</Button>
       </div>
-      <div style={{ display: "flex", flexWrap: "wrap", margin: "35px" }} ref={contentRef}>
+      <div style={{ display: "flex", flexWrap: "wrap" }} ref={contentRef}>
         {renderItems()}
       </div>
-      <Pagination current={currentPage} total={data.length} pageSize={pageSize} onChange={handlePageChange} />
     </div>
   );
 }
 
 export default QrCode;
+

@@ -67,7 +67,7 @@ function Marca({ isVisibleAdd = true }) {
     <Space.Compact>
       <Form.Item label="Marca" name="marca">
         <Select
-          style={{ width: 150 }}
+          style={{ width: 165 }}
           options={marca.map((option) => ({
             value: option.id,
             label: option.nome,
@@ -91,7 +91,7 @@ function Marca({ isVisibleAdd = true }) {
   ) : (
     <Form.Item label="Marca" name="marca">
       <Select
-        style={{ width: 150 }}
+        style={{ width: 165 }}
         options={marca.map((option) => ({
           value: option.id,
           label: option.nome,

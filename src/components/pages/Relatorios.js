@@ -8,29 +8,57 @@ import Status from "../forms/Selects/Status.js";
 import Memoria from "../forms/Selects/Memoria.js";
 import HardDisk from "../forms/Selects/HardDisk.js";
 import Processador from "../forms/Selects/Processador.js";
+import TipoEquipamento from "../forms/Selects/TipoEquipamento.js";
 import Office from "../forms/Selects/Office.js";
 import "./Cadastro.css";
 import { Button, Alert, Space, Form } from "antd";
 import axios from "axios";
-import TipoEquipamento from "../forms/Selects/TipoEquipamento.js";
+import jsPDF from "jspdf";
 
 function Relatorios() {
   const [submitSuccess, setSubmitSuccess] = useState(false);
   const [submitError, setSubmitError] = useState(false);
+
+  const generatePDF = (data) => {
+    const doc = new jsPDF();
+    doc.text("Relatório de Equipamentos", 10, 10);
+    // Adicione o conteúdo do PDF usando o data
+    let yPosition = 20;
+    data.forEach((item) => {
+      for (const key in item) {
+        if (item[key]) {
+          doc.text(`${key}: ${item[key]}`, 10, yPosition);
+          yPosition += 10;
+        }
+      }
+      yPosition += 10; // Adicione uma linha em branco entre registros
+    });
+    doc.save("relatorio_equipamentos.pdf");
+  };
+
   const onFinish = async (values) => {
+    // Filtra os valores para enviar apenas os selecionados
+    const filteredValues = {};
+    Object.keys(values).forEach(key => {
+      if (values[key]) {
+        filteredValues[key] = values[key];
+      }
+    });
+
     try {
-      await axios.post("http://localhost:3001/cadastro", values);
+      const response = await axios.get("http://localhost:3001/cadastro", {
+        params: filteredValues
+      });
+      generatePDF(response.data);
       setSubmitSuccess(true);
       setSubmitError(false);
-      setTimeout(() => {
-        window.location.reload();
-      }, 2000);
     } catch (error) {
-      console.error("Erro ao enviar dados:", error);
+      console.error("Erro ao gerar relatório:", error);
       setSubmitSuccess(false);
       setSubmitError(true);
     }
   };
+
   const onFinishFailed = (errorInfo) => {
     console.log("Failed:", errorInfo);
   };
@@ -45,7 +73,7 @@ function Relatorios() {
         }}
       >
         {submitSuccess ? (
-          <Alert message="Relatório gera com sucesso." type="success" showIcon />
+          <Alert message="Relatório gerado com sucesso." type="success" showIcon />
         ) : submitError ? (
           <Alert
             message="Erro ao gerar relatório."
@@ -67,17 +95,16 @@ function Relatorios() {
           onFinishFailed={onFinishFailed}
           autoComplete="off"
         >
-
           <TipoEquipamento />
-          <Responsavel isVisibleAdd = {false} />
-          <Projeto isVisibleAdd = {false} />
-          <Status isVisibleAdd = {false} />
-          <Marca isVisibleAdd = {false} />
-          <Modelo isVisibleAdd = {false} />
-          <Memoria isVisibleAdd = {false} />
-          <HardDisk isVisibleAdd = {false} />
-          <Processador isVisibleAdd = {false} />
-          <Office isVisibleAdd = {false} />
+          <Responsavel isVisibleAdd={false} />
+          <Projeto isVisibleAdd={false} />
+          <Status isVisibleAdd={false} />
+          <Marca isVisibleAdd={false} />
+          <Modelo isVisibleAdd={false} />
+          <Memoria isVisibleAdd={false} />
+          <HardDisk isVisibleAdd={false} />
+          <Processador isVisibleAdd={false} />
+          <Office isVisibleAdd={false} />
           <div>
             <Button
               type="primary"
