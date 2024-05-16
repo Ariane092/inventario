@@ -2,7 +2,7 @@ import { useContext, useState } from "react";
 import { PlusOutlined } from "@ant-design/icons";
 import { Button, Select, Space, Form, Popover, Input } from "antd";
 import { Context } from "../../pages/FetchProvider.js";
-import "./SelectCad.css";
+import "./Selects.css";
 import axios from "axios";
 
 function TipoComputadores({ isVisibleAdd = true }) {

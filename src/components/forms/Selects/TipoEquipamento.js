@@ -1,9 +1,7 @@
-import { useContext, useState } from "react";
-import { PlusOutlined } from "@ant-design/icons";
-import { Button, Select, Space, Form, Popover, Input } from "antd";
+import { useContext } from "react";
+import { Select, Form } from "antd";
 import { Context } from "../../pages/FetchProvider.js";
-import "./SelectCad.css";
-import axios from "axios";
+import "./Selects.css";
 
 function TipoEquipamento() {
   const { data } = useContext(Context);

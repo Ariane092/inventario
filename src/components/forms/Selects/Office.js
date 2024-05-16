@@ -2,7 +2,7 @@ import { useContext, useState } from "react";
 import { PlusOutlined } from "@ant-design/icons";
 import { Button, Select, Space, Form, Popover, Input } from "antd";
 import { Context } from "../../pages/FetchProvider.js";
-import "./SelectCad.css";
+import "./Selects.css";
 import axios from "axios";
 
 function Office({ isVisibleAdd = true }) {
@@ -61,7 +61,7 @@ function Office({ isVisibleAdd = true }) {
     </div>
   );
 
-  return (
+  return isVisibleAdd ? (
     <Space.Compact>
       <Form.Item label="Office" name="office">
         <Select
@@ -73,21 +73,29 @@ function Office({ isVisibleAdd = true }) {
         />
       </Form.Item>
       <div>
-        {isVisibleAdd && (
-          <Popover
-            content={content}
-            title="Adicionar novo Office:"
-            trigger="click"
-            open={open}
-            onOpenChange={handleOpenChange}
-          >
-            <Button className="add-button">
-              <PlusOutlined />
-            </Button>
-          </Popover>
-        )}
+        <Popover
+          content={content}
+          title="Adicionar novo Office:"
+          trigger="click"
+          open={open}
+          onOpenChange={handleOpenChange}
+        >
+          <Button className="add-button">
+            <PlusOutlined />
+          </Button>
+        </Popover>
       </div>
     </Space.Compact>
+  ) : (
+    <Form.Item label="Office" name="office">
+      <Select
+        style={{ width: 150 }}
+        options={office.map((option) => ({
+          value: option.id,
+          label: option.nome,
+        }))}
+      />
+    </Form.Item>
   );
 }
 

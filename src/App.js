@@ -19,7 +19,7 @@ function App() {
         <Route path="/home" element={<Home />} />
         <Route path="/home/:id" element={<Home />} />
         <Route path="/inventario" element={<Inventario />} />
-        {/* <Route path="/relatorios" element={<Relatorios />} /> */}
+        <Route path="/relatorios" element={<Relatorios />} />
         <Route path="/computadores" element={<Computadores />} />
         <Route path="/impressoras" element={<Impressoras />} />
         <Route path="/monitores" element={<Monitores />} />

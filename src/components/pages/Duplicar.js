@@ -51,7 +51,7 @@ function Duplicar() {
 
   const onFinish = async (values) => {
     try {
-      await axios.post(`http://localhost:3001/cadastro/${id}`, values);
+      await axios.post("http://localhost:3001/cadastro", values);
       setSubmitSuccess(true);
       setSubmitError(false);
       setTimeout(() => {
