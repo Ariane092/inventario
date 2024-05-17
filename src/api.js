@@ -84,7 +84,6 @@ app.get('/cadastro', async (req, res) => {
   }
 });
 
-
 /*visualizar/editar/duplicar*/
 app.get('/cadastro/:id', async (req, res) => {
   try {

@@ -39,7 +39,7 @@ function Relatorios() {
   const onFinish = async (values) => {
     // Filtra os valores para enviar apenas os selecionados
     const filteredValues = {};
-    Object.keys(values).forEach(key => {
+    Object.keys(values).forEach((key) => {
       if (values[key]) {
         filteredValues[key] = values[key];
       }
@@ -47,7 +47,7 @@ function Relatorios() {
 
     try {
       const response = await axios.get("http://localhost:3001/cadastro", {
-        params: filteredValues
+        params: filteredValues,
       });
       generatePDF(response.data);
       setSubmitSuccess(true);
@@ -73,13 +73,13 @@ function Relatorios() {
         }}
       >
         {submitSuccess ? (
-          <Alert message="Relatório gerado com sucesso." type="success" showIcon />
-        ) : submitError ? (
           <Alert
-            message="Erro ao gerar relatório."
-            type="error"
+            message="Relatório gerado com sucesso."
+            type="success"
             showIcon
           />
+        ) : submitError ? (
+          <Alert message="Erro ao gerar relatório." type="error" showIcon />
         ) : null}
       </Space>
 
@@ -87,7 +87,7 @@ function Relatorios() {
 
       <FetchProvider>
         <Form
-          className="form-inputs"
+          style={{display: "flex", flexDirection: "column", maxWidth: "600px"}}
           initialValues={{
             remember: true,
           }}
@@ -95,17 +95,26 @@ function Relatorios() {
           onFinishFailed={onFinishFailed}
           autoComplete="off"
         >
-          <TipoEquipamento />
-          <Responsavel isVisibleAdd={false} />
-          <Projeto isVisibleAdd={false} />
-          <Status isVisibleAdd={false} />
-          <Marca isVisibleAdd={false} />
-          <Modelo isVisibleAdd={false} />
-          <Memoria isVisibleAdd={false} />
-          <HardDisk isVisibleAdd={false} />
-          <Processador isVisibleAdd={false} />
-          <Office isVisibleAdd={false} />
-          <div>
+          <div
+            style={{
+              display: "flex",
+              flexWrap: "wrap",
+              marginTop: "40px",
+              justifyContent: "space-between",
+            }}
+          >
+            <TipoEquipamento />
+            <Responsavel isVisibleAdd={false} />
+            <Projeto isVisibleAdd={false} />
+            <Status isVisibleAdd={false} />
+            <Marca isVisibleAdd={false} />
+            <Modelo isVisibleAdd={false} />
+            <Memoria isVisibleAdd={false} />
+            <HardDisk isVisibleAdd={false} />
+            <Processador isVisibleAdd={false} />
+            <Office isVisibleAdd={false} />
+          </div>
+          <div style={{display: "flex", justifyContent: "flex-end" }}>
             <Button
               type="primary"
               shape="default"
