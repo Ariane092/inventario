@@ -99,7 +99,7 @@ function Relatorios() {
             style={{
               display: "flex",
               flexWrap: "wrap",
-              marginTop: "40px",
+              marginTop: "50px",
               justifyContent: "space-between",
             }}
           >
