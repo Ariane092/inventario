@@ -30,6 +30,7 @@ function Home() {
   const handleGlobalSearch = (dataIndex) => {
     setSearchText(dataIndex);
   };
+
   const globalSearchProps = {
     placeholder: "Pesquisar",
     allowClear: true,
@@ -37,15 +38,18 @@ function Home() {
     onChange: (e) => setSearchText(e.target.value),
     onSearch: (value) => handleGlobalSearch(value),
   };
+
   const handleSearch = (selectedKeys, confirm, dataIndex) => {
     confirm();
     setSearchText(selectedKeys[0]);
     setSearchedColumn(dataIndex);
   };
+
   const handleReset = (clearFilters) => {
     clearFilters();
     setSearchText("");
   };
+
   const getColumnSearchProps = (dataIndex) => ({
     filterDropdown: ({
       setSelectedKeys,
@@ -244,13 +248,12 @@ function Home() {
 
   return (
     <>
-        <Search
-          {...globalSearchProps}
-          style={{ width: 220, marginTop: 0 }}
-        />
-
-        <Table columns={columns} dataSource={data} />
-
+      <Search {...globalSearchProps} style={{ width: 220, marginTop: 0 }} />
+      <Table
+        columns={columns}
+        dataSource={data}
+        scroll={{ x: "max-content" }}
+      />
       <Modal
         style={{
           top: 20,

@@ -11,7 +11,3 @@ table {
 .copy-btn:hover{
     color: rgba(55, 119, 87, 0.575);
 }
-
-@media screen and (max-width: 768px) {
-    
-}
