@@ -4,7 +4,7 @@ const Context = createContext();
 
 function FetchProvider({ children }) {
   const [data, setData] = useState({});
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(true);  
 
   useEffect(() => {
     const fetchData = async () => {
@@ -43,7 +43,7 @@ function FetchProvider({ children }) {
           fetch("http://localhost:3001/memoria").then((response) =>
             response.json()
           ),
-          fetch("http://localhost:3001/hd").then((response) => 
+          fetch("http://localhost:3001/hd").then((response) =>
             response.json()
           ),
           fetch("http://localhost:3001/processador").then((response) =>
@@ -88,20 +88,18 @@ function FetchProvider({ children }) {
       } catch (error) {
         console.error("Erro ao buscar dados:", error);
       } finally {
-        setLoading(false);
+        setLoading(false); 
       }
     };
 
     fetchData();
   }, []);
 
-  if (
-    Object.values(data).some((table) => !table || table.length === 0) ||
-    loading
-  )
-    return null;
-
-  return <Context.Provider value={{ data, setData }}>{children}</Context.Provider>;
+  return (
+    <Context.Provider value={{ data, loading, setData }}>
+      {children}
+    </Context.Provider>
+  );
 }
 
 export { FetchProvider, Context };

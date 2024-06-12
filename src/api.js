@@ -9,7 +9,7 @@ const pool = new pg.Pool({
   user: 'postgres',
   host: 'localhost',
   database: 'postgres',
-  password: 'gkr2090',
+  password: 'cepea7893',
   port: 5432,
 });
 
@@ -28,61 +28,6 @@ app.get('/cadastro', async (req, res) => {
 });
 
 /*relatórios*/
-app.get('/cadastro', async (req, res) => {
-  try {
-    const { tipoEquipamento, responsavel, projeto, status, marca, modelo, memoria, hardDisk, processador, office } = req.query;
-
-    let query = 'SELECT * FROM cadastro WHERE 1=1';
-    const queryParams = [];
-
-    if (tipoEquipamento) {
-      queryParams.push(tipoEquipamento);
-      query += ` AND tipo_equipamento = $${queryParams.length}`;
-    }
-    if (responsavel) {
-      queryParams.push(responsavel);
-      query += ` AND responsavel = $${queryParams.length}`;
-    }
-    if (projeto) {
-      queryParams.push(projeto);
-      query += ` AND projeto = $${queryParams.length}`;
-    }
-    if (status) {
-      queryParams.push(status);
-      query += ` AND status = $${queryParams.length}`;
-    }
-    if (marca) {
-      queryParams.push(marca);
-      query += ` AND marca = $${queryParams.length}`;
-    }
-    if (modelo) {
-      queryParams.push(modelo);
-      query += ` AND modelo = $${queryParams.length}`;
-    }
-    if (memoria) {
-      queryParams.push(memoria);
-      query += ` AND memoria = $${queryParams.length}`;
-    }
-    if (hardDisk) {
-      queryParams.push(hardDisk);
-      query += ` AND hard_disk = $${queryParams.length}`;
-    }
-    if (processador) {
-      queryParams.push(processador);
-      query += ` AND processador = $${queryParams.length}`;
-    }
-    if (office) {
-      queryParams.push(office);
-      query += ` AND office = $${queryParams.length}`;
-    }
-
-    const result = await pool.query(query, queryParams);
-    res.json(result.rows);
-  } catch (error) {
-    console.error('Erro ao obter dados do banco de dados', error);
-    res.status(500).send('Erro interno do servidor');
-  }
-});
 
 /*visualizar/editar/duplicar*/
 app.get('/cadastro/:id', async (req, res) => {
@@ -99,8 +44,9 @@ app.get('/cadastro/:id', async (req, res) => {
 /*get selects*/
 app.get('/responsavel', async (req, res) => {
   try {
-    const result = await pool.query('SELECT nome, id FROM responsavel');
+    const result = await pool.query('SELECT * FROM responsavel');
     res.json(result.rows);
+    console.log(result);
   } catch (error) {
     console.error('Erro ao obter dados do banco de dados', error);
     res.status(500).send('Erro interno do servidor');
@@ -109,7 +55,7 @@ app.get('/responsavel', async (req, res) => {
 
 app.get('/projeto', async (req, res) => {
   try {
-    const result = await pool.query('SELECT nome, id FROM projeto');
+    const result = await pool.query('SELECT * FROM projeto');
     res.json(result.rows);
   } catch (error) {
     console.error('Erro ao obter dados do banco de dados', error);
@@ -119,7 +65,7 @@ app.get('/projeto', async (req, res) => {
 
 app.get('/status', async (req, res) => {
   try {
-    const result = await pool.query('SELECT nome, id FROM status');
+    const result = await pool.query('SELECT * FROM status');
     res.json(result.rows);
   } catch (error) {
     console.error('Erro ao obter dados do banco de dados', error);
@@ -129,7 +75,7 @@ app.get('/status', async (req, res) => {
 
 app.get('/memoria', async (req, res) => {
   try {
-    const result = await pool.query('SELECT nome, id FROM memoria');
+    const result = await pool.query('SELECT * FROM memoria');
     res.json(result.rows);
   } catch (error) {
     console.error('Erro ao obter dados do banco de dados', error);
@@ -139,7 +85,7 @@ app.get('/memoria', async (req, res) => {
 
 app.get('/hd', async (req, res) => {
   try {
-    const result = await pool.query('SELECT nome, id FROM hard_disk');
+    const result = await pool.query('SELECT * FROM hard_disk');
     res.json(result.rows);
   } catch (error) {
     console.error('Erro ao obter dados do banco de dados', error);
@@ -149,7 +95,7 @@ app.get('/hd', async (req, res) => {
 
 app.get('/processador', async (req, res) => {
   try {
-    const result = await pool.query('SELECT nome, id FROM processador');
+    const result = await pool.query('SELECT * FROM processador');
     res.json(result.rows);
   } catch (error) {
     console.error('Erro ao obter dados do banco de dados', error);
@@ -159,7 +105,7 @@ app.get('/processador', async (req, res) => {
 
 app.get('/office', async (req, res) => {
   try {
-    const result = await pool.query('SELECT nome, id FROM office');
+    const result = await pool.query('SELECT * FROM office');
     res.json(result.rows);
   } catch (error) {
     console.error('Erro ao obter dados do banco de dados', error);
@@ -169,7 +115,7 @@ app.get('/office', async (req, res) => {
 
 app.get('/escritorio', async (req, res) => {
   try {
-    const result = await pool.query('SELECT nome, id FROM tipo_escritorio');
+    const result = await pool.query('SELECT * FROM tipo_escritorio');
     res.json(result.rows);
   } catch (error) {
     console.error('Erro ao obter dados do banco de dados', error);
@@ -179,7 +125,7 @@ app.get('/escritorio', async (req, res) => {
 
 app.get('/computadores', async (req, res) => {
   try {
-    const result = await pool.query('SELECT nome, id FROM tipo_computadores');
+    const result = await pool.query('SELECT * FROM tipo_computadores');
     res.json(result.rows);
   } catch (error) {
     console.error('Erro ao obter dados do banco de dados', error);
@@ -189,7 +135,7 @@ app.get('/computadores', async (req, res) => {
 
 app.get('/impressoras', async (req, res) => {
   try {
-    const result = await pool.query('SELECT nome, id FROM tipo_impressoras');
+    const result = await pool.query('SELECT * FROM tipo_impressoras');
     res.json(result.rows);
   } catch (error) {
     console.error('Erro ao obter dados do banco de dados', error);
@@ -199,7 +145,7 @@ app.get('/impressoras', async (req, res) => {
 
 app.get('/monitores', async (req, res) => {
   try {
-    const result = await pool.query('SELECT nome, id FROM tipo_monitores');
+    const result = await pool.query('SELECT * FROM tipo_monitores');
     res.json(result.rows);
   } catch (error) {
     console.error('Erro ao obter dados do banco de dados', error);
@@ -209,7 +155,7 @@ app.get('/monitores', async (req, res) => {
 
 app.get('/equipamento', async (req, res) => {
   try {
-    const result = await pool.query('SELECT nome, id FROM tipo_equipamento');
+    const result = await pool.query('SELECT * FROM tipo_equipamento');
     res.json(result.rows);
   } catch (error) {
     console.error('Erro ao obter dados do banco de dados', error);
@@ -219,7 +165,7 @@ app.get('/equipamento', async (req, res) => {
 
 app.get('/marca', async (req, res) => {
   try {
-    const result = await pool.query('SELECT nome, id FROM marca');
+    const result = await pool.query('SELECT * FROM marca');
     res.json(result.rows);
   } catch (error) {
     console.error('Erro ao obter dados do banco de dados', error);
@@ -229,7 +175,7 @@ app.get('/marca', async (req, res) => {
 
 app.get('/modelo', async (req, res) => {
   try {
-    const result = await pool.query('SELECT nome, id FROM modelo');
+    const result = await pool.query('SELECT * FROM modelo');
     res.json(result.rows);
   } catch (error) {
     console.error('Erro ao obter dados do banco de dados', error);
