@@ -46,7 +46,6 @@ app.get('/responsavel', async (req, res) => {
   try {
     const result = await pool.query('SELECT * FROM responsavel');
     res.json(result.rows);
-    console.log(result);
   } catch (error) {
     console.error('Erro ao obter dados do banco de dados', error);
     res.status(500).send('Erro interno do servidor');
@@ -329,11 +328,11 @@ app.post('/modelo', async (req, res) => {
 
 app.post('/cadastro', async (req, res) => {
   try {
-    const { projeto, responsavel, tipo_equipamento, servicetag, patrimonio, marca, modelo, processo, 
-      data_compra, local, usuario, nota_fiscal, cod_doacao, memoria, hard_disk, processador, office, configuracao, observacao, status } = req.body;
+    const { id_projeto, id_responsavel, id_tipo_equipamento, servicetag, patrimonio, id_marca, id_modelo, processo, 
+      data_compra, local, usuario, nota_fiscal, cod_doacao, id_memoria, id_hard_disk, id_processador, id_office, configuracao, observacao, id_status } = req.body;
 
-    const result = await pool.query('INSERT INTO cadastro (projeto, responsavel, tipo_equipamento, servicetag, patrimonio, marca, modelo, processo, data_compra, local, usuario, nota_fiscal, cod_doacao, memoria, hard_disk, processador, office, configuracao, observacao, status) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16, $17, $18, $19, $20) RETURNING *', 
-    [projeto, responsavel, tipo_equipamento, servicetag, patrimonio, marca, modelo, processo, data_compra, local, usuario, nota_fiscal, cod_doacao, memoria, hard_disk, processador, office, configuracao, observacao, status]);
+    const result = await pool.query('INSERT INTO cadastro (id_projeto, id_responsavel, id_tipo_equipamento, servicetag, patrimonio, id_marca, id_modelo, processo, data_compra, local, usuario, nota_fiscal, cod_doacao, id_memoria, id_hard_disk, id_processador, id_office, configuracao, observacao, id_status) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16, $17, $18, $19, $20) RETURNING *', 
+    [id_projeto, id_responsavel, id_tipo_equipamento, servicetag, patrimonio, id_marca, id_modelo, processo, data_compra, local, usuario, nota_fiscal, cod_doacao, id_memoria, id_hard_disk, id_processador, id_office, configuracao, observacao, id_status]);
     res.json(result.rows[0]);
   } catch (error) {
     console.error('Erro ao inserir dados no banco de dados', error);
